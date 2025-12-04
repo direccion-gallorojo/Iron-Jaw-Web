@@ -504,6 +504,7 @@ footer {
     border-radius: 10px;
     overflow: hidden;
     display: flex; /* Para poner imagen y detalles uno al lado del otro */
+    max-height: 350px; /* <--- CORRECCIÓN 1: Límite de altura de toda la tarjeta */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
@@ -515,6 +516,7 @@ footer {
 .product-image {
     flex: 1; /* Ocupa la mitad del espacio */
     max-width: 50%;
+    max-height: 350px; /* <--- CORRECCIÓN 2: Límite de altura del contenedor de la imagen */
     overflow: hidden;
 }
 
@@ -563,3 +565,4 @@ footer {
     font-weight: bold;
     color: #1a1a1a;
 }
+
