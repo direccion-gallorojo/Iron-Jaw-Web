@@ -165,7 +165,7 @@ body {
 
 /* --- Hero Section --- */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -597,6 +597,7 @@ footer {
     color: var(--primary-color); /* El color de acento (rojo) al pasar el ratón */
     text-decoration: underline; /* Subrayado al pasar el ratón */
 }
+
 
 
 
