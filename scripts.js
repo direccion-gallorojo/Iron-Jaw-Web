@@ -1,8 +1,8 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     
     // --- Lógica del Menú Móvil ---
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
@@ -73,4 +73,5 @@
 
     // Efecto suave al hacer scroll (Polyfill simple para navegadores viejos si fuera necesario, 
     // pero CSS scroll-behavior suele bastar)
+
 });
