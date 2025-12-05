@@ -177,9 +177,15 @@ body {
 }
 
 .hero-content {
+    display: flex; /* Habilita el centrado flexible */
+    flex-direction: column; /* Apila el logo, H1, P, y botones verticalmente */
+    align-items: center; /* Centra horizontalmente todos los elementos (CRUCIAL para el logo) */
+    text-align: center;
     position: relative;
     z-index: 2;
     max-width: 800px;
+    padding: 150px 20px 150px 20px; /* Más espacio arriba y abajo para evitar solapamiento */
+    margin: 0 auto;
 }
 
 .hero h1 {
@@ -591,6 +597,7 @@ footer {
     color: var(--primary-color); /* El color de acento (rojo) al pasar el ratón */
     text-decoration: underline; /* Subrayado al pasar el ratón */
 }
+
 
 
 
