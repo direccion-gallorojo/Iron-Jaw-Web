@@ -568,6 +568,29 @@ footer {
     font-weight: bold;
     color: var(--primary-color); /* CAMBIO CLAVE: Usamos el rojo intenso Iron Jaw */
 }
+/* --- NUEVO ESTILO: BOTÓN COMO ENLACE DE TEXTO (Punto 3) --- */
+.price-link {
+    /* 1. Resetear el estilo de botón para que parezca texto */
+    background: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    text-decoration: none; /* Quitar el subrayado por defecto */
+    
+    /* 2. Coincidir con el estilo del precio */
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fff; /* Hacemos que coincida con el precio, que ahora es blanco */
+    line-height: 1.8em; /* Ayuda a la alineación vertical con el precio */
+    
+    /* 3. Efecto visual para indicar que es clickeable */
+    transition: color 0.2s ease;
 }
+
+.price-link:hover {
+    color: var(--primary-color); /* El color de acento (rojo) al pasar el ratón */
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}
+
 
 
