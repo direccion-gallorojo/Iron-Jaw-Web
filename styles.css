@@ -202,6 +202,9 @@ body {
 }
 
 /* --- About --- */
+#about {
+    margin-top: 50px; /* Empuja la sección hacia abajo 50 píxeles */
+}
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -597,6 +600,7 @@ footer {
     color: var(--primary-color); /* El color de acento (rojo) al pasar el ratón */
     text-decoration: underline; /* Subrayado al pasar el ratón */
 }
+
 
 
 
