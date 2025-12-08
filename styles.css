@@ -573,108 +573,7 @@ footer {
     }
 
 }
-/* --- ESTILOS DE PRODUCTO DETALLADO (Punto 2) --- */
 
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Cambiamos a esta parrilla para productos grandes */
-    gap: 40px;
-    padding-top: 20px;
-}
-
-.product-image {
-    flex: 1; /* Ocupa la mitad del espacio */
-    max-width: 50%;
-    overflow: hidden;
-    max-height: 350px; /* <--- Mantenemos el LÍMITE SÓLO para la imagen */
-}
-
-.product-image img {
-    width: 100%;
-    height: 100%; 
-    object-fit: cover;
-}
-}
-
-.product-item:hover {
-    transform: translateY(-5px);
-}
-
-.product-image {
-    flex: 1; /* Ocupa la mitad del espacio */
-    max-width: 50%;
-    overflow: hidden;
-    height: 100%; /* <--- CORRECCIÓN CLAVE 2: Fuerza a respetar la altura del padre */
-}
-
-.product-image img {
-    width: 100%;
-    height: 100%; /* <--- Lo mantenemos, pero ahora su 100% está limitado a 350px */
-    object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
-}
-
-.product-details {
-    flex: 1;
-    padding: 25px;
-}
-
-.product-details h3 {
-    color: var(--color-accent); /* Color rojo/naranja del diseño */
-    margin-top: 0;
-}
-
-.specs {
-    list-style: none;
-    padding: 0;
-    margin: 15px 0;
-}
-
-.specs li {
-    margin-bottom: 8px;
-    font-size: 1em;
-    font-weight: 500;
-}
-
-.specs li i {
-    color: var(--color-accent);
-    margin-right: 10px;
-}
-
-.price-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.price {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--primary-color); /* CAMBIO CLAVE: Usamos el rojo intenso Iron Jaw */
-}
-/* --- NUEVO ESTILO: BOTÓN COMO ENLACE DE TEXTO (Punto 3) --- */
-.price-link {
-    /* 1. Resetear el estilo de botón para que parezca texto */
-    background: none;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    text-decoration: none; /* Quitar el subrayado por defecto */
-    
-    /* 2. Coincidir con el estilo del precio */
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #fff; /* Hacemos que coincida con el precio, que ahora es blanco */
-    line-height: 1.8em; /* Ayuda a la alineación vertical con el precio */
-    
-    /* 3. Efecto visual para indicar que es clickeable */
-    transition: color 0.2s ease;
-}
-
-.price-link:hover {
-    color: var(--primary-color); /* El color de acento (rojo) al pasar el ratón */
-    text-decoration: underline; /* Subrayado al pasar el ratón */
-}
 /* --- AVISO DE COOKIES --- */
 .cookie-consent {
     position: fixed;
@@ -706,6 +605,7 @@ footer {
 .hidden {
     display: none !important;
 }
+
 
 
 
