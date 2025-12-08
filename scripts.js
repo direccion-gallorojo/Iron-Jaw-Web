@@ -89,9 +89,8 @@
 
     // Efecto suave al hacer scroll (Polyfill simple para navegadores viejos si fuera necesario, 
     // pero CSS scroll-behavior suele bastar)
-}); // <--- ASEGÚRATE DE QUE LA LLAVE DE CIERRE FINAL QUEDE DESPUÉS DE ESTE CÓDIGO
-    // Efecto suave al hacer scroll (Polyfill simple para navegadores viejos si fuera necesario, 
+// Efecto suave al hacer scroll (Polyfill simple para navegadores viejos si fuera necesario, 
     // pero CSS scroll-behavior suele bastar)
-
 });
+
 
