@@ -319,25 +319,75 @@ body {
 /* --- Galería --- */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Pequeño ajuste en tamaño mínimo */
     gap: 1rem;
 }
 
-.gallery-item {
-    height: 250px;
-    background-color: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    font-weight: bold;
-    color: #555;
-    border: 1px solid var(--border-color);
-    transition: opacity 0.3s;
+/* Estilo para los subtítulos de cada categoría */
+.gallery-subtitle {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
 }
 
+/* Reglas para los contenedores de las imágenes */
+.gallery-item {
+    padding: 0; 
+    height: 300px; /* Altura fija para la imagen */
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px; /* Aseguramos bordes redondeados */
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* La imagen cubre todo el contenedor */
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Efecto al pasar el ratón */
 .gallery-item:hover {
-    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05); /* Zoom sutil en la imagen */
+    opacity: 0.9;
+}
+
+/* Estilo específico para items anchos (Materiales Utilizados) */
+.gallery-grid.material-grid .gallery-item {
+    height: 400px; /* Más alto para materiales */
+}
+
+/* Regla para que los materiales ocupen más espacio en escritorio */
+@media (min-width: 900px) {
+    .gallery-grid.material-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columnas en total para materiales */
+    }
+}
+
+
+/* Adaptamos el responsive para la galería */
+@media (max-width: 768px) {
+    /* ... (resto del media query) ... */
+    
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Una columna en móvil */
+    }
+    .gallery-subtitle {
+        font-size: 1.4rem;
+    }
+    .gallery-item {
+        height: 200px; /* Reducimos la altura en móvil */
+    }
 }
 
 /* --- Testimonios --- */
@@ -656,6 +706,7 @@ footer {
 .hidden {
     display: none !important;
 }
+
 
 
 
