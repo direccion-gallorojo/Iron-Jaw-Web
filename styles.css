@@ -319,8 +319,8 @@ body {
 /* --- Galería --- */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Pequeño ajuste en tamaño mínimo */
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem; /* Separación entre imágenes */
 }
 
 /* Estilo para los subtítulos de cada categoría */
@@ -331,15 +331,16 @@ body {
     margin-top: 3rem;
     margin-bottom: 2rem;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Reglas para los contenedores de las imágenes */
 .gallery-item {
     padding: 0; 
-    height: 300px; /* Altura fija para la imagen */
+    height: 300px; /* Altura fija en escritorio */
     overflow: hidden;
     position: relative;
-    border-radius: 8px; /* Aseguramos bordes redondeados */
+    border-radius: 8px; 
     border: 1px solid var(--border-color);
     transition: transform 0.3s ease;
 }
@@ -347,7 +348,7 @@ body {
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* La imagen cubre todo el contenedor */
+    object-fit: cover; /* **CLAVE:** La imagen se ajusta al recuadro */
     display: block;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -362,23 +363,13 @@ body {
     opacity: 0.9;
 }
 
-/* Estilo específico para items anchos (Materiales Utilizados) */
+/* Estilo para items anchos (Materiales Utilizados) */
 .gallery-grid.material-grid .gallery-item {
-    height: 400px; /* Más alto para materiales */
+    height: 400px; 
 }
 
-/* Regla para que los materiales ocupen más espacio en escritorio */
-@media (min-width: 900px) {
-    .gallery-grid.material-grid {
-        grid-template-columns: 1fr 1fr; /* 2 columnas en total para materiales */
-    }
-}
-
-
-/* Adaptamos el responsive para la galería */
+/* Responsive Específico para la Galería */
 @media (max-width: 768px) {
-    /* ... (resto del media query) ... */
-    
     .gallery-grid {
         grid-template-columns: 1fr; /* Una columna en móvil */
     }
@@ -388,6 +379,7 @@ body {
     .gallery-item {
         height: 200px; /* Reducimos la altura en móvil */
     }
+    /* El item wide no necesita regla, ya que la parrilla es de 1fr */
 }
 
 /* --- Testimonios --- */
@@ -605,6 +597,7 @@ footer {
 .hidden {
     display: none !important;
 }
+
 
 
 
