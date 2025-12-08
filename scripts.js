@@ -70,8 +70,28 @@
     function showError(elementId) {
         document.getElementById(elementId).style.display = 'block';
     }
+// --- Lógica del Aviso de Cookies ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptButton = document.getElementById('accept-cookies');
 
+    // Comprobar si la cookie de aceptación existe. Si no existe, mostramos el banner.
+    if (cookieBanner && !localStorage.getItem('cookiesAccepted')) {
+        cookieBanner.classList.remove('hidden');
+    }
+
+    // Manejar el clic en el botón de aceptación
+    if (acceptButton) {
+        acceptButton.addEventListener('click', function() {
+            localStorage.setItem('cookiesAccepted', 'true'); // Guardar la aceptación
+            cookieBanner.classList.add('hidden'); // Ocultar el banner
+        });
+    }
+
+    // Efecto suave al hacer scroll (Polyfill simple para navegadores viejos si fuera necesario, 
+    // pero CSS scroll-behavior suele bastar)
+}); // <--- ASEGÚRATE DE QUE LA LLAVE DE CIERRE FINAL QUEDE DESPUÉS DE ESTE CÓDIGO
     // Efecto suave al hacer scroll (Polyfill simple para navegadores viejos si fuera necesario, 
     // pero CSS scroll-behavior suele bastar)
 
 });
+
