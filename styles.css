@@ -625,6 +625,37 @@ footer {
     color: var(--primary-color); /* El color de acento (rojo) al pasar el ratón */
     text-decoration: underline; /* Subrayado al pasar el ratón */
 }
+/* --- AVISO DE COOKIES --- */
+.cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    z-index: 10000; /* Asegura que esté por encima de todo */
+    font-size: 0.9rem;
+}
+
+.cookie-consent p {
+    margin: 0;
+    flex-grow: 1;
+}
+
+.btn-cookie {
+    margin-left: 20px;
+    white-space: nowrap;
+    padding: 8px 15px !important;
+}
+
+.hidden {
+    display: none !important;
+}
 
 
 
