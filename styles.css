@@ -695,6 +695,87 @@ footer {
         padding: 20px; /* Restauramos padding para el texto */
     }
 }
+/* --- ESTILOS PARA LA GALERÍA MODAL (POP-UP) --- */
+
+.modal-gallery {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 10001; /* Alto para estar sobre todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro semitransparente */
+    padding-top: 50px;
+}
+
+.modal-content-gallery {
+    background-color: var(--bg-card);
+    margin: 5% auto; /* 5% arriba y centrado */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%; 
+    max-width: 900px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-button-gallery {
+    color: var(--text-muted);
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-button-gallery:hover,
+.close-button-gallery:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-body-gallery {
+    height: 450px; /* Altura fija para la imagen principal */
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mostrar toda la imagen sin recortar */
+    display: block;
+}
+
+.modal-thumbnails-gallery {
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    overflow-x: auto; /* Permite desplazamiento si hay muchas */
+}
+
+.gallery-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s, border 0.3s;
+    border: 2px solid transparent;
+}
+
+.gallery-thumbnail:hover, .active-thumb {
+    opacity: 1;
+    border: 2px solid var(--primary-color);
+}
 
 
 
