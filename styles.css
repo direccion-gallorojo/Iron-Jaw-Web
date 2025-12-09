@@ -597,6 +597,104 @@ footer {
 .hidden {
     display: none !important;
 }
+/* --- ESTILOS DE PRODUCTO DETALLADO FINAL --- */
+
+.products-grid {
+    /* Ajuste la parrilla para dar espacio a productos más anchos si es necesario */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    gap: 40px;
+    padding-top: 20px;
+}
+
+.product-item {
+    display: flex; /* CLAVE: Habilita el formato de imagen al lado del texto */
+    align-items: stretch; /* Asegura que la imagen y el texto ocupen la misma altura */
+    padding: 0; /* Quitamos el padding global del .card */
+}
+
+.product-image {
+    flex: 1; 
+    max-width: 45%; /* La imagen ocupa el 45% del ancho de la tarjeta */
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;  
+    object-fit: cover; /* CLAVE: La imagen se ajusta al recuadro sin desbordarse */
+    display: block;
+}
+
+.product-details {
+    flex: 1;
+    padding: 25px; /* Padding interno para el texto */
+    max-width: 55%; /* Los detalles ocupan el 55% restante */
+}
+
+/* Reglas de Diseño */
+.product-details h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.specs {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.specs li {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+.specs li i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.price {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.price-link {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--text-main); 
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.price-link:hover {
+    color: var(--primary-color); 
+    text-decoration: underline; 
+}
+
+/* Responsive para que en móvil vuelvan a apilarse */
+@media (max-width: 768px) {
+    .product-item {
+        flex-direction: column; /* Apila imagen y detalles verticalmente en móvil */
+    }
+
+    .product-image, .product-details {
+        max-width: 100%; /* Ocupan todo el ancho */
+        padding: 0;
+    }
+    
+    .product-details {
+        padding: 20px; /* Restauramos padding para el texto */
+    }
+}
 
 
 
