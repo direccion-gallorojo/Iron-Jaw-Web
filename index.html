@@ -317,17 +317,14 @@
                 const mainImageSrc = link.querySelector('img').getAttribute('src');
                 const galleryData = link.getAttribute('data-gallery');
                 
-                // CÓDIGO DE SUSTITUCIÓN DENTRO DE LA FUNCIÓN PRINCIPAL
+                // CÓDIGO A SUSTITUIR DENTRO DE LA FUNCIÓN PRINCIPAL
                 // Construir la lista completa de imágenes
                 let imageList = [mainImageSrc];
                 if (galleryData) {
-                    const secondaryImages = galleryData.split(',');
-                    secondaryImages.forEach(src => {
-                        const trimmedSrc = src.trim();
-                        if (trimmedSrc) {
-                            imageList.push(trimmedSrc);
-                        }
-                    });
+                    // Añadir las secundarias
+                    const secondaryImages = galleryData.split(',').map(s => s.trim());
+                    // Filtrar las secundarias vacías, si las hay
+                    imageList = imageList.concat(secondaryImages.filter(src => src !== "")); 
                 }
                 
                 if (imageList.length === 0) return;
@@ -390,6 +387,7 @@
     <script src="scripts.js"></script>
 </body> 
 </html>
+
 
 
 
