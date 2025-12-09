@@ -613,12 +613,12 @@ footer {
     padding-top: 20px;
 }
 
-/* 2. Contenedor de producto: Ajusta la altura del contenido */
+/* 2. Contenedor de producto: Fuerza altura uniforme */
 .product-item {
     display: flex;
-    align-items: stretch; /* CLAVE: Fuerza a la imagen y detalles a estirarse a la altura del contenido más alto (el texto) */
+    align-items: stretch;
     padding: 0;
-    /* ELIMINADA: min-height: 500px; */
+    min-height: 500px; /* Incrementamos la altura a 500px para mayor seguridad */
 }
 
 /* Contenedor de la Imagen */
@@ -635,8 +635,8 @@ footer {
 /* 3. Imagen: Ajuste perfecto al contenedor */
 .product-image img {
     max-width: 100%;
-    height: 100%; /* CLAVE: Ocupa el 100% del alto de su contenedor */
-    width: 100%; /* Ocupa el 100% del ancho del 45% asignado */
+    height: 100%; /* CLAVE: Ocupa el 100% del alto */
+    width: 100%; /* CLAVE: Ocupa el 100% del ancho del 45% asignado */
     object-fit: cover; /* Rellena el espacio eliminando barras blancas */
     display: block;
 }
@@ -646,7 +646,8 @@ footer {
     flex: 1;
     padding: 25px; 
     max-width: 55%;
-    /* ELIMINADO: display: flex; y flex-direction: column; */
+    display: flex; /* CLAVE 1: Habilitamos flexbox */
+    flex-direction: column; /* CLAVE 2: Apilamos los hijos verticalmente */
 }
 
 /* Reglas de Diseño de Detalles */
@@ -654,16 +655,13 @@ footer {
     margin-top: 0;
     margin-bottom: 10px;
 }
-
-/* Regla de precio original (Si el bloque existía oculto, esta es la versión correcta) */
 .price-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px; /* Restauramos el margen original */
+    margin-top: auto; /* CLAVE: Empuja el precio al fondo de la tarjeta */
 }
-
-/* ... (el resto de reglas de .product-details, .specs, etc., que ya tienes están bien) ... */
+/* ... (el resto de reglas de .product-details, .specs, .price-container, etc., que ya tienes están bien) ... */
 
 
 /* Responsive para que en móvil vuelvan a apilarse (Repetido de tu media query original, asegurado) */
