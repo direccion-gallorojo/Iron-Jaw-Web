@@ -613,9 +613,14 @@ footer {
 }
 
 .product-image {
-    flex: 1; 
-    max-width: 45%; /* La imagen ocupa el 45% del ancho de la tarjeta */
-    overflow: hidden;
+    flex: 1; 
+    max-width: 45%; 
+    overflow: hidden;
+    /* Nuevas reglas para asegurar el ajuste y centrado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* Añade un pequeño padding interno para que la imagen no toque el borde */
 }
 
 .product-image img {
@@ -776,6 +781,7 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+
 
 
 
