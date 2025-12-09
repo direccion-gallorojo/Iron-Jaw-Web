@@ -624,10 +624,12 @@ footer {
 }
 
 .product-image img {
-    width: 100%;
-    height: 100%;  
-    object-fit: cover; /* CLAVE: La imagen se ajusta al recuadro sin desbordarse */
-    display: block;
+    max-width: 100%; /* CLAVE: La imagen nunca es más ancha que el contenedor */
+    max-height: 100%; /* La imagen nunca es más alta que el contenedor */
+    width: auto; /* Permite que el ancho sea automático */
+    height: auto; /* Permite que la altura sea automática */
+    object-fit: contain; /* Muestra la imagen COMPLETA (con barras blancas si es necesario), no recortada. */
+    display: block;
 }
 
 .product-details {
@@ -781,6 +783,7 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+
 
 
 
