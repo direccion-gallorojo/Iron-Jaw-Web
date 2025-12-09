@@ -321,10 +321,13 @@
                 // Construir la lista completa de imágenes
                 let imageList = [mainImageSrc];
                 if (galleryData) {
-                    // Añadir las secundarias
-                    const secondaryImages = galleryData.split(',').map(s => s.trim());
-                    // Filtrar las secundarias vacías, si las hay
-                    imageList = imageList.concat(secondaryImages.filter(src => src !== "")); 
+                    const secondaryImages = galleryData.split(',');
+                    secondaryImages.forEach(src => {
+                        const trimmedSrc = src.trim();
+                        if (trimmedSrc) {
+                            imageList.push(trimmedSrc);
+                        }
+                    });
                 }
                 
                 if (imageList.length === 0) return;
@@ -387,6 +390,7 @@
     <script src="scripts.js"></script>
 </body> 
 </html>
+
 
 
 
