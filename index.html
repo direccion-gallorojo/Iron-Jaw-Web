@@ -312,20 +312,22 @@
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 
-                // Extraer el nombre de la imagen principal y las secundarias
-                const mainImageSrc = link.querySelector('img').getAttribute('src'); // CLAVE: Usamos getAttribute('src')
+                // Extraer el nombre de la imagen principal usando getAttribute('src')
+                const mainImageSrc = link.querySelector('img').getAttribute('src');
                 const galleryData = link.getAttribute('data-gallery');
                 
-                // Construir la lista completa de imágenes
+                // Construir la lista completa de imágenes, asegurando que galleryData no sea null ni esté vacío
                 let imageList = [mainImageSrc];
-                if (galleryData) {
-                    // Añadir las secundarias
-                    const secondaryImages = galleryData.split(',').map(s => s.trim());
-                    // Filtrar las secundarias vacías, si las hay
-                    imageList = imageList.concat(secondaryImages.filter(src => src !== "")); 
+                if (galleryData && galleryData.trim() !== "") {
+                    // Añadir las secundarias, asegurando limpieza de espacios y elementos vacíos
+                    const secondaryImages = galleryData
+                        .split(',')
+                        .map(s => s.trim())
+                        .filter(src => src !== ""); 
+                    imageList = [...imageList, ...secondaryImages]; 
                 }
                 
-                if (imageList.length === 0) return; // Si no hay imágenes, no hacer nada
+                if (imageList.length === 0) return;
 
                 renderGallery(imageList, modalBody, modalThumbs);
                 modal.style.display = 'block';
@@ -385,6 +387,7 @@
     <script src="scripts.js"></script>
 </body> 
 </html>
+
 
 
 
