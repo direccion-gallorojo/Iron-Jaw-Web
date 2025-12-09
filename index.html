@@ -308,30 +308,29 @@
         const galleryLinks = document.querySelectorAll('.open-gallery');
 
         // Función principal para abrir el modal
-        galleryLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Extraer el nombre de la imagen principal y las secundarias
-                const mainImageSrc = link.querySelector('img').src;
-                const galleryData = link.getAttribute('data-gallery');
-                
-                // Construir la lista completa de imágenes
-                let imageList = [mainImageSrc];
-                if (galleryData) {
-                    // Añadir las secundarias
-                    const secondaryImages = galleryData.split(',').map(s => s.trim());
-                    // Filtrar las secundarias vacías, si las hay
-                    imageList = imageList.concat(secondaryImages.filter(src => src !== "")); 
-                }
-                
-                if (imageList.length === 0) return; // Si no hay imágenes, no hacer nada
+        galleryLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Extraer el nombre de la imagen principal y las secundarias
+                const mainImageSrc = link.querySelector('img').getAttribute('src'); // CLAVE: Usamos getAttribute('src')
+                const galleryData = link.getAttribute('data-gallery');
+                
+                // Construir la lista completa de imágenes
+                let imageList = [mainImageSrc];
+                if (galleryData) {
+                    // Añadir las secundarias
+                    const secondaryImages = galleryData.split(',').map(s => s.trim());
+                    // Filtrar las secundarias vacías, si las hay
+                    imageList = imageList.concat(secondaryImages.filter(src => src !== "")); 
+                }
+                
+                if (imageList.length === 0) return; // Si no hay imágenes, no hacer nada
 
-                renderGallery(imageList, modalBody, modalThumbs);
-                modal.style.display = 'block';
-            });
-        });
-
+                renderGallery(imageList, modalBody, modalThumbs);
+                modal.style.display = 'block';
+            });
+        });
         // Función para renderizar el contenido del modal
         function renderGallery(images, bodyContainer, thumbsContainer) {
             bodyContainer.innerHTML = ''; // Limpiar contenido anterior
@@ -386,6 +385,7 @@
     <script src="scripts.js"></script>
 </body> 
 </html>
+
 
 
 
