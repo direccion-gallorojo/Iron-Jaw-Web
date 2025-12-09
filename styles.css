@@ -644,8 +644,10 @@ footer {
 /* Contenedor de Detalles */
 .product-details {
     flex: 1;
-    padding: 25px;
+    padding: 25px; 
     max-width: 55%;
+    display: flex; /* CLAVE 1: Habilitamos flexbox */
+    flex-direction: column; /* CLAVE 2: Apilamos los hijos verticalmente */
 }
 
 /* Reglas de Diseño de Detalles */
@@ -752,6 +754,7 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+
 
 
 
