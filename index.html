@@ -316,15 +316,14 @@
                 const mainImageSrc = link.querySelector('img').getAttribute('src');
                 const galleryData = link.getAttribute('data-gallery');
                 
-                // Construir la lista completa de imágenes, asegurando que galleryData no sea null ni esté vacío
+                // CÓDIGO DE SUSTITUCIÓN DENTRO DE LA FUNCIÓN PRINCIPAL
+                // Construir la lista completa de imágenes
                 let imageList = [mainImageSrc];
-                if (galleryData && galleryData.trim() !== "") {
-                    // Añadir las secundarias, asegurando limpieza de espacios y elementos vacíos
-                    const secondaryImages = galleryData
-                        .split(',')
-                        .map(s => s.trim())
-                        .filter(src => src !== ""); 
-                    imageList = [...imageList, ...secondaryImages]; 
+                if (galleryData) {
+                    // Añadir las secundarias
+                    const secondaryImages = galleryData.split(',').map(s => s.trim());
+                    // Filtrar las secundarias vacías, si las hay
+                    imageList = imageList.concat(secondaryImages.filter(src => src !== "")); 
                 }
                 
                 if (imageList.length === 0) return;
@@ -387,6 +386,7 @@
     <script src="scripts.js"></script>
 </body> 
 </html>
+
 
 
 
