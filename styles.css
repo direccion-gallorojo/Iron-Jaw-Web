@@ -598,7 +598,10 @@ footer {
     display: none !important;
 }
 /* --- ESTILOS DE PRODUCTO DETALLADO FINAL --- */
-
+.product-item.card.highlight {
+    border: 1px solid var(--primary-color);
+    background: linear-gradient(to bottom right, #1e1e1e, #2a0a0a);
+}
 .products-grid {
     /* Ajuste la parrilla para dar espacio a productos más anchos si es necesario */
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
@@ -783,6 +786,7 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+
 
 
 
