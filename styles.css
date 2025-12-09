@@ -655,6 +655,12 @@ footer {
     margin-top: 0;
     margin-bottom: 10px;
 }
+.price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* CLAVE: Empuja el precio al fondo de la tarjeta */
+}
 /* ... (el resto de reglas de .product-details, .specs, .price-container, etc., que ya tienes están bien) ... */
 
 
@@ -754,6 +760,7 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+
 
 
 
