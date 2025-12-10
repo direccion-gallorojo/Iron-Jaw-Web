@@ -652,8 +652,11 @@ footer {
 
 /* COMPACTACIÓN: Lista de características */
 .product-details ul {
-    list-style-type: none; /* Quitamos los puntos de lista nativos si se usan */
-    padding-left: 0;
+    list-style-type: none; /* Quitamos los puntos de lista nativos si se usan */
+    padding-left: 0;
+    
+    /* === MODIFICACIÓN PARA HOMOGENEIDAD === */
+    flex-grow: 0; 
 }
 
 .product-details ul li {
@@ -677,6 +680,11 @@ footer {
 .product-details h3 {
     margin-top: 0;
     margin-bottom: 10px;
+}
+/* === NUEVA REGLA PARA HOMOGENEIDAD (El Párrafo se Estira) === */
+.product-details p {
+    flex-grow: 1; 
+    margin-bottom: 0.5rem; /* Pequeño margen para separarlo de la lista/specs */
 }
 
 /* Regla de precio y botón (contenedor final) */
@@ -844,4 +852,5 @@ footer {
 .product-image img {
     object-fit: contain !important;
 }
+
 
