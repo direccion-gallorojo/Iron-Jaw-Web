@@ -620,23 +620,24 @@ footer {
 
 /* Contenedor de la Imagen */
 .product-image {
-    flex: 1; 
-    max-width: 40%; /* COMPACTACIÓN: Reducido a 40% (antes 45%) */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    max-height: 300px; /* COMPACTACIÓN: Reducido a 300px (antes 350px) */
+    flex: 1; 
+    max-width: 40%; /* COMPACTACIÓN: Reducido a 40% (antes 45%) */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    max-height: 300px; /* COMPACTACIÓN: Reducido a 300px (antes 350px) */
+    gap: 5px; /* NUEVA LÍNEA: Espacio entre múltiples imágenes */
 }
 
 /* 3. Imagen: Ajuste perfecto al contenedor */
 .product-image img {
-    max-width: 100%;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    display: block;
+    max-width: 100%;
+    height: 100%;
+    width: auto; /* CLAVE 1: Permite que el ancho se adapte sin forzar 100% */
+    object-fit: contain; /* CLAVE 2: Asegura que la imagen entera quepa dentro del contenedor */
+    display: block;
 }
 
 /* Contenedor de Detalles - COMPACTACIÓN Y ALINEACIÓN */
@@ -788,5 +789,6 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+
 
 
