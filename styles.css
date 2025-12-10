@@ -822,29 +822,26 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
-/* --- CORRECCIÓN FINAL DE PRODUCTOS (Homogeneidad + Imagen Completa) --- */
-
-.product-image {
-    flex: 0 0 40%; /* Fija el contenedor de imagen al 40% del ancho del producto */
-}
-
-.product-image img {
-    /* Asegura que la imagen se vea completa dentro de ese 40% fijo */
-    object-fit: contain !important; 
-    max-width: 100% !important;
-    height: 100% !important;
-}
+/* --- CORRECCIÓN DEFINITIVA DE HOMOGENEIDAD (Añadir al final de styles.css) --- */
 
 .product-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Distribuye el contenido verticalmente */
+    display: flex; /* Asegura Flexbox */
+    flex-direction: column; /* Apila los elementos */
+    justify-content: space-between; /* Distribuye espacio */
 }
 
+/* La solución de homogeneidad: el párrafo se estira */
 .product-details p {
-    flex-grow: 1; /* Permite que el párrafo de descripción absorba el espacio sobrante */
+    flex-grow: 1;
 }
 
+/* La lista no debe estirarse */
 .product-details ul.specs {
-    flex-grow: 0; /* Mantiene la lista de specs con la altura mínima requerida */
+    flex-grow: 0;
 }
+
+/* **CLAVE DE IMAGEN:** Reafirma el object-fit en caso de conflicto */
+.product-image img {
+    object-fit: contain !important;
+}
+
