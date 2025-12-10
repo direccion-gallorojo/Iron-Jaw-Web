@@ -681,10 +681,43 @@ footer {
 
 /* Regla de precio y botón (contenedor final) */
 .price-container {
-    margin-top: auto; 
+    margin-top: auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end; /* Alineamos todo al fondo (bottom) */
+}
+
+/* 1. Estilo para el precio */
+.price-container .price {
+    font-size: 1.3rem; /* Precio más grande */
+    font-weight: 700; /* Más grueso */
+    color: var(--text-main);
+}
+
+/* 2. Estilo para el botón Pedir Ahora */
+.product-details .price-link {
+    /* Propiedades para convertir el enlace en un botón rojo (primary color) */
+    background-color: var(--primary-color); 
+    color: white; 
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    font-size: 0.95rem; /* Tamaño adecuado para el botón */
+}
+
+.product-details .price-link:hover {
+    background-color: var(--primary-hover); /* Oscurecer en hover */
+    /* Asegúrate de tener definido --primary-hover, si no, usa #a50000 */
+}
+
+/* 3. Estilo para la nota de Personalización */
+.personalization-note {
+    margin-top: 15px; /* Separación de la línea de precio y botón */
+    font-size: 0.85rem;
+    color: #aaaaaa; /* Color ligeramente más claro para la nota */
 }
 
 /* Responsive para que en móvil vuelvan a apilarse (Ajustado) */
@@ -789,6 +822,7 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+
 
 
 
