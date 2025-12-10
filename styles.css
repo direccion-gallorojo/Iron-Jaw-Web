@@ -392,6 +392,7 @@ body {
 .testimonial-card {
     background: var(--bg-card);
     padding: 2rem;
+    border-radius: 8px;
     border-left: 4px solid var(--primary-color);
 }
 
@@ -617,6 +618,7 @@ footer {
     display: flex;
     align-items: stretch; /* CLAVE: Fuerza a la imagen y detalles a estirarse a la altura del contenido más alto (el texto) */
     padding: 0;
+    /* ELIMINADA: min-height: 500px; */
 }
 
 /* Contenedor de la Imagen */
@@ -628,26 +630,23 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    max-height: 350px; /* CLAVE: Limitamos la altura máxima del contenedor de la imagen */
 }
 
 /* 3. Imagen: Ajuste perfecto al contenedor */
 .product-image img {
     max-width: 100%;
-    height: 100%; /* Ocupa el 100% del alto de su contenedor */
+    height: 100%; /* CLAVE: Ocupa el 100% del alto de su contenedor */
     width: 100%; /* Ocupa el 100% del ancho del 45% asignado */
     object-fit: cover; /* Rellena el espacio eliminando barras blancas */
     display: block;
 }
 
-/* Contenedor de Detalles - CORRECCIÓN APLICADA AQUÍ */
+/* Contenedor de Detalles */
 .product-details {
     flex: 1;
     padding: 25px; 
     max-width: 55%;
-    display: flex; /* Habilita el Flexbox */
-    flex-direction: column; /* Apila los hijos verticalmente */
-    justify-content: space-between; /* Distribuye el espacio para empujar el precio/botón hacia abajo */
+    /* ELIMINADO: display: flex; y flex-direction: column; */
 }
 
 /* Reglas de Diseño de Detalles */
@@ -656,14 +655,15 @@ footer {
     margin-bottom: 10px;
 }
 
-/* Regla de precio original (Si existe) */
+/* Regla de precio original (Si el bloque existía oculto, esta es la versión correcta) */
 .price-container {
-    /* Ahora el .price-container y el botón son los últimos elementos en el Flexbox */
-    margin-top: auto; /* CLAVE: Empuja este contenedor hacia el fondo del Flexbox */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px; /* Restauramos el margen original */
 }
+
+/* ... (el resto de reglas de .product-details, .specs, etc., que ya tienes están bien) ... */
 
 
 /* Responsive para que en móvil vuelvan a apilarse (Repetido de tu media query original, asegurado) */
@@ -680,10 +680,6 @@ footer {
     .product-details {
         padding: 20px;
     }
-    /* Ajuste en móvil para que el contenido no se estire innecesariamente */
-    .product-details {
-        justify-content: flex-start;
-    }
 }
 /* --- ESTILOS PARA LA GALERÍA MODAL (POP-UP) --- */
 
