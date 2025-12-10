@@ -823,23 +823,3 @@ footer {
     border: 2px solid var(--primary-color);
 }
 
-/* --- CORRECCIÓN DE HOMOGENEIDAD DE PRODUCTOS (Alineación Vertical) --- */
-
-/* 1. Refuerza que el contenido interno de los detalles (descripción, specs, precio)
-      se distribuya uniformemente dentro de la tarjeta. */
-.product-details {
-    /* Esta regla ya existe en tu VBE, pero la mantenemos aquí para claridad */
-    justify-content: space-between;
-}
-
-/* 2. Permite que el párrafo de descripción absorba cualquier espacio vertical sobrante,
-      forzando a la lista de especificaciones y al precio a alinearse en la parte inferior. */
-.product-details p {
-    flex-grow: 1; /* Permite que este párrafo crezca en altura */
-}
-
-/* 3. Asegura que la lista de especificaciones (ul.specs) no absorba espacio innecesario,
-      manteniendo su altura al mínimo requerido. */
-.product-details ul.specs {
-    flex-grow: 0;
-}
