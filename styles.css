@@ -620,7 +620,7 @@ footer {
 
 /* Contenedor de la Imagen */
 .product-image {
-    flex: 1; 
+    flex: 0 0 40%; /* SOLUCIÓN: Fija el ancho al 40% y prohíbe el crecimiento */
     max-width: 40%; /* El ancho que compactamos */
     overflow: hidden;
     display: flex; /* Mantiene Flexbox para las dos imágenes */
@@ -822,3 +822,4 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+
