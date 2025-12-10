@@ -600,91 +600,90 @@ footer {
 
 /* 1. Fuerza el fondo granate/rojo si tiene la clase highlight */
 .product-item.card.highlight {
-    /* ¡IMPORTANTE! Usamos !important para anular el .card por defecto */
-    border: 1px solid var(--primary-color) !important;
-    background: linear-gradient(to bottom right, #2a0a0a, #1e1e1e) !important;
+    border: 1px solid var(--primary-color) !important;
+    background: linear-gradient(to bottom right, #2a0a0a, #1e1e1e) !important;
 }
 
 /* Ajuste de la parrilla de productos */
 .products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
-    gap: 40px;
-    padding-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    gap: 40px;
+    padding-top: 20px;
 }
 
 /* 2. Contenedor de producto: Ajusta la altura del contenido */
 .product-item {
-    display: flex;
-    align-items: stretch; /* CLAVE: Fuerza a la imagen y detalles a estirarse a la altura del contenido más alto (el texto) */
-    padding: 0; /* CLAVE: Anula el padding de la clase base .card para que la imagen y los detalles abarquen todo el ancho */
+    display: flex;
+    align-items: stretch; /* CLAVE: Fuerza a la imagen y detalles a estirarse */
+    padding: 0; /* CLAVE: Anula el padding de la clase .card */
 }
 
 /* Contenedor de la Imagen */
 .product-image {
-    flex: 1; 
-    max-width: 45%; 
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    max-height: 350px; /* CLAVE: Limitamos la altura máxima del contenedor de la imagen */
+    flex: 1; 
+    max-width: 45%; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    max-height: 350px; /* CLAVE: Limita la altura de la imagen */
 }
 
 /* 3. Imagen: Ajuste perfecto al contenedor */
 .product-image img {
-    max-width: 100%;
-    height: 100%; /* Ocupa el 100% del alto de su contenedor */
-    width: 100%; /* Ocupa el 100% del ancho del 45% asignado */
-    object-fit: cover; /* Rellena el espacio eliminando barras blancas */
-    display: block;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Contenedor de Detalles - Corregido y Final */
 .product-details {
-    flex: 1;
-    padding: 25px; 
-    max-width: 55%;
-    display: flex; /* Habilita el Flexbox */
-    flex-direction: column; /* Apila los hijos verticalmente */
-    justify-content: space-between; /* Distribuye el espacio para empujar el botón hacia abajo */
+    flex: 1;
+    padding: 25px; 
+    max-width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el botón abajo */
 }
 
 /* Reglas de Diseño de Detalles */
 .product-details h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 /* Regla de precio y botón (contenedor final) */
 .price-container {
-    margin-top: auto; /* CLAVE: Empuja este contenedor hacia el fondo del Flexbox */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-top: auto; /* Empuja hacia el fondo */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
 /* Responsive para que en móvil vuelvan a apilarse (Ajustado) */
 @media (max-width: 768px) {
-    .product-item {
-        flex-direction: column; 
-    }
+    .product-item {
+        flex-direction: column; 
+    }
 
-    .product-image, .product-details {
-        max-width: 100%; /* Ocupa todo el ancho disponible */
-        padding: 0;
-    }
-    
-    .product-details {
-        padding: 20px;
-        justify-content: flex-start; /* Deshace el space-between para móvil */
-    }
-    /* Corregimos el desbordamiento de imagen en móvil */
-    .product-image img {
-        object-fit: contain; /* Para que la imagen entera quepa en el 250px de max-height */
-        height: auto; /* Permite que la altura se ajuste proporcionalmente */
-    }
+    .product-image, .product-details {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .product-details {
+        padding: 20px;
+        justify-content: flex-start;
+    }
+
+    .product-image img {
+        object-fit: contain;
+        height: auto;
+    }
 }
 /* --- ESTILOS PARA LA GALERÍA MODAL (POP-UP) --- */
 
@@ -767,3 +766,4 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+
