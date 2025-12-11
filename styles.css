@@ -815,3 +815,63 @@ footer {
     border: 2px solid var(--primary-color);
 }
 
+/* --- AÑADIR AL FINAL DE styles.css --- */
+
+/* ESTILOS PARA EL SELECTOR DE MATERIAL */
+.material-selector {
+    margin: 1.5rem 0 1rem 0; /* Ajuste el margen inferior */
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #252525; /* Un tono ligeramente más claro que bg-dark para resaltarlo */
+}
+
+.material-selector label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.material-selector label:last-child {
+    margin-bottom: 0;
+}
+
+.material-selector label:hover {
+    background-color: #303030;
+}
+
+.material-selector input[type="radio"] {
+    margin-right: 10px;
+    accent-color: var(--primary-color);
+    /* Ocultar el radio nativo y usar un estilo custom si se desea, pero esto funciona */
+}
+
+.material-price {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Ajustes de flexibilidad para alinear bien la descripción y el selector */
+.product-details > div:first-child {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permitir que crezca para empujar el precio hacia abajo */
+}
+
+.product-details p {
+    flex-grow: 1; /* Esto es crucial para empujar el selector/precio al final de la descripción */
+    margin-bottom: 1rem;
+    min-height: 50px; /* Asegura un mínimo de espacio para que no colapse */
+}
+
+/* Ajuste de Responsive para el selector en móvil */
+@media (max-width: 768px) {
+    .material-selector {
+        padding: 15px;
+    }
+}
