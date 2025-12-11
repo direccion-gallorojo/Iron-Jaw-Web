@@ -93,4 +93,21 @@
     // pero CSS scroll-behavior suele bastar)
 });
 
+// --- AÑADIR ESTE CÓDIGO AL FINAL DE scripts.js ---
+
+function updatePrice(designId, basePrice, materialType) {
+    const priceElement = document.getElementById(`price-${designId}`);
+    
+    // Convertir el precio a formato español con coma y símbolo
+    const formattedPrice = basePrice.toFixed(2).replace('.', ',') + '€';
+    
+    // Actualizar el precio en el HTML
+    priceElement.textContent = formattedPrice;
+    
+    // Opcional: Si quieres que el botón refleje el material seleccionado
+    const orderLink = document.querySelector(`.product-item[data-design-id="${designId}"] .price-link`);
+    orderLink.href = `#contacto?design=${designId}&material=${materialType.replace(/\s/g, '-')}`;
+}
+
+// -------------------------------------------------------------------
 
