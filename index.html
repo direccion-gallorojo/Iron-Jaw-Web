@@ -63,59 +63,353 @@
     </section>
 
     <section id="productos" class="section bg-dark">
-        <div class="container">
-            <h2 class="section-title">Nuestros Productos</h2>
-            <div class="products-grid">
-    
-    <div class="product-item card highlight">
-        <div class="product-image">
-            <a href="#" class="open-gallery" data-product="IMPACT_PRO_DUAL" 
-               data-gallery="">
-                <img src="images/materialPerfonceElite.png" alt="Material Doble Capa (Impact Pro Dual)">
-            </a>
-        </div>
-        <div class="product-details">
-            <h3>IMPACT PRO DUAL</h3>
-            <p>Máxima protección con **doble capa de 4mm**. Ideal para deportes de alto impacto donde la absorción de golpe es crítica.</p>
-            <ul class="specs">
-                <li><i class="fas fa-check-circle text-accent"></i> Doble capa (8mm total de protección).</li>
-                <li><i class="fas fa-check-circle text-accent"></i> Absorción de impacto frontal reforzada.</li>
-                <li><i class="fas fa-check-circle text-accent"></i> Durabilidad extrema para uso profesional.</li>
-            </ul>
-            <div class="price-container">
-                <span class="price">89,95€</span>
-                <a href="#contacto" class="price-link">Pedir Ahora</a>
-            </div>
-            <div class="personalization-note">
-                <i class="fas fa-palette"></i> Personalización de diseño: **+20€**
-            </div>
-        </div>
-    </div>
+    <div class="container">
+        <h2 class="section-title">Nuestros Diseños Personalizados</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; font-size: 1.1rem;">Selecciona el diseño que más te guste y después elige el material de protección para ver el precio base.</p>
 
-  <div class="product-item card highlight">
-        <div class="product-image">
-            <a href="#" class="open-gallery" data-product="PERFORMANCE_LITE" 
-               data-gallery="">
-                <img src="images/1bucalnegro.png" alt="Protector Bucal Performance Lite Una Capa">
-            </a>
-        </div>
-        <div class="product-details">
-            <h3>PERFORMANCE LITE</h3>
-            <p>Protección eficaz de **una sola capa de 4mm**. Diseñado para un equilibrio entre seguridad, comodidad y comunicación.</p>
-            <ul class="specs">
-                <li><i class="fas fa-check-circle text-accent"></i> Una sola capa (4mm de protección).</li>
-                <li><i class="fas fa-check-circle text-accent"></i> Más ligero, facilita la respiración y el habla.</li>
-                <li><i class="fas fa-check-circle text-accent"></i> Ideal para deportes de impacto medio/bajo o entrenamiento.</li>
-            </ul>
-            <div class="price-container">
-                <span class="price">59,95€</span>
-                <a href="#contacto" class="price-link">Pedir Ahora</a>
-            </div>
-            <div class="personalization-note">
-                <i class="fas fa-palette"></i> Personalización de diseño: **+20€**
-            </div>
-        </div>
-    </div>
+        <div class="products-grid">
+            
+            <div class="product-item card" data-design-id="inferno">
+                <div class="product-image">
+                    <img src="images/infierno.PNG" alt="Protector Bucal Diseño Inferno">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO INFERNO</h3>
+                        <p>Máscara de fuego y sombras para atletas explosivos.</p>
+                        
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_inferno" value="Impact Pro Dual" checked onclick="updatePrice('inferno', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_inferno" value="Performance Lite" onclick="updatePrice('inferno', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="price-container">
+                        <span class="price" id="price-inferno">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="joker">
+                <div class="product-image">
+                    <img src="images/joker.PNG" alt="Protector Bucal Diseño Joker">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO JOKER</h3>
+                        <p>sonrisa joker</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_joker" value="Impact Pro Dual" checked onclick="updatePrice('joker', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_joker" value="Performance Lite" onclick="updatePrice('joker', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-joker">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="superman">
+                <div class="product-image">
+                    <img src="images/super.JPG" alt="Protector Bucal Diseño Super-Man">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO SUPER-MAN</h3>
+                        <p>Logo de super-man</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_superman" value="Impact Pro Dual" checked onclick="updatePrice('superman', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_superman" value="Performance Lite" onclick="updatePrice('superman', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-superman">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="vegeta">
+                <div class="product-image">
+                    <img src="images/vegeta.JPG" alt="Protector Bucal Diseño Vegeta">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO VEGETA</h3>
+                        <p>dibujo de vegeta</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_vegeta" value="Impact Pro Dual" checked onclick="updatePrice('vegeta', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_vegeta" value="Performance Lite" onclick="updatePrice('vegeta', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-vegeta">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="stranger">
+                <div class="product-image">
+                    <img src="images/stranger.JPG" alt="Protector Bucal Diseño Stranger Thing">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO STRANGER THING</h3>
+                        <p>logo stranger</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_stranger" value="Impact Pro Dual" checked onclick="updatePrice('stranger', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_stranger" value="Performance Lite" onclick="updatePrice('stranger', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-stranger">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="skull">
+                <div class="product-image">
+                    <img src="images/calavera.JPG" alt="Protector Bucal Diseño Skull">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO SKULL</h3>
+                        <p>Calavera mas nombre</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_skull" value="Impact Pro Dual" checked onclick="updatePrice('skull', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_skull" value="Performance Lite" onclick="updatePrice('skull', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-skull">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="bubu">
+                <div class="product-image">
+                    <img src="images/bubu.JPG" alt="Protector Bucal Diseño Bubu">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO BUBU</h3>
+                        <p>CARA BUBU</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_bubu" value="Impact Pro Dual" checked onclick="updatePrice('bubu', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_bubu" value="Performance Lite" onclick="updatePrice('bubu', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-bubu">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="goku">
+                <div class="product-image">
+                    <img src="images/goku.JPG" alt="Protector Bucal Diseño Goku">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO GOKU</h3>
+                        <p>CARA DE GOKU</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_goku" value="Impact Pro Dual" checked onclick="updatePrice('goku', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_goku" value="Performance Lite" onclick="updatePrice('goku', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-goku">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="naruto">
+                <div class="product-image">
+                    <img src="images/naruto.JPG" alt="Protector Bucal Diseño Naruto">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO NARUTO</h3>
+                        <p>LOGO NARUTO</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_naruto" value="Impact Pro Dual" checked onclick="updatePrice('naruto', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_naruto" value="Performance Lite" onclick="updatePrice('naruto', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-naruto">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="lola">
+                <div class="product-image">
+                    <img src="images/lola.JPG" alt="Protector Bucal Diseño Lola">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO LOLA</h3>
+                        <p>NOMBRE LOLA</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_lola" value="Impact Pro Dual" checked onclick="updatePrice('lola', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_lola" value="Performance Lite" onclick="updatePrice('lola', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-lola">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="sonrisa">
+                <div class="product-image">
+                    <img src="images/sonrisa.JPG" alt="Protector Bucal Diseño Sonrisa Dólar">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO SONRISA</h3>
+                        <p>SONRISA DOLAR</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_sonrisa" value="Impact Pro Dual" checked onclick="updatePrice('sonrisa', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_sonrisa" value="Performance Lite" onclick="updatePrice('sonrisa', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-sonrisa">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            <div class="product-item card" data-design-id="diamantes">
+                <div class="product-image">
+                    <img src="images/diamantes.JPG" alt="Protector Bucal Diseño Diamantes">
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h3>DISEÑO DIAMANTES</h3>
+                        <p>DIAMANTES</p>
+                        <div class="material-selector">
+                            <label>
+                                <input type="radio" name="material_diamantes" value="Impact Pro Dual" checked onclick="updatePrice('diamantes', 89.95, this.value)">
+                                **Impact Pro Dual** (Doble Capa - Máx. Protección)
+                                <span class="material-price">89,95€</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="material_diamantes" value="Performance Lite" onclick="updatePrice('diamantes', 59.95, this.value)">
+                                Performance Lite (Una Capa - Comodidad)
+                                <span class="material-price">59,95€</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price" id="price-diamantes">89,95€</span>
+                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                    </div>
+                    <p class="personalization-note">El precio base no incluye 20€ de personalización.</p>
+                </div>
+            </div>
+            </div>
+    </div>
+</section>
 
         </div>
     </section>
@@ -385,6 +679,7 @@
     <script src="scripts.js"></script>
 </body> 
 </html>
+
 
 
 
