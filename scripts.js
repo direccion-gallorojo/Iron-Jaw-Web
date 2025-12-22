@@ -101,18 +101,22 @@ if (!emailRegex.test(email.value.trim())) {
 function updatePrice(designId, basePrice, materialType) {
     const priceElement = document.getElementById(`price-${designId}`);
     
-    // Convertir el precio a formato español con coma y símbolo
-    const formattedPrice = basePrice.toFixed(2).replace('.', ',') + '€';
+    if (priceElement) {
+        // 1. Formatear y actualizar el precio visual
+        const formattedPrice = basePrice.toFixed(2).replace('.', ',') + '€';
+        priceElement.textContent = formattedPrice;
+    }
     
-    // Actualizar el precio en el HTML
-    priceElement.textContent = formattedPrice;
-    
-    // Opcional: Si quieres que el botón refleje el material seleccionado
+    // 2. REFINAMIENTO: Escribir automáticamente en el formulario
+    const mensajeArea = document.getElementById('mensaje');
+    if (mensajeArea) {
+        // Esto escribe el texto exacto que recibirás tú en el correo
+        mensajeArea.value = `Hola Iron Jaw, estoy interesado en el diseño "${designId.toUpperCase()}" con el material ${materialType.toUpperCase()}.`;
+    }
+
+    // 3. Mantener la actualización del enlace (por si acaso)
     const orderLink = document.querySelector(`.product-item[data-design-id="${designId}"] .price-link`);
-    orderLink.href = `#contacto?design=${designId}&material=${materialType.replace(/\s/g, '-')}`;
+    if (orderLink) {
+        orderLink.href = `#contacto`; // Lo mandamos directamente a la sección de contacto
+    }
 }
-
-// -------------------------------------------------------------------
-
-
-
