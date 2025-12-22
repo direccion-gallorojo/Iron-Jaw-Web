@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     
     // --- Lógica del Menú Móvil ---
     const menuToggle = document.querySelector('.menu-toggle');
@@ -41,10 +41,13 @@
             isValid = false;
         }
 
-        if (email.value.trim() === '' || !email.value.includes('@')) {
-            showError('error-email');
-            isValid = false;
-        }
+        // Validación Pro de Email
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if (!emailRegex.test(email.value.trim())) {
+    showError('error-email');
+    isValid = false;
+}
 
         if (isValid) {
             // Simular envío al backend
@@ -110,4 +113,6 @@ function updatePrice(designId, basePrice, materialType) {
 }
 
 // -------------------------------------------------------------------
+
+
 
