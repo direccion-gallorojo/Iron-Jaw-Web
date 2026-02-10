@@ -468,7 +468,64 @@ body {
     text-align: center;
     display: none;
 }
+/* --- NUEVA SECCIÓN TRABAJOS --- */
+.trabajos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
 
+.trabajo-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: #1a1a1a;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.trabajo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trabajo-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.trabajo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 15px;
+    text-align: center;
+}
+
+.trabajo-overlay span {
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* Ajuste para que se vea bien en móviles */
+@media (max-width: 768px) {
+    .trabajos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .trabajos-grid {
+        grid-template-columns: 1fr;
+    }
+}
 /* --- Footer --- */
 footer {
     background: black;
@@ -875,3 +932,4 @@ footer {
         padding: 15px;
     }
 }
+
