@@ -245,56 +245,6 @@ body {
     border: 1px solid var(--border-color);
 }
 
-/* --- Productos --- */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.card {
-    background: var(--bg-card);
-    padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
-}
-
-.card.highlight {
-    border: 1px solid var(--primary-color);
-    background: linear-gradient(to bottom right, #1e1e1e, #2a0a0a);
-}
-
-.card-icon {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-}
-
-.card h3 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.card p {
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-}
-
-.tag {
-    background: #333;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-right: 5px;
-    display: inline-block;
-}
-
 /* --- Beneficios --- */
 .benefits-container {
     display: flex;
@@ -647,149 +597,7 @@ footer {
 .hidden {
     display: none !important;
 }
-/* --- ESTILOS DE PRODUCTO DETALLADO FINAL (OPTIMIZADO) --- */
 
-/* 1. Fuerza el fondo granate/rojo si tiene la clase highlight */
-.product-item.card.highlight {
-    border: 1px solid var(--primary-color) !important;
-    background: linear-gradient(to bottom right, #2a0a0a, #1e1e1e) !important;
-}
-
-/* Ajuste de la parrilla de productos */
-.products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
-    gap: 30px;
-    padding-top: 20px;
-}
-
-/* 2. Contenedor de producto: Fuerza altura uniforme */
-.product-item {
-    display: flex;
-    align-items: stretch; 
-    padding: 0; 
-}
-
-/* Contenedor de la Imagen */
-.product-image {
-    flex: 1; 
-    max-width: 40%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    max-height: 300px;
-    gap: 5px;
-}
-
-/* 3. Imagen: Ajuste perfecto al contenedor */
-.product-image img {
-    max-width: 100% !important;
-    height: 100% !important; 
-    width: auto !important;
-    object-fit: contain !important;
-    display: block;
-}
-
-/* Contenedor de Detalles - COMPACTACIÓN Y ALINEACIÓN */
-.product-details {
-    flex: 1;
-    padding: 20px;
-    max-width: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-}
-
-/* COMPACTACIÓN: Lista de características */
-.product-details ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.product-details ul li {
-    line-height: 1.4;
-    margin-bottom: 5px;
-    position: relative;
-    padding-left: 15px;
-}
-
-/* Si tu lista de puntos usa <li>, esto mantiene el punto rojo */
-.product-details ul li::before {
-    content: '•';
-    color: var(--primary-color);
-    font-weight: bold;
-    display: inline-block; 
-    width: 1em; 
-    margin-left: -1em; 
-}
-
-/* Reglas de Diseño de Detalles (ya existentes) */
-.product-details h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-/* Regla de precio y botón (contenedor final) */
-.price-container {
-    margin-top: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-/* 1. Estilo para el precio */
-.price-container .price {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-/* 2. Estilo para el botón Pedir Ahora */
-.product-details .price-link {
-    background-color: var(--primary-color); 
-    color: white; 
-    padding: 8px 15px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
-    font-size: 0.95rem;
-}
-
-.product-details .price-link:hover {
-    background-color: var(--primary-hover);
-}
-
-/* 3. Estilo para la nota de Personalización */
-.personalization-note {
-    margin-top: 15px;
-    font-size: 0.85rem;
-    color: #aaaaaa;
-}
-
-/* Responsive para que en móvil vuelvan a apilarse (Ajustado) */
-@media (max-width: 768px) {
-    .product-item {
-        flex-direction: column; 
-    }
-
-    .product-image, .product-details {
-        max-width: 100%;
-        padding: 0;
-    }
-    
-    .product-details {
-        padding: 20px;
-        justify-content: flex-start;
-    }
-
-    .product-image img {
-        object-fit: contain;
-        height: auto;
-    }
-}
 /* --- ESTILOS PARA LA GALERÍA MODAL (POP-UP) --- */
 
 .modal-gallery {
@@ -871,65 +679,131 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
+/* ============================================================
+   NUEVA SECCIÓN: 3 NIVELES DE PROTECCIÓN (LIGERA, ESTÁNDAR, AVANZADA)
+   ============================================================ */
 
-/* --- AÑADIR AL FINAL DE styles.css --- */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 2rem;
+    align-items: stretch;
+}
 
-/* ESTILOS PARA EL SELECTOR DE MATERIAL */
-.material-selector {
-    margin: 1.5rem 0 1rem 0; /* Ajuste el margen inferior */
-    padding: 1rem;
+.product-card {
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background-color: #252525; /* Un tono ligeramente más claro que bg-dark para resaltarlo */
-}
-
-.material-selector label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-}
-
-.material-selector label:last-child {
-    margin-bottom: 0;
-}
-
-.material-selector label:hover {
-    background-color: #303030;
-}
-
-.material-selector input[type="radio"] {
-    margin-right: 10px;
-    accent-color: var(--primary-color);
-    /* Ocultar el radio nativo y usar un estilo custom si se desea, pero esto funciona */
-}
-
-.material-price {
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-/* Ajustes de flexibilidad para alinear bien la descripción y el selector */
-.product-details > div:first-child {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Permitir que crezca para empujar el precio hacia abajo */
+    height: 100%;
 }
 
-.product-details p {
-    flex-grow: 1; /* Esto es crucial para empujar el selector/precio al final de la descripción */
-    margin-bottom: 1rem;
-    min-height: 50px; /* Asegura un mínimo de espacio para que no colapse */
+.product-img-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #000;
 }
 
-/* Ajuste de Responsive para el selector en móvil */
-@media (max-width: 768px) {
-    .material-selector {
-        padding: 15px;
+.product-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.product-card:hover .product-img-container img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.product-card .card-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card h3 {
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    color: #fff;
+    text-align: center;
+}
+
+.product-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    min-height: 45px;
+    text-align: center;
+}
+
+.product-card.highlight {
+    border: 2px solid var(--primary-color) !important;
+    transform: scale(1.05);
+    background: linear-gradient(145deg, #1e1e1e 0%, #2a0a0a 100%);
+    box-shadow: 0 15px 35px rgba(230, 57, 70, 0.2);
+    z-index: 2;
+}
+
+.product-card .feature-list {
+    margin-bottom: 2rem;
+    padding: 0;
+    list-style: none;
+}
+
+.product-card .feature-list li {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-card .price-container {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.product-card .price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.product-card .price-link {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.product-card .price-link:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .product-card.highlight {
+        transform: scale(1);
     }
 }
-
