@@ -97,11 +97,11 @@
                     <div class="product-img-container"><img src="images/bucalgenerico.jpg" alt="Protección Ligera"></div>
                     <div class="card-content">
                         <h3>LIGERA</h3>
-                        <p>Para entrenamientos suaves o deportes de bajo contacto.</p>
+                        <p>Máximo confort. Ideal para deportes con uso de casco o contacto accidental.</p>
                         <ul class="feature-list">
-                            <li><i class="fa-solid fa-check"></i> 4,5 mm de espesor</li>
-                            <li><i class="fa-solid fa-check"></i> Monocapa Flexible</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Kit Impresión Incluido</strong></li>
+                            <li><i class="fa-solid fa-check"></i> 4,5 mm (Monocapa)</li>
+                            <li><i class="fa-solid fa-check"></i> Baloncesto, Fútbol, Bici</li>
+                            <li><i class="fa-solid fa-check"></i> Kit Impresión Incluido</li>
                         </ul>
                         <div class="price-container">
                             <span class="price">59,95€</span>
@@ -114,11 +114,11 @@
                     <div class="product-img-container"><img src="images/bucalgenerico.jpg" alt="Protección Estándar"></div>
                     <div class="card-content">
                         <h3>ESTÁNDAR</h3>
-                        <p>El equilibrio perfecto. Recomendado para Boxeo, MMA y Rugby.</p>
+                        <p>El todoterreno. Protección superior para deportes de contacto medio y palos.</p>
                         <ul class="feature-list">
-                            <li><i class="fa-solid fa-check"></i> 6 mm (Doble Capa Impact)</li>
-                            <li><i class="fa-solid fa-check"></i> Máxima absorción</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Kit Impresión Incluido</strong></li>
+                            <li><i class="fa-solid fa-check"></i> 6 mm (Doble Capa)</li>
+                            <li><i class="fa-solid fa-check"></i> Rugby, Hockey, Karate</li>
+                            <li><i class="fa-solid fa-check"></i> Kit Impresión Incluido</li>
                         </ul>
                         <div class="price-container">
                             <span class="price">74,95€</span>
@@ -131,11 +131,11 @@
                     <div class="product-img-container"><img src="images/bucalgenerico.jpg" alt="Protección Avanzada"></div>
                     <div class="card-content">
                         <h3>AVANZADA</h3>
-                        <p>Protección extrema para alta competición y pegadores pesados.</p>
+                        <p>Blindaje total. Diseñado para absorber impactos directos y continuos.</p>
                         <ul class="feature-list">
-                            <li><i class="fa-solid fa-check"></i> 8 mm (Triple Capa Blindada)</li>
-                            <li><i class="fa-solid fa-check"></i> Máxima estabilidad</li>
-                            <li><i class="fa-solid fa-check"></i> <strong>Kit Impresión Incluido</strong></li>
+                            <li><i class="fa-solid fa-check"></i> 8 mm (Triple Capa)</li>
+                            <li><i class="fa-solid fa-check"></i> Boxeo, MMA, Muay Thai</li>
+                            <li><i class="fa-solid fa-check"></i> Kit Impresión Incluido</li>
                         </ul>
                         <div class="price-container">
                             <span class="price">89,95€</span>
@@ -244,10 +244,19 @@
                         <label for="deporte">Deporte Principal</label>
                         <select id="deporte" name="deporte" required>
                             <option value="">Selecciona una opción...</option>
-                            <option value="boxeo">Boxeo / K1</option>
+                            <option value="boxeo">Boxeo / K1 / Muay Thai</option>
                             <option value="mma">MMA / BJJ</option>
                             <option value="rugby">Rugby / Hockey</option>
-                            <option value="otro">Otro deporte</option>
+                            <option value="otros">Otros deportes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nivel-proteccion">Nivel de Protección Deseado</label>
+                        <select id="nivel-proteccion" name="nivel-proteccion" required>
+                            <option value="ligera">LIGERA (4,5mm) - 59,95€</option>
+                            <option value="estandar">ESTÁNDAR (6mm) - 74,95€</option>
+                            <option value="avanzada">AVANZADA (8mm) - 89,95€</option>
                         </select>
                     </div>
 
@@ -286,7 +295,6 @@
     </div>
 
     <script>
-        // Tu script de galería y cookies se mantiene igual para no romper nada
         document.addEventListener('DOMContentLoaded', () => {
             const acceptBtn = document.getElementById('accept-cookies');
             const banner = document.getElementById('cookie-banner');
@@ -302,4 +310,3 @@
     <script src="scripts.js"></script>
 </body>
 </html>
-
