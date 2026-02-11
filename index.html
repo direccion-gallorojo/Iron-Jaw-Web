@@ -64,48 +64,72 @@
     </section>
 
     <section id="productos" class="section bg-dark">
-    <div class="container">
-        <h2 class="section-title">Tu Protector a Medida</h2>
-        <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; font-size: 1.1rem;">
-            Diseño profesional y ajuste milimétrico. Elige tu nivel de protección.
-        </p>
+        <div class="container">
+            <h2 class="section-title">Tu Protector a Medida</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; font-size: 1.1rem;">
+                Diseño profesional y ajuste milimétrico. Elige tu nivel de protección.
+            </p>
 
-        <div style="display: flex; justify-content: center; width: 100%;">
-            
-            <div class="product-item card" style="max-width: 450px; width: 100%; margin: 0 auto;">
-                <div class="product-image" style="height: 300px; display: flex; align-items: center; justify-content: center; background: #1a1a1a; overflow: hidden;">
-                    <img src="images/bucalgenerico.jpg" alt="Protector Bucal Custom" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                </div>
-                <div class="product-details">
-                    <div>
-                        <h3>IRON JAW CUSTOM</h3>
-                        <p>Diseño 100% personalizado. Tú eliges colores y logos.</p>
-                        
-                        <div class="material-selector">
-                            <label>
-                                <input type="radio" name="material_custom" value="Impact Pro Dual" checked onclick="document.getElementById('price-custom').innerText = '89,95€'">
-                                <strong>Impact Pro Dual</strong> (Doble Capa)
-                                <span class="material-price">89,95€</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="material_custom" value="Performance Lite" onclick="document.getElementById('price-custom').innerText = '59,95€'">
-                                Performance Lite (Una Capa)
-                                <span class="material-price">59,95€</span>
-                            </label>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="images/bucalgenerico.jpg" alt="Protector Ligera">
+                    </div>
+                    <div class="card-content">
+                        <h3>PROTECCIÓN LIGERA</h3>
+                        <p>Ideal para entrenamientos suaves o deportes de bajo contacto.</p>
+                        <ul class="feature-list">
+                            <li><i class="fa-solid fa-check"></i> Espesor: 4,5 mm</li>
+                            <li><i class="fa-solid fa-check"></i> Monocapa Flexible</li>
+                            <li><i class="fa-solid fa-check"></i> Máxima comodidad</li>
+                        </ul>
+                        <div class="price-container">
+                            <span class="price">59,95€</span>
+                            <a href="#contacto" class="price-link">Pedir Ahora</a>
                         </div>
                     </div>
+                </div>
 
-                    <div class="price-container">
-                        <span class="price" id="price-custom">89,95€</span>
-                        <a href="#contacto" class="price-link">Pedir Ahora</a>
+                <div class="product-card highlight">
+                    <div class="product-img-container">
+                        <img src="images/bucalgenerico.jpg" alt="Protector Estándar">
                     </div>
-                    <p class="personalization-note">Incluye toma de medidas y caja de transporte.</p>
+                    <div class="card-content">
+                        <h3>PROTECCIÓN ESTÁNDAR</h3>
+                        <p>El equilibrio perfecto entre confort y seguridad extrema.</p>
+                        <ul class="feature-list">
+                            <li><i class="fa-solid fa-check"></i> Espesor: 6 mm (Impact)</li>
+                            <li><i class="fa-solid fa-check"></i> Doble Capa Reforzada</li>
+                            <li><i class="fa-solid fa-check"></i> Diseño Personalizado</li>
+                        </ul>
+                        <div class="price-container">
+                            <span class="price">74,95€</span>
+                            <a href="#contacto" class="price-link">Pedir Ahora</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="images/bucalgenerico.jpg" alt="Protector Avanzada">
+                    </div>
+                    <div class="card-content">
+                        <h3>PROTECCIÓN AVANZADA</h3>
+                        <p>Máxima absorción de impactos para alta competición.</p>
+                        <ul class="feature-list">
+                            <li><i class="fa-solid fa-check"></i> Espesor: 8 mm / Doble Capa</li>
+                            <li><i class="fa-solid fa-check"></i> Triple Capa Blindada</li>
+                            <li><i class="fa-solid fa-check"></i> Personalización VIP</li>
+                        </ul>
+                        <div class="price-container">
+                            <span class="price">89,95€</span>
+                            <a href="#contacto" class="price-link">Pedir Ahora</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="beneficios" class="section">
         <div class="container">
@@ -347,6 +371,7 @@
     <script src="scripts.js"></script>
 </body> 
 </html>
+
 
 
 
