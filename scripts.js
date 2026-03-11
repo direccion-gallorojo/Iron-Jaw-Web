@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- Lógica del Menú Móvil ---
+    // (Exactamente igual que el original)
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -16,76 +17,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Lógica del Formulario de Contacto ---
+    // --- Lógica del Formulario de Contacto (AJUSTADA) ---
     const contactForm = document.getElementById('contactForm');
     const successMsg = document.getElementById('success-msg');
-    const mensajeArea = document.getElementById('mensaje');
-
-    // Función para actualizar el mensaje automático según el material seleccionado
-    const updateAutoMessage = () => {
-        const material = document.querySelector('input[name="material_custom"]:checked');
-        if (mensajeArea && material) {
-            mensajeArea.value = `Hola Iron Jaw, estoy interesado en el protector IRON JAW CUSTOM con protección ${material.value}.`;
-        }
-    };
-
-    // Escuchar cambios en los botones de radio del material
-    document.querySelectorAll('input[name="material_custom"]').forEach(radio => {
-        radio.addEventListener('change', updateAutoMessage);
-    });
-
-    // Ejecutar una vez al cargar para que ya tenga el mensaje por defecto
-    updateAutoMessage();
 
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
-            if (successMsg) successMsg.style.display = 'none';
-
-            let isValid = true;
-            const nombre = document.getElementById('nombre');
-            const email = document.getElementById('email');
+        contactForm.addEventListener('submit', function() {
+            // HEMOS QUITADO e.preventDefault() -> Ahora el formulario SÍ sale de la web
+            
             const submitBtn = contactForm.querySelector('button[type="submit"]');
 
-            if (nombre && nombre.value.trim() === '') {
-                showError('error-nombre');
-                isValid = false;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (email && !emailRegex.test(email.value.trim())) {
-                showError('error-email');
-                isValid = false;
-            }
-
-            if (isValid) {
-                const originalBtnText = submitBtn.innerText;
+            if (submitBtn) {
+                // Mantenemos tu efecto visual de cambio de texto
                 submitBtn.innerText = 'Enviando...';
                 submitBtn.disabled = true;
-
-                setTimeout(() => {
-                    submitBtn.innerText = originalBtnText;
-                    submitBtn.disabled = false;
-                    if (successMsg) successMsg.style.display = 'block';
-                    contactForm.reset();
-                    updateAutoMessage(); // Reiniciar el mensaje tras el reset
-                    
-                    setTimeout(() => {
-                        if (successMsg) successMsg.style.display = 'none';
-                    }, 5000);
-                }, 1500);
             }
+            
+            // El navegador ahora enviará los datos a FormSubmit automáticamente
         });
     }
 
-    function showError(elementId) {
-        const errEl = document.getElementById(elementId);
-        if (errEl) errEl.style.display = 'block';
-    }
-
     // --- Lógica del Aviso de Cookies ---
+    // (Exactamente igual que el original)
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptButton = document.getElementById('accept-cookies');
 
