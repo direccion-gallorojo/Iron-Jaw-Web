@@ -231,7 +231,8 @@
                 
                 <form id="contactForm" class="contact-form" action="https://formsubmit.co/contactoironjaw@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="¡Nueva solicitud de Protector Iron Jaw!">
-                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
 
                     <div class="form-group">
                         <label for="nombre">Nombre Completo</label>
@@ -297,19 +298,6 @@
         <p>Utilizamos cookies para mejorar tu experiencia. <button id="accept-cookies" class="btn btn-primary btn-cookie" style="padding: 5px 15px; margin-left: 10px;">Aceptar</button></p>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const acceptBtn = document.getElementById('accept-cookies');
-            const banner = document.getElementById('cookie-banner');
-            if(!localStorage.getItem('cookies-accepted')) {
-                banner.classList.remove('hidden');
-            }
-            acceptBtn.addEventListener('click', () => {
-                localStorage.setItem('cookies-accepted', 'true');
-                banner.classList.add('hidden');
-            });
-        });
-    </script>
-    <script src="scripts.js"></script>
+    <script src="scripts.js?v=2.0"></script>
 </body>
 </html>
