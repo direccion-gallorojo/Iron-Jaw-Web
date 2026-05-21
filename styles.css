@@ -720,7 +720,8 @@ footer {
 
 .preview-box {
     position: relative;
-    background: #0a0a0a;
+    /* Cambiado a gris medio/oscuro para que resalten bucal e incluso letras totalmente negras */
+    background: #222222; 
     border-radius: 8px;
     padding: 20px;
     display: flex;
@@ -732,14 +733,15 @@ footer {
 }
 
 .preview-box img {
-    max-width: 100%;
+    max-width: 85%;
     height: auto;
     display: block;
     user-select: none;
     -webkit-user-drag: none;
+    z-index: 1; /* El bucal se dibuja al fondo */
 }
 
-/* Superposición de texto con relieve realista sobre el bucal blanco */
+/* Superposición de texto con relieve realista y silueta de seguridad antioscuridad */
 .preview-text-overlay {
     position: absolute;
     top: 53%; 
@@ -749,11 +751,17 @@ footer {
     font-weight: 900;
     letter-spacing: 1px;
     color: #1a1a1a;
-    /* Doble sombra técnica: una clara abajo para relieve y una oscura sutil para profundidad */
-    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6), 0px -0.5px 0.5px rgba(0, 0, 0, 0.3);
+    /* Delineado blanco sutil pero efectivo que rescata las letras negras sobre fondos oscuros */
+    text-shadow: 
+        -1px -1px 0 rgba(255, 255, 255, 0.8),  
+         1px -1px 0 rgba(255, 255, 255, 0.8),
+        -1px  1px 0 rgba(255, 255, 255, 0.8),
+         1px  1px 0 rgba(255, 255, 255, 0.8),
+         0px  2px 4px rgba(0, 0, 0, 0.4);
     text-transform: uppercase;
     white-space: nowrap;
     pointer-events: none; 
+    z-index: 2; /* El texto se dibuja siempre por encima de la imagen */
     transition: color 0.2s ease, font-family 0.2s ease;
 }
 
@@ -803,7 +811,7 @@ footer {
     border-radius: 50%;
     border: 2px solid transparent;
     cursor: pointer;
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.1); /* Ayuda a separar el botón negro del fondo */
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.2); /* Ayuda a separar los botones oscuros del panel */
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
