@@ -807,3 +807,147 @@ footer {
         transform: scale(1);
     }
 }
+/* ==========================================================================
+   NUEVA SECCIÓN: CONFIGURADOR INTERACTIVO (IRON JAW CUSTOMIZER)
+   ========================================================================== */
+
+/* Caja contenedora del diseño (Izquierda) */
+.customizer-container {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* El lienzo visual oscuro donde flota el bucal */
+.preview-box {
+    position: relative;
+    background: #0a0a0a;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px dashed #444;
+    min-height: 250px;
+}
+
+/* Imagen del protector blanco */
+.preview-box img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* El texto mágico que se superpone en el centro exacto del protector */
+.preview-text-overlay {
+    position: absolute;
+    top: 53%; /* Ajuste vertical para asentarse en la superficie frontal del bucal */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #1a1a1a; /* Color inicial (Negro) */
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.4); /* Le da relieve tridimensional sobre el blanco */
+    text-transform: uppercase;
+    white-space: nowrap;
+    pointer-events: none; /* Evita interferencias con el ratón */
+    transition: color 0.2s ease, font-family 0.2s ease;
+}
+
+/* Controles del configurador */
+.customizer-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.control-group input[type="text"],
+.control-group select {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.control-group input[type="text"]:focus,
+.control-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Selector de colores mediante botones redondos */
+.color-picker-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.color-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+}
+
+.color-btn.active {
+    border-color: var(--primary-color) !important; /* Destaca el color activo usando tu rojo oficial */
+    transform: scale(1.1);
+}
+
+/* Tipografías del Simulador */
+.tipografia-mma {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    letter-spacing: 2px;
+}
+
+.tipografia-classic {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.tipografia-modern {
+    font-family: var(--font-main);
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* Regla de Adaptación para Pantallas Medianas y Móviles */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr !important; /* Rompe las dos columnas y pone el simulador arriba del formulario */
+        gap: 2rem;
+    }
+    
+    .preview-text-overlay {
+        font-size: 1.2rem; /* Reduce un poco la letra en pantallas pequeñas para que no se salga del bucal */
+    }
+}
