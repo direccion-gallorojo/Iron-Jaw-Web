@@ -183,7 +183,7 @@ body {
     position: relative;
     z-index: 2;
     max-width: 800px;
-    padding: 150px 20px 150px 20px;
+    padding: 150px 20px;
     margin: 0 auto;
 }
 
@@ -204,6 +204,7 @@ body {
 #about {
     margin-top: 50px;
 }
+
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -313,19 +314,6 @@ body {
     height: 400px; 
 }
 
-/* Responsive Específico para la Galería */
-@media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-    .gallery-subtitle {
-        font-size: 1.4rem;
-    }
-    .gallery-item {
-        height: 200px;
-    }
-}
-
 /* --- Testimonios --- */
 .testimonials-grid {
     display: grid;
@@ -397,6 +385,7 @@ body {
 }
 
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
@@ -418,7 +407,8 @@ body {
     text-align: center;
     display: none;
 }
-/* --- NUEVA SECCIÓN TRABAJOS --- */
+
+/* --- SECCIÓN TRABAJOS --- */
 .trabajos-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -464,18 +454,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Ajuste para que se vea bien en móviles */
-@media (max-width: 768px) {
-    .trabajos-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .trabajos-grid {
-        grid-template-columns: 1fr;
-    }
-}
 /* --- Footer --- */
 footer {
     background: black;
@@ -497,73 +475,6 @@ footer {
 
 .socials a:hover {
     color: white;
-}
-
-/* --- Responsive Media Queries --- */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg-card);
-        padding: 2rem;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .hero h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-}
-
-.hero-logo {
-    max-width: 200px;
-    margin: 0 auto 15px auto;
-}
-
-.products-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-}
-
-.product-item {
-    flex-direction: column;
-}
-
-.product-image {
-    max-width: 100%;
-    height: auto;
-    max-height: 250px;
-}
-
-.product-details {
-    padding: 15px 0 0 0;
-}
-
-    .about-grid, .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .btn-outline {
-        margin-left: 0;
-    }
-
 }
 
 /* --- AVISO DE COOKIES --- */
@@ -599,7 +510,6 @@ footer {
 }
 
 /* --- ESTILOS PARA LA GALERÍA MODAL (POP-UP) --- */
-
 .modal-gallery {
     display: none;
     position: fixed;
@@ -679,10 +589,8 @@ footer {
     opacity: 1;
     border: 2px solid var(--primary-color);
 }
-/* ============================================================
-   NUEVA SECCIÓN: 3 NIVELES DE PROTECCIÓN (LIGERA, ESTÁNDAR, AVANZADA)
-   ============================================================ */
 
+/* --- 3 NIVELES DE PROTECCIÓN --- */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -798,20 +706,7 @@ footer {
     transform: translateY(-2px);
 }
 
-@media (max-width: 992px) {
-    .products-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    .product-card.highlight {
-        transform: scale(1);
-    }
-}
-/* ==========================================================================
-   NUEVA SECCIÓN: CONFIGURADOR INTERACTIVO (IRON JAW CUSTOMIZER)
-   ========================================================================== */
-
-/* Caja contenedora del diseño (Izquierda) */
+/* --- CONFIGURADOR INTERACTIVO (IRON JAW CUSTOMIZER) --- */
 .customizer-container {
     background: var(--bg-card);
     padding: 25px;
@@ -823,7 +718,6 @@ footer {
     width: 100%;
 }
 
-/* El lienzo visual oscuro donde flota el bucal */
 .preview-box {
     position: relative;
     background: #0a0a0a;
@@ -837,7 +731,6 @@ footer {
     min-height: 250px;
 }
 
-/* Imagen del protector blanco */
 .preview-box img {
     max-width: 100%;
     height: auto;
@@ -846,24 +739,24 @@ footer {
     -webkit-user-drag: none;
 }
 
-/* El texto mágico que se superpone en el centro exacto del protector */
+/* Superposición de texto con relieve realista sobre el bucal blanco */
 .preview-text-overlay {
     position: absolute;
-    top: 53%; /* Ajuste vertical para asentarse en la superficie frontal del bucal */
+    top: 53%; 
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.6rem;
     font-weight: 900;
     letter-spacing: 1px;
-    color: #1a1a1a; /* Color inicial (Negro) */
-    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.4); /* Le da relieve tridimensional sobre el blanco */
+    color: #1a1a1a;
+    /* Doble sombra técnica: una clara abajo para relieve y una oscura sutil para profundidad */
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6), 0px -0.5px 0.5px rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
     white-space: nowrap;
-    pointer-events: none; /* Evita interferencias con el ratón */
+    pointer-events: none; 
     transition: color 0.2s ease, font-family 0.2s ease;
 }
 
-/* Controles del configurador */
 .customizer-controls {
     display: flex;
     flex-direction: column;
@@ -899,7 +792,6 @@ footer {
     border-color: var(--primary-color);
 }
 
-/* Selector de colores mediante botones redondos */
 .color-picker-wrapper {
     display: flex;
     gap: 12px;
@@ -911,6 +803,7 @@ footer {
     border-radius: 50%;
     border: 2px solid transparent;
     cursor: pointer;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.1); /* Ayuda a separar el botón negro del fondo */
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -919,8 +812,9 @@ footer {
 }
 
 .color-btn.active {
-    border-color: var(--primary-color) !important; /* Destaca el color activo usando tu rojo oficial */
+    border-color: var(--primary-color) !important; 
     transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(230, 57, 70, 0.4);
 }
 
 /* Tipografías del Simulador */
@@ -940,14 +834,86 @@ footer {
     font-style: italic;
 }
 
-/* Regla de Adaptación para Pantallas Medianas y Móviles */
+/* --- Responsive Media Queries (Global) --- */
+@media (max-width: 992px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .product-card.highlight {
+        transform: scale(1);
+    }
+}
+
 @media (max-width: 768px) {
-    .contact-wrapper {
-        grid-template-columns: 1fr !important; /* Rompe las dos columnas y pone el simulador arriba del formulario */
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-card);
+        padding: 2rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+
+    .hero-logo {
+        max-width: 200px;
+        margin: 0 auto 15px auto;
+    }
+
+    .about-grid, .contact-wrapper {
+        grid-template-columns: 1fr !important;
         gap: 2rem;
     }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
     
+    .btn-outline {
+        margin-left: 0;
+    }
+
+    .trabajos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .gallery-item {
+        height: 200px;
+    }
+
     .preview-text-overlay {
-        font-size: 1.2rem; /* Reduce un poco la letra en pantallas pequeñas para que no se salga del bucal */
+        font-size: 1.2rem; /* Evita que el texto desborde el bucal en pantallas compactas */
+    }
+}
+
+@media (max-width: 480px) {
+    .trabajos-grid {
+        grid-template-columns: 1fr;
     }
 }
