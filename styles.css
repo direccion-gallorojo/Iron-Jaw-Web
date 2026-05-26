@@ -807,7 +807,7 @@ footer {
          0px  2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* --- CONTROLADORES DE PERSPECTIVA (CORREGIDOS A RECTO/HORIZONTAL) --- */
+/* --- CONTROLADORES DE PERSPECTIVA (VISTAS REAJUSTADAS A RECUADROS VERDES) --- */
 .preview-text-overlay.vista-frontal {
     top: 53%; 
     left: 50%;
@@ -815,17 +815,17 @@ footer {
 }
 
 .preview-text-overlay.vista-izquierdo {
-    /* Posicionado horizontalmente de manera perfecta en el lateral izquierdo */
-    top: 45%;
-    left: 42%; 
-    transform: translate(-50%, -50%); /* Recto y limpio sin rotación oblicua */
+    /* Posicionamiento horizontal perfectamente centrado dentro del recuadro verde (molares) */
+    top: 50%; /* Bajado del 45% al 50% para entrar en la goma de los molares */
+    left: 35%; /* Movido del 42% al 35% hacia la izquierda para alinearse con los molares posteriores */
+    transform: translate(-50%, -50%); /* Recto y limpio, horizontal puro */
 }
 
 .preview-text-overlay.vista-derecho {
-    /* Posicionado horizontalmente de manera perfecta en el lateral derecho */
-    top: 45%;
-    left: 58%; 
-    transform: translate(-50%, -50%); /* Recto y limpio sin rotación oblicua */
+    /* Posicionamiento horizontal perfectamente centrado dentro del recuadro verde (molares) */
+    top: 50%; /* Bajado del 45% al 50% */
+    left: 65%; /* Movido del 58% al 65% hacia la derecha para alinearse con los molares posteriores */
+    transform: translate(-50%, -50%); /* Recto y limpio, horizontal puro */
 }
 
 .customizer-controls {
@@ -978,19 +978,19 @@ footer {
         height: 200px;
     }
 
-    /* Ajuste responsivo horizontal optimizado para móviles */
+    /* Ajuste responsivo horizontal optimizado para móviles (manteniendo coordenadas de molares) */
     .preview-text-overlay.vista-frontal {
         font-size: 1.2rem;
     }
     .preview-text-overlay.vista-izquierdo {
         font-size: 1.0rem;
-        top: 45%;
-        left: 42%;
+        top: 50%;
+        left: 35%;
     }
     .preview-text-overlay.vista-derecho {
         font-size: 1.0rem;
-        top: 45%;
-        left: 58%;
+        top: 50%;
+        left: 65%;
     }
 }
 
