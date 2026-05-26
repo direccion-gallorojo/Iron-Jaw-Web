@@ -718,9 +718,45 @@ footer {
     width: 100%;
 }
 
+/* Contenedor del Selector de Perspectivas */
+.vista-selector {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.btn-vista {
+    flex: 1;
+    background: #222;
+    border: 1px solid #444;
+    color: var(--text-muted);
+    padding: 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.btn-vista:hover {
+    color: white;
+    border-color: #666;
+}
+
+.btn-vista.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+}
+
 .preview-box {
     position: relative;
-    /* Cambiado a gris medio/oscuro para que resalten bucal e incluso letras totalmente negras */
     background: #222222; 
     border-radius: 8px;
     padding: 20px;
@@ -732,37 +768,61 @@ footer {
     min-height: 250px;
 }
 
+/* Envoltura rígida para mantener la alineación estricta de imagen y texto */
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .preview-box img {
     max-width: 85%;
     height: auto;
     display: block;
     user-select: none;
     -webkit-user-drag: none;
-    z-index: 1; /* El bucal se dibuja al fondo */
+    z-index: 1;
 }
 
-/* Superposición de texto con relieve realista y silueta de seguridad antioscuridad */
+/* Base unificada de superposición de texto interactivo */
 .preview-text-overlay {
     position: absolute;
-    top: 53%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.6rem;
     font-weight: 900;
     letter-spacing: 1px;
-    color: #1a1a1a;
-    /* Delineado blanco sutil pero efectivo que rescata las letras negras sobre fondos oscuros */
+    text-transform: uppercase;
+    white-space: nowrap;
+    pointer-events: none; 
+    z-index: 2;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Delineado blanco inteligente de seguridad */
     text-shadow: 
         -1px -1px 0 rgba(255, 255, 255, 0.8),  
          1px -1px 0 rgba(255, 255, 255, 0.8),
         -1px  1px 0 rgba(255, 255, 255, 0.8),
          1px  1px 0 rgba(255, 255, 255, 0.8),
          0px  2px 4px rgba(0, 0, 0, 0.4);
-    text-transform: uppercase;
-    white-space: nowrap;
-    pointer-events: none; 
-    z-index: 2; /* El texto se dibuja siempre por encima de la imagen */
-    transition: color 0.2s ease, font-family 0.2s ease;
+}
+
+/* --- CONTROLADORES DE PERSPECTIVA 3D --- */
+.preview-text-overlay.vista-frontal {
+    top: 53%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.preview-text-overlay.vista-izquierdo {
+    top: 48%;
+    left: 28%;
+    transform: translate(-50%, -50%) rotate(-14deg) skewY(-10deg);
+}
+
+.preview-text-overlay.vista-derecho {
+    top: 48%;
+    left: 72%;
+    transform: translate(-50%, -50%) rotate(14deg) skewY(10deg);
 }
 
 .customizer-controls {
@@ -811,7 +871,7 @@ footer {
     border-radius: 50%;
     border: 2px solid transparent;
     cursor: pointer;
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.2); /* Ayuda a separar los botones oscuros del panel */
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -915,13 +975,26 @@ footer {
         height: 200px;
     }
 
-    .preview-text-overlay {
-        font-size: 1.2rem; /* Evita que el texto desborde el bucal en pantallas compactas */
+    /* Ajuste responsivo de perspectivas móviles */
+    .preview-text-overlay.vista-frontal {
+        font-size: 1.2rem;
+    }
+    .preview-text-overlay.vista-izquierdo {
+        font-size: 1.0rem;
+        left: 27%;
+    }
+    .preview-text-overlay.vista-derecho {
+        font-size: 1.0rem;
+        left: 73%;
     }
 }
 
 @media (max-width: 480px) {
     .trabajos-grid {
         grid-template-columns: 1fr;
+    }
+    .btn-vista {
+        font-size: 0.75rem;
+        padding: 8px 4px;
     }
 }
