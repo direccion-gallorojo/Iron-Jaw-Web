@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function() {
+        contactForm.addEventListener('submit', function(e) {
+            // Nota: Descomenta e.preventDefault() si vas a procesar el envío mediante AJAX/Fetch
+            // e.preventDefault(); 
+            
             const submitBtn = contactForm.querySelector('button[type="submit"]');
 
             if (submitBtn) {
@@ -135,19 +138,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. CONTROL DE FUENTE / TIPOGRAFÍA EN VIVO
+    // 3. CONTROL DE FUENTE / TIPOGRAFÍA EN VIVO (CON NUEVAS FUENTES URBANAS)
     if (fontSelector && previewText) {
         fontSelector.addEventListener('change', (e) => {
             const selectedClass = e.target.value;
             
-            // Saneamiento de las clases de fuentes previas
-            previewText.classList.remove('tipografia-mma', 'tipografia-classic', 'tipografia-modern');
+            // Saneamiento completo incluyendo las nuevas clases de fuentes
+            previewText.classList.remove(
+                'tipografia-mma', 
+                'tipografia-classic', 
+                'tipografia-modern',
+                'tipografia-grafiti',
+                'tipografia-ruda',
+                'tipografia-stencil'
+            );
             previewText.classList.add(selectedClass);
 
             // Mapeo legible para la recepción de leads de producción
             let fontFriendlyName = "Combat (Impact)";
             if (selectedClass === 'tipografia-classic') fontFriendlyName = "Deportivo Clásico (Monospace)";
             if (selectedClass === 'tipografia-modern') fontFriendlyName = "Diseño Moderno (Italic)";
+            if (selectedClass === 'tipografia-grafiti') fontFriendlyName = "Urbano Grafiti (Permanent Marker)";
+            if (selectedClass === 'tipografia-ruda') fontFriendlyName = "Estilo Rudo (Rubik Dirt)";
+            if (selectedClass === 'tipografia-stencil') fontFriendlyName = "Militar Stencil (Black Ops One)";
             
             if (formCustomFont) formCustomFont.value = fontFriendlyName;
         });
