@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Algoritmo de Auto-escalado Tipográfico Dinámico
+     * Algoritmo de Auto-escalado Tipográfico Dinámico (AFINADO)
      * Previene desbordamientos físicos en el lienzo ajustando el tamaño del rem según los caracteres.
      */
     const ajustarTamanoTexto = (texto) => {
@@ -85,13 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let baseSize = esMovil ? 1.2 : 1.6; // Tamaños definidos en el CSS original
 
-        if (longitud > 5) {
-            // Factor de reducción progresivo a partir de 6 caracteres
-            const factorReduccion = (longitud - 5) * (esMovil ? 0.08 : 0.12);
+        // AFINADO: Empezar a reducir a partir de 4 caracteres (en lugar de 5)
+        // Esto asegura que "TITAN" (5 caracteres) se encogerá lo suficiente para las vistas laterales.
+        if (longitud > 3) {
+            // Factor de reducción progresivo y más agresivo
+            const factorReduccion = (longitud - 3) * (esMovil ? 0.10 : 0.15);
             let nuevoSize = baseSize - factorReduccion;
             
-            // Límite mínimo de lectura segura para que no colapse por completo
-            const minSize = esMovil ? 0.75 : 0.95;
+            // Límite mínimo de lectura segura reajustado
+            const minSize = esMovil ? 0.70 : 0.90;
             if (nuevoSize < minSize) nuevoSize = minSize;
             
             previewText.style.fontSize = `${nuevoSize}rem`;
@@ -151,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D (CORREGIDO CARPETA IMAGES)
+    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D (RUTAS CORREGIDAS CARPETA IMAGES)
     vistaButtons.forEach(button => {
         button.addEventListener('click', () => {
             const activeVistaBtn = document.querySelector('.btn-vista.active');
@@ -164,11 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // A) Actualizar imagen del protector apuntando a la carpeta /images/
             if (productImg) {
                 if (vistaSeleccionada === 'frontal') {
-                    productImg.src = 'images/bucal-frontal.png'; // Cambiado img/ a images/
+                    productImg.src = 'images/bucal-frontal.png'; 
                 } else if (vistaSeleccionada === 'izquierdo') {
-                    productImg.src = 'images/bucal-lado-izquierdo.png'; // Cambiado img/ a images/
+                    productImg.src = 'images/bucal-lado-izquierdo.png';
                 } else if (vistaSeleccionada === 'derecho') {
-                    productImg.src = 'images/bucal-lado-derecho.png'; // Cambiado img/ a images/
+                    productImg.src = 'images/bucal-lado-derecho.png';
                 }
             }
 
