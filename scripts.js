@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D (RUTAS CORREGIDAS)
+    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D (CORREGIDO CARPETA IMAGES)
     vistaButtons.forEach(button => {
         button.addEventListener('click', () => {
             const activeVistaBtn = document.querySelector('.btn-vista.active');
@@ -161,14 +161,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const vistaSeleccionada = button.getAttribute('data-vista'); // frontal | izquierdo | derecho
             
-            // A) Actualizar imagen del protector con los nombres de archivo exactos
+            // A) Actualizar imagen del protector apuntando a la carpeta /images/
             if (productImg) {
                 if (vistaSeleccionada === 'frontal') {
-                    productImg.src = 'img/bucal-frontal.png'; 
+                    productImg.src = 'images/bucal-frontal.png'; // Cambiado img/ a images/
                 } else if (vistaSeleccionada === 'izquierdo') {
-                    productImg.src = 'img/bucal-lado-izquierdo.png'; // Ruta exacta corregida
+                    productImg.src = 'images/bucal-lado-izquierdo.png'; // Cambiado img/ a images/
                 } else if (vistaSeleccionada === 'derecho') {
-                    productImg.src = 'img/bucal-lado-derecho.png'; // Ruta exacta corregida
+                    productImg.src = 'images/bucal-lado-derecho.png'; // Cambiado img/ a images/
                 }
             }
 
