@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D
+    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D (RUTAS CORREGIDAS)
     vistaButtons.forEach(button => {
         button.addEventListener('click', () => {
             const activeVistaBtn = document.querySelector('.btn-vista.active');
@@ -161,15 +161,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const vistaSeleccionada = button.getAttribute('data-vista'); // frontal | izquierdo | derecho
             
-            // A) Actualizar imagen del protector según la perspectiva técnica
+            // A) Actualizar imagen del protector con los nombres de archivo exactos
             if (productImg) {
-                // Mapeo de rutas de imágenes dinámicas. Asegúrate de tener estas imágenes en tu proyecto.
                 if (vistaSeleccionada === 'frontal') {
                     productImg.src = 'img/bucal-frontal.png'; 
                 } else if (vistaSeleccionada === 'izquierdo') {
-                    productImg.src = 'img/bucal-izquierdo.png';
+                    productImg.src = 'img/bucal-lado-izquierdo.png'; // Ruta exacta corregida
                 } else if (vistaSeleccionada === 'derecho') {
-                    productImg.src = 'img/bucal-derecho.png';
+                    productImg.src = 'img/bucal-lado-derecho.png'; // Ruta exacta corregida
                 }
             }
 
