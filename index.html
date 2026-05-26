@@ -222,15 +222,29 @@
             <div class="contact-wrapper">
                 
                 <div class="customizer-container">
+                    <div class="vista-selector">
+                        <button type="button" class="btn-vista active" data-vista="frontal">Vista Frontal</button>
+                        <button type="button" class="btn-vista" data-vista="izquierdo">Lado Izquierdo</button>
+                        <button type="button" class="btn-vista" data-vista="derecho">Lado Derecho</button>
+                    </div>
+
                     <div class="preview-box">
-                        <img src="images/bucal-blanco.png" id="baseMouthguard" alt="Lienzo Iron Jaw">
-                        <div id="previewText" class="preview-text-overlay tipografia-mma" style="color: #1a1a1a;">TITÁN</div>
+                        <div class="canvas-wrapper">
+                            <img src="images/bucal-blanco.png" id="baseMouthguard" alt="Lienzo Iron Jaw">
+                            <div id="previewText" class="preview-text-overlay vista-frontal tipografia-mma" style="color: #1a1a1a;">TITÁN</div>
+                        </div>
                     </div>
                     
                     <div class="customizer-controls">
+                        <div class="info-note-box" style="background: rgba(230, 57, 70, 0.1); border-left: 4px solid #e63946; padding: 12px; border-radius: 4px; margin-bottom: 5px;">
+                            <p style="font-size: 0.85rem; color: #f1f5f9; line-height: 1.4; margin: 0;">
+                                ⚠️ <strong>Nota de Personalización:</strong> Estamos optimizando nuestro simulador interactivo 3D. Si deseas tu nombre en los laterales, tipografías especiales o logotipos, detállalo abajo en la sección de <strong>"Instrucciones o detalles extra"</strong>. Te asesoraremos y enviaremos un boceto real antes de fabricarlo.
+                            </p>
+                        </div>
+
                         <div class="control-group">
-                            <label>1. Escribe tu texto:</label>
-                            <input type="text" id="customText" maxlength="12" placeholder="Ej: TITÁN">
+                            <label>1. Escribe tu texto (Máx. 8 letras):</label>
+                            <input type="text" id="customText" maxlength="8" placeholder="Ej: TITÁN">
                         </div>
                         
                         <div class="control-group">
@@ -262,6 +276,7 @@
                     <input type="hidden" id="formCustomText" name="Texto Personalizado" value="TITÁN">
                     <input type="hidden" id="formCustomColor" name="Color del Texto" value="#1a1a1a">
                     <input type="hidden" id="formCustomFont" name="Estilo de Letra" value="Combat (Impact)">
+                    <input type="hidden" id="formCustomVista" name="Perspectiva Elegida" value="Frontal">
 
                     <div class="form-group">
                         <label for="nombre">Nombre Completo</label>
@@ -295,7 +310,7 @@
 
                     <div class="form-group">
                         <label for="mensaje">Instrucciones o detalles extra</label>
-                        <textarea id="mensaje" name="mensaje" rows="3" placeholder="¿Algún otro detalle de color o posición de los elementos?"></textarea>
+                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Indica aquí si deseas añadir algún logo, si prefieres el texto en el lateral derecho o izquierdo, combinaciones de colores, etc. Nuestros protésicos te guiarán."></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-block">Enviar mi Diseño e Información</button>
