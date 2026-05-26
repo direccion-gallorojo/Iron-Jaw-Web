@@ -815,14 +815,14 @@ footer {
 }
 
 .preview-text-overlay.vista-izquierdo {
-    top: 54%;  /* Bajado 3-4mm para encajarlo perfectamente en la banda de silicona */
-    left: 42%; /* Desplazado a la derecha para romper la rotación y centrarlo en el flanco */
+    top: 57%;  /* Bajado 3mm extra para asentarlo en el centro vertical de la encía molar */
+    left: 52%; /* Empujado 1cm completo a la derecha para centrarlo en el flanco lateral */
     transform: translate(-50%, -50%);
 }
 
 .preview-text-overlay.vista-derecho {
-    top: 54%;  /* Bajado 3-4mm exactamente igual que el perfil izquierdo */
-    left: 58%; /* Desplazado a la izquierda (efecto espejo) para asentarlo centrado */
+    top: 57%;  /* Bajado idéntico al lado izquierdo para mantener simetría perfecta */
+    left: 48%; /* Empujado 1cm completo a la izquierda (reduciendo el porcentaje) */
     transform: translate(-50%, -50%);
 }
 
@@ -984,13 +984,13 @@ footer {
     }
     .preview-text-overlay.vista-izquierdo {
         font-size: 1.0rem;
-        top: 54%;
-        left: 42%;
+        top: 57%;
+        left: 52%;
     }
     .preview-text-overlay.vista-derecho {
         font-size: 1.0rem;
-        top: 54%;
-        left: 58%;
+        top: 57%;
+        left: 48%;
     }
 }
 
