@@ -807,25 +807,23 @@ footer {
          0px  2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* --- CONTROLADORES DE PERSPECTIVA (VISTAS REAJUSTADAS A RECUADROS VERDES) --- */
+/* --- CONTROLADORES DE PERSPECTIVA (AJUSTES CLAVADOS AL MILÍMETRO OPTICO) --- */
 .preview-text-overlay.vista-frontal {
     top: 53%; 
-    left: 50%;
+    left: 52.5%; /* Compensación óptica: +5mm a la derecha para un centrado real */
     transform: translate(-50%, -50%);
 }
 
 .preview-text-overlay.vista-izquierdo {
-    /* Posicionamiento horizontal perfectamente centrado dentro del recuadro verde (molares) */
-    top: 50%; /* Bajado del 45% al 50% para entrar en la goma de los molares */
-    left: 35%; /* Movido del 42% al 35% hacia la izquierda para alinearse con los molares posteriores */
-    transform: translate(-50%, -50%); /* Recto y limpio, horizontal puro */
+    top: 54%;  /* Bajado 3-4mm para encajarlo perfectamente en la banda de silicona */
+    left: 42%; /* Desplazado a la derecha para romper la rotación y centrarlo en el flanco */
+    transform: translate(-50%, -50%);
 }
 
 .preview-text-overlay.vista-derecho {
-    /* Posicionamiento horizontal perfectamente centrado dentro del recuadro verde (molares) */
-    top: 50%; /* Bajado del 45% al 50% */
-    left: 65%; /* Movido del 58% al 65% hacia la derecha para alinearse con los molares posteriores */
-    transform: translate(-50%, -50%); /* Recto y limpio, horizontal puro */
+    top: 54%;  /* Bajado 3-4mm exactamente igual que el perfil izquierdo */
+    left: 58%; /* Desplazado a la izquierda (efecto espejo) para asentarlo centrado */
+    transform: translate(-50%, -50%);
 }
 
 .customizer-controls {
@@ -978,19 +976,21 @@ footer {
         height: 200px;
     }
 
-    /* Ajuste responsivo horizontal optimizado para móviles (manteniendo coordenadas de molares) */
+    /* Ajuste responsivo optimizado para móviles manteniendo los microajustes ópticos */
     .preview-text-overlay.vista-frontal {
         font-size: 1.2rem;
+        top: 53%;
+        left: 52.5%;
     }
     .preview-text-overlay.vista-izquierdo {
         font-size: 1.0rem;
-        top: 50%;
-        left: 35%;
+        top: 54%;
+        left: 42%;
     }
     .preview-text-overlay.vista-derecho {
         font-size: 1.0rem;
-        top: 50%;
-        left: 65%;
+        top: 54%;
+        left: 58%;
     }
 }
 
