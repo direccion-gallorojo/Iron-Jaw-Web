@@ -763,7 +763,6 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* MEJORA CLAVE:overflow:hidden asegura que el texto nuna flote fuera del lienzo */
     overflow: hidden; 
     border: 1px dashed #444;
     min-height: 250px;
@@ -773,7 +772,7 @@ footer {
 .canvas-wrapper {
     position: relative;
     width: 100%;
-    max-width: 100%; /* Asegura que el contenedor nuna sea más ancho que el lienzo */
+    max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -808,7 +807,7 @@ footer {
          0px  2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* --- CONTROLADORES DE PERSPECTIVA 3D (REAJUSTADOS GEOMÉTRICAMENTE) --- */
+/* --- CONTROLADORES DE PERSPECTIVA (CORREGIDOS A RECTO/HORIZONTAL) --- */
 .preview-text-overlay.vista-frontal {
     top: 53%; 
     left: 50%;
@@ -816,18 +815,17 @@ footer {
 }
 
 .preview-text-overlay.vista-izquierdo {
-    /* Ajuste de coordenadas para meter el texto dentro de la silueta lateral */
-    top: 48%;
-    left: 35%; /* Mover el texto más hacia el centro lateral */
-    /* Ajuste de distorsión skewY para alinearse con la pared ascendente de la mandíbula */
-    transform: translate(-50%, -50%) rotate(-14deg) skewY(-8deg); 
+    /* Posicionado horizontalmente de manera perfecta en el lateral izquierdo */
+    top: 45%;
+    left: 42%; 
+    transform: translate(-50%, -50%); /* Recto y limpio sin rotación oblicua */
 }
 
 .preview-text-overlay.vista-derecho {
-    /* Ajuste de coordenadas inverso */
-    top: 48%;
-    left: 65%; /* Mover el texto más hacia el centro lateral */
-    transform: translate(-50%, -50%) rotate(14deg) skewY(8deg); 
+    /* Posicionado horizontalmente de manera perfecta en el lateral derecho */
+    top: 45%;
+    left: 58%; 
+    transform: translate(-50%, -50%); /* Recto y limpio sin rotación oblicua */
 }
 
 .customizer-controls {
@@ -980,17 +978,19 @@ footer {
         height: 200px;
     }
 
-    /* Ajuste responsivo de perspectivas móviles */
+    /* Ajuste responsivo horizontal optimizado para móviles */
     .preview-text-overlay.vista-frontal {
         font-size: 1.2rem;
     }
     .preview-text-overlay.vista-izquierdo {
         font-size: 1.0rem;
-        left: 35%; /* Mantener el ajuste de centro lateral en móvil */
+        top: 45%;
+        left: 42%;
     }
     .preview-text-overlay.vista-derecho {
         font-size: 1.0rem;
-        left: 65%; /* Mantener el ajuste de centro lateral en móvil */
+        top: 45%;
+        left: 58%;
     }
 }
 
