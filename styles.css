@@ -886,7 +886,7 @@ footer {
     box-shadow: 0 0 8px rgba(230, 57, 70, 0.4);
 }
 
-/* Tipografías del Simulador */
+/* --- TIPOGRAFÍAS DEL SIMULADOR --- */
 .tipografia-mma {
     font-family: 'Impact', 'Arial Black', sans-serif;
     letter-spacing: 2px;
@@ -901,6 +901,25 @@ footer {
     font-family: var(--font-main);
     font-weight: 900;
     font-style: italic;
+}
+
+/* NUEVAS: Tipografías Urbanas Inyectadas con éxito */
+.tipografia-grafiti {
+    font-family: 'Permanent Marker', cursive;
+    letter-spacing: 1px;
+    font-weight: normal; /* La fuente ya es gruesa nativamente */
+}
+
+.tipografia-ruda {
+    font-family: 'Rubik Dirt', cursive;
+    letter-spacing: 0px;
+    font-weight: normal;
+}
+
+.tipografia-stencil {
+    font-family: 'Black Ops One', cursive;
+    letter-spacing: 2px;
+    font-weight: normal;
 }
 
 /* --- Responsive Media Queries (Global) --- */
