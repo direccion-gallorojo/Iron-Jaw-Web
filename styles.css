@@ -763,7 +763,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    /* MEJORA CLAVE:overflow:hidden asegura que el texto nuna flote fuera del lienzo */
+    overflow: hidden; 
     border: 1px dashed #444;
     min-height: 250px;
 }
@@ -772,6 +773,7 @@ footer {
 .canvas-wrapper {
     position: relative;
     width: 100%;
+    max-width: 100%; /* Asegura que el contenedor nuna sea más ancho que el lienzo */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -806,7 +808,7 @@ footer {
          0px  2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* --- CONTROLADORES DE PERSPECTIVA 3D --- */
+/* --- CONTROLADORES DE PERSPECTIVA 3D (REAJUSTADOS GEOMÉTRICAMENTE) --- */
 .preview-text-overlay.vista-frontal {
     top: 53%; 
     left: 50%;
@@ -814,15 +816,18 @@ footer {
 }
 
 .preview-text-overlay.vista-izquierdo {
+    /* Ajuste de coordenadas para meter el texto dentro de la silueta lateral */
     top: 48%;
-    left: 28%;
-    transform: translate(-50%, -50%) rotate(-14deg) skewY(-10deg);
+    left: 35%; /* Mover el texto más hacia el centro lateral */
+    /* Ajuste de distorsión skewY para alinearse con la pared ascendente de la mandíbula */
+    transform: translate(-50%, -50%) rotate(-14deg) skewY(-8deg); 
 }
 
 .preview-text-overlay.vista-derecho {
+    /* Ajuste de coordenadas inverso */
     top: 48%;
-    left: 72%;
-    transform: translate(-50%, -50%) rotate(14deg) skewY(10deg);
+    left: 65%; /* Mover el texto más hacia el centro lateral */
+    transform: translate(-50%, -50%) rotate(14deg) skewY(8deg); 
 }
 
 .customizer-controls {
@@ -981,11 +986,11 @@ footer {
     }
     .preview-text-overlay.vista-izquierdo {
         font-size: 1.0rem;
-        left: 27%;
+        left: 35%; /* Mantener el ajuste de centro lateral en móvil */
     }
     .preview-text-overlay.vista-derecho {
         font-size: 1.0rem;
-        left: 73%;
+        left: 65%; /* Mantener el ajuste de centro lateral en móvil */
     }
 }
 
