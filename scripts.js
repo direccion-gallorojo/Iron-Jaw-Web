@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorButtons = document.querySelectorAll('.color-btn');
     const vistaButtons = document.querySelectorAll('.btn-vista');
     const productImg = document.querySelector('.canvas-wrapper img'); // Imagen principal del protector
+    const emojiButtons = document.querySelectorAll('.btn-quick-emoji'); // NUEVO: Botones de emojis rápidos
 
     // Campos ocultos del formulario para persistencia de datos (Envío por Email)
     const formCustomText = document.getElementById('formCustomText');
@@ -89,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let baseSize = esMovil ? 1.2 : 1.6; // Tamaños definidos en el CSS original
 
         // AFINADO: Empezar a reducir a partir de 4 caracteres (en lugar de 5)
-        // Esto asegura que "TITAN" (5 caracteres) se encogerá lo suficiente para las vistas laterales.
+        // Esto asegura que "TITAN" o emojis dobles se encogerán lo suficiente para las vistas laterales.
         if (longitud > 3) {
             // Factor de reducción progresivo y más agresivo
             const factorReduccion = (longitud - 3) * (esMovil ? 0.10 : 0.15);
@@ -121,6 +122,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // NUEVO: 1B. INYECCIÓN DE EMOJIS RÁPIDOS EN EL SIMULADOR
+    emojiButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (!customInput || !previewText) return;
+
+            const emoji = button.getAttribute('data-emoji');
+            
+            // Comprobar si el texto actual es el placeholder por defecto o está vacío
+            if (customInput.value.trim() === "") {
+                customInput.value = emoji;
+            } else {
+                // Verificar el límite máximo de caracteres (8) antes de añadirlo
+                if (customInput.value.length < 8) {
+                    customInput.value += emoji;
+                } else {
+                    return; // Si ya llegó al límite de caracteres, no hace nada
+                }
+            }
+
+            // Forzar actualización visual inmediata idéntica al evento de escritura manual
+            const textoActualizado = customInput.value.toUpperCase();
+            previewText.innerText = textoActualizado;
+            
+            if (formCustomText) formCustomText.value = textoActualizado;
+            ajustarTamanoTexto(textoActualizado);
+        });
+    });
 
     // 2. CONTROL DE COLOR EN VIVO
     colorButtons.forEach(button => {
