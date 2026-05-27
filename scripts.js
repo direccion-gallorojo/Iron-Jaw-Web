@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D (RUTAS CORREGIDAS CARPETA IMAGES)
+    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D (RUTAS REPARADAS CON BUCAL-BLANCO)
     vistaButtons.forEach(button => {
         button.addEventListener('click', () => {
             const activeVistaBtn = document.querySelector('.btn-vista.active');
@@ -217,10 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const vistaSeleccionada = button.getAttribute('data-vista'); // frontal | izquierdo | derecho
             
-            // A) Actualizar imagen del protector apuntando a la carpeta /images/
+            // A) Actualizar imagen del protector apuntando a los archivos correctos de /images/
             if (productImg) {
                 if (vistaSeleccionada === 'frontal') {
-                    productImg.src = 'images/bucal-frontal.png'; 
+                    productImg.src = 'images/bucal-blanco.png'; // <- Corregido de bucal-frontal.png
                 } else if (vistaSeleccionada === 'izquierdo') {
                     productImg.src = 'images/bucal-lado-izquierdo.png';
                 } else if (vistaSeleccionada === 'derecho') {
