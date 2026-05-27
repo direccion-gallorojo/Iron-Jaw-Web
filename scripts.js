@@ -21,9 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            // Nota: Descomenta e.preventDefault() si vas a procesar el envío mediante AJAX/Fetch
-            // e.preventDefault(); 
-            
             const submitBtn = contactForm.querySelector('button[type="submit"]');
 
             if (submitBtn) {
@@ -49,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // NUEVA LÓGICA EXCLUSIVA: IRON JAW CUSTOMIZER INTERACTIVO (CON VISTAS 3D Y AUTO-ESCALA)
+    // LÓGICA EXCLUSIVA: IRON JAW CUSTOMIZER INTERACTIVO
     // ==========================================================================
     
     // Elementos visuales del lienzo y controles del simulador
@@ -58,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontSelector = document.getElementById('fontSelector');
     const colorButtons = document.querySelectorAll('.color-btn');
     const vistaButtons = document.querySelectorAll('.btn-vista');
-    const productImg = document.querySelector('.canvas-wrapper img'); // Imagen principal del protector
-    const emojiButtons = document.querySelectorAll('.btn-quick-emoji'); // NUEVO: Botones de emojis rápidos
+    const productImg = document.getElementById('baseMouthguard'); // Vinculado al ID de tu HTML
+    const emojiButtons = document.querySelectorAll('.btn-quick-emoji');
 
     // Campos ocultos del formulario para persistencia de datos (Envío por Email)
     const formCustomText = document.getElementById('formCustomText');
@@ -77,27 +74,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Algoritmo de Auto-escalado Tipográfico Dinámico (AFINADO)
-     * Previene desbordamientos físicos en el lienzo ajustando el tamaño del rem según los caracteres.
+     * Algoritmo de Auto-escalado Tipográfico Dinámico
      */
     const ajustarTamanoTexto = (texto) => {
         if (!previewText) return;
         
-        // Contar la longitud real usando Array.from para evitar fallos de medición con emojis
         const longitud = Array.from(texto).length;
-        
-        // Determinar base por el ancho de la pantalla (Mobile vs Desktop)
         const esMovil = window.innerWidth <= 768;
-        
-        let baseSize = esMovil ? 1.2 : 1.6; // Tamaños definidos en el CSS original
+        let baseSize = esMovil ? 1.2 : 1.6;
 
-        // AFINADO: Empezar a reducir a partir de 4 caracteres (en lugar de 5)
         if (longitud > 3) {
-            // Factor de reducción progresivo y más agresivo
             const factorReduccion = (longitud - 3) * (esMovil ? 0.10 : 0.15);
             let nuevoSize = baseSize - factorReduccion;
-            
-            // Límite mínimo de lectura segura reajustado
             const minSize = esMovil ? 0.70 : 0.90;
             if (nuevoSize < minSize) nuevoSize = minSize;
             
@@ -107,21 +95,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // --------------------------------------------------------------------------
+    // SOLUCIÓN AL PROBLEMA DE CARGA: PARCHE DE INICIALIZACIÓN EN FRÍO
+    // Fuerza a la imagen y al texto a renderizar correctamente el protector blanco
+    // --------------------------------------------------------------------------
+    if (productImg) {
+        productImg.src = 'images/bucal-blanco.png'; // Asegura tu protector blanco de inicio
+    }
+    if (previewText) {
+        const textoInicial = previewText.innerText || "TITÁN";
+        ajustarTamanoTexto(textoInicial);
+    }
+    // --------------------------------------------------------------------------
+
     // 1. CONTROL DE TEXTO EN VIVO CON RESTRICCIONES DE COMBATE
     if (customInput && previewText) {
         customInput.addEventListener('input', (e) => {
             let userText = e.target.value;
             
-            // Convertimos a mayúsculas de manera segura respetando caracteres especiales/emojis
             let textToUppercase = "";
             for (let char of userText) {
                 textToUppercase += (char.match(/[a-zñáéíóúü]/i)) ? char.toUpperCase() : char;
             }
             
             if (textToUppercase.trim() === "") {
-                previewText.innerText = "TU NOMBRE";
-                if (formCustomText) formCustomText.value = "TU NOMBRE";
-                ajustarTamanoTexto("TU NOMBRE");
+                previewText.innerText = "TITÁN";
+                if (formCustomText) formCustomText.value = "TITÁN";
+                ajustarTamanoTexto("TITÁN");
             } else {
                 previewText.innerText = textToUppercase;
                 if (formCustomText) formCustomText.value = textToUppercase;
@@ -130,31 +130,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // NUEVO: 1B. INYECCIÓN DE EMOJIS RÁPIDOS EN EL SIMULADOR (CORREGIDO PARA CARACTERES COMPLEJOS)
+    // 1B. INYECCIÓN DE EMOJIS RÁPIDOS EN EL SIMULADOR
     emojiButtons.forEach(button => {
         button.addEventListener('click', (e) => {
-            e.preventDefault(); // Evitar comportamientos fantasmas en el submit
+            e.preventDefault(); 
             if (!customInput || !previewText) return;
 
             const emoji = button.getAttribute('data-emoji');
-            
-            // Medir longitud visual real combinada usando arrays seguros
             const contenidoActual = customInput.value;
             const longitudVisualActual = Array.from(contenidoActual).length;
             
-            // Comprobar si el texto actual está vacío
             if (contenidoActual.trim() === "") {
                 customInput.value = emoji;
             } else {
-                // Verificar el límite máximo estricto de caracteres (8 visuales) antes de añadirlo
                 if (longitudVisualActual < 8) {
                     customInput.value += emoji;
                 } else {
-                    return; // Límite alcanzado, ignorar click
+                    return; 
                 }
             }
 
-            // Procesar el texto final de manera segura para el visor y el input oculto del lead
             const textoFinal = customInput.value;
             previewText.innerText = textoFinal;
             
@@ -171,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             button.classList.add('active');
 
-            // Extraer y plasmar el color hexadecimal elegido
             const selectedColor = button.getAttribute('data-color');
             if (previewText) previewText.style.color = selectedColor;
             
@@ -179,12 +173,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. CONTROL DE FUENTE / TIPOGRAFÍA EN VIVO (CON NUEVAS FUENTES URBANAS)
+    // 3. CONTROL DE FUENTE / TIPOGRAFÍA EN VIVO
     if (fontSelector && previewText) {
         fontSelector.addEventListener('change', (e) => {
             const selectedClass = e.target.value;
             
-            // Saneamiento completo incluyendo las nuevas clases de fuentes
             previewText.classList.remove(
                 'tipografia-mma', 
                 'tipografia-classic', 
@@ -195,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
             );
             previewText.classList.add(selectedClass);
 
-            // Mapeo legible para la recepción de leads de producción
             let fontFriendlyName = "Combat (Impact)";
             if (selectedClass === 'tipografia-classic') fontFriendlyName = "Deportivo Clásico (Monospace)";
             if (selectedClass === 'tipografia-modern') fontFriendlyName = "Diseño Moderno (Italic)";
@@ -207,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D (RUTAS REPARADAS CON BUCAL-BLANCO)
+    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D
     vistaButtons.forEach(button => {
         button.addEventListener('click', () => {
             const activeVistaBtn = document.querySelector('.btn-vista.active');
@@ -215,12 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             button.classList.add('active');
 
-            const vistaSeleccionada = button.getAttribute('data-vista'); // frontal | izquierdo | derecho
+            const vistaSeleccionada = button.getAttribute('data-vista'); 
             
-            // A) Actualizar imagen del protector apuntando a los archivos correctos de /images/
             if (productImg) {
                 if (vistaSeleccionada === 'frontal') {
-                    productImg.src = 'images/bucal-blanco.png'; // <- Corregido de bucal-frontal.png
+                    productImg.src = 'images/bucal-blanco.png';
                 } else if (vistaSeleccionada === 'izquierdo') {
                     productImg.src = 'images/bucal-lado-izquierdo.png';
                 } else if (vistaSeleccionada === 'derecho') {
@@ -228,25 +219,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // B) Mutar clases CSS para aplicar deformaciones de perspectiva 3D (Skew, Rotate, Position)
             if (previewText) {
                 previewText.classList.remove('vista-frontal', 'vista-izquierdo', 'vista-derecho');
                 previewText.classList.add(`vista-${vistaSeleccionada}`);
             }
 
-            // C) Guardar metadato en input oculto para procesar el pedido final
             const nombresVistas = { 'frontal': 'Frontal', 'izquierdo': 'Lado Izquierdo', 'derecho': 'Lado Derecho' };
             formCustomVista.value = nombresVistas[vistaSeleccionada] || 'Frontal';
             
-            // Re-ejecutar la escala tipográfica ya que los límites de espacio cambian en los laterales
-            const textoActual = customInput ? customInput.value : "TU NOMBRE";
-            ajustarTamanoTexto(textoActual.trim() === "" ? "TU NOMBRE" : textoActual);
+            const textoActual = customInput ? customInput.value : "TITÁN";
+            ajustarTamanoTexto(textoActual.trim() === "" ? "TITÁN" : textoActual);
         });
     });
 
-    // Ajustar escala tipográfica si el usuario rota la pantalla del dispositivo móvil
     window.addEventListener('resize', () => {
-        const textoActual = customInput ? customInput.value : "TU NOMBRE";
-        ajustarTamanoTexto(textoActual.trim() === "" ? "TU NOMBRE" : textoActual);
+        const textoActual = customInput ? customInput.value : "TITÁN";
+        ajustarTamanoTexto(textoActual.trim() === "" ? "TITÁN" : textoActual);
     });
 });
