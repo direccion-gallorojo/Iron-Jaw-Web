@@ -790,7 +790,6 @@ footer {
 /* Base unificada de superposición de texto interactivo */
 .preview-text-overlay {
     position: absolute;
-    /* CORRECCIÓN EXCEPCIONAL: Se elimina el 'font-weight: 900' de esta base común para que no destruya ni aplaste las fuentes urbanas vectoriales */
     letter-spacing: 1px;
     text-transform: uppercase;
     white-space: nowrap;
@@ -815,13 +814,13 @@ footer {
 }
 
 .preview-text-overlay.vista-izquierdo {
-    top: 57%;  /* Bajado 3mm extra para asentarlo en el centro vertical de la encía molar */
-    left: 52%; /* Empujado 1cm completo a la derecha para centrarlo en el flanco lateral */
+    top: 59%;  /* MODIFICADO: Bajado un par de milímetros exactos según lo acordado */
+    left: 51.5%; /* MODIFICADO: Centrado horizontal recalculado para el nuevo punto de la curva */
     transform: translate(-50%, -50%);
 }
 
 .preview-text-overlay.vista-derecho {
-    top: 57%;  /* Bajado idéntico al lado izquierdo para mantener simetría perfecta */
+    top: 57%;  /* Bajado idéntico al lado izquierdo anterior para mantener simetría perfecta */
     left: 48%; /* Empujado 1cm completo a la izquierda (reduciendo el porcentaje) */
     transform: translate(-50%, -50%);
 }
@@ -1004,8 +1003,8 @@ footer {
     }
     .preview-text-overlay.vista-izquierdo {
         font-size: 1.0rem;
-        top: 57%;
-        left: 52%;
+        top: 59%;     /* MODIFICADO: Sincronizado idéntico al ajuste de escritorio */
+        left: 51.5%;   /* MODIFICADO: Sincronizado idéntico al ajuste de escritorio */
     }
     .preview-text-overlay.vista-derecho {
         font-size: 1.0rem;
