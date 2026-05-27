@@ -82,7 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const ajustarTamanoTexto = (texto) => {
         if (!previewText) return;
-        const longitud = texto.length;
+        
+        // Contar la longitud real usando Array.from para evitar fallos de medición con emojis
+        const longitud = Array.from(texto).length;
         
         // Determinar base por el ancho de la pantalla (Mobile vs Desktop)
         const esMovil = window.innerWidth <= 768;
@@ -90,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let baseSize = esMovil ? 1.2 : 1.6; // Tamaños definidos en el CSS original
 
         // AFINADO: Empezar a reducir a partir de 4 caracteres (en lugar de 5)
-        // Esto asegura que "TITAN" o emojis dobles se encogerán lo suficiente para las vistas laterales.
         if (longitud > 3) {
             // Factor de reducción progresivo y más agresivo
             const factorReduccion = (longitud - 3) * (esMovil ? 0.10 : 0.15);
@@ -109,45 +110,56 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. CONTROL DE TEXTO EN VIVO CON RESTRICCIONES DE COMBATE
     if (customInput && previewText) {
         customInput.addEventListener('input', (e) => {
-            let userText = e.target.value.toUpperCase(); // Forzar estética mayúsculas combat
+            let userText = e.target.value;
             
-            if (userText.trim() === "") {
+            // Convertimos a mayúsculas de manera segura respetando caracteres especiales/emojis
+            let textToUppercase = "";
+            for (let char of userText) {
+                textToUppercase += (char.match(/[a-zñáéíóúü]/i)) ? char.toUpperCase() : char;
+            }
+            
+            if (textToUppercase.trim() === "") {
                 previewText.innerText = "TU NOMBRE";
                 if (formCustomText) formCustomText.value = "TU NOMBRE";
                 ajustarTamanoTexto("TU NOMBRE");
             } else {
-                previewText.innerText = userText;
-                if (formCustomText) formCustomText.value = userText;
-                ajustarTamanoTexto(userText);
+                previewText.innerText = textToUppercase;
+                if (formCustomText) formCustomText.value = textToUppercase;
+                ajustarTamanoTexto(textToUppercase);
             }
         });
     }
 
-    // NUEVO: 1B. INYECCIÓN DE EMOJIS RÁPIDOS EN EL SIMULADOR
+    // NUEVO: 1B. INYECCIÓN DE EMOJIS RÁPIDOS EN EL SIMULADOR (CORREGIDO PARA CARACTERES COMPLEJOS)
     emojiButtons.forEach(button => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); // Evitar comportamientos fantasmas en el submit
             if (!customInput || !previewText) return;
 
             const emoji = button.getAttribute('data-emoji');
             
-            // Comprobar si el texto actual es el placeholder por defecto o está vacío
-            if (customInput.value.trim() === "") {
+            // Medir longitud visual real combinada usando arrays seguros
+            const contenidoActual = customInput.value;
+            const longitudVisualActual = Array.from(contenidoActual).length;
+            
+            // Comprobar si el texto actual está vacío
+            if (contenidoActual.trim() === "") {
                 customInput.value = emoji;
             } else {
-                // Verificar el límite máximo de caracteres (8) antes de añadirlo
-                if (customInput.value.length < 8) {
+                // Verificar el límite máximo estricto de caracteres (8 visuales) antes de añadirlo
+                if (longitudVisualActual < 8) {
                     customInput.value += emoji;
                 } else {
-                    return; // Si ya llegó al límite de caracteres, no hace nada
+                    return; // Límite alcanzado, ignorar click
                 }
             }
 
-            // Forzar actualización visual inmediata idéntica al evento de escritura manual
-            const textoActualizado = customInput.value.toUpperCase();
-            previewText.innerText = textoActualizado;
+            // Procesar el texto final de manera segura para el visor y el input oculto del lead
+            const textoFinal = customInput.value;
+            previewText.innerText = textoFinal;
             
-            if (formCustomText) formCustomText.value = textoActualizado;
-            ajustarTamanoTexto(textoActualizado);
+            if (formCustomText) formCustomText.value = textoFinal;
+            ajustarTamanoTexto(textoFinal);
         });
     });
 
