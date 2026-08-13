@@ -590,7 +590,7 @@ footer {
     border: 2px solid var(--primary-color);
 }
 
-/* --- 3 NIVELES DE PROTECCIÓN --- */
+/* --- TARJETAS DE PRODUCTO (BUCALES & CAMISETAS) --- */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -627,7 +627,7 @@ footer {
 
 .product-card:hover .product-img-container img {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .product-card .card-content {
@@ -706,6 +706,24 @@ footer {
     transform: translateY(-2px);
 }
 
+/* --- AJUSTES ESPECÍFICOS SECCIÓN CAMISETAS / APPAREL --- */
+#camisetas .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+#camisetas .product-img-container {
+    height: 320px; /* Un poco más alto para prendas de vestir */
+}
+
+#camisetas .product-img-container img {
+    object-position: center;
+}
+
+#camisetas .product-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(230, 57, 70, 0.15);
+}
+
 /* --- CONFIGURADOR INTERACTIVO (IRON JAW CUSTOMIZER) --- */
 .customizer-container {
     background: var(--bg-card);
@@ -718,7 +736,6 @@ footer {
     width: 100%;
 }
 
-/* Contenedor del Selector de Perspectivas */
 .vista-selector {
     display: flex;
     justify-content: space-between;
@@ -768,7 +785,6 @@ footer {
     min-height: 250px;
 }
 
-/* Envoltura rígida para mantener la alineación estricta de imagen y texto */
 .canvas-wrapper {
     position: relative;
     width: 100%;
@@ -787,7 +803,6 @@ footer {
     z-index: 1;
 }
 
-/* Base unificada de superposición de texto interactivo */
 .preview-text-overlay {
     position: absolute;
     letter-spacing: 1px;
@@ -797,7 +812,6 @@ footer {
     z-index: 2;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     
-    /* Delineado blanco inteligente de seguridad */
     text-shadow: 
         -1px -1px 0 rgba(255, 255, 255, 0.8),  
          1px -1px 0 rgba(255, 255, 255, 0.8),
@@ -806,22 +820,21 @@ footer {
          0px  2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* --- CONTROLADORES DE PERSPECTIVA (AJUSTES CLAVADOS AL MILÍMETRO OPTICO) --- */
 .preview-text-overlay.vista-frontal {
     top: 53%; 
-    left: 52.5%; /* Compensación óptica: +5mm a la derecha para un centrado real */
+    left: 52.5%;
     transform: translate(-50%, -50%);
 }
 
 .preview-text-overlay.vista-izquierdo {
-    top: 59%;  /* MODIFICADO: Bajado un par de milímetros exactos según lo acordado */
-    left: 51.5%; /* MODIFICADO: Centrado horizontal recalculado para el nuevo punto de la curva */
+    top: 59%; 
+    left: 51.5%;
     transform: translate(-50%, -50%);
 }
 
 .preview-text-overlay.vista-derecho {
-    top: 57%;  /* Bajado idéntico al lado izquierdo anterior para mantener simetría perfecta */
-    left: 48%; /* Empujado 1cm completo a la izquierda (reduciendo el porcentaje) */
+    top: 57%; 
+    left: 48%;
     transform: translate(-50%, -50%);
 }
 
@@ -885,7 +898,7 @@ footer {
     box-shadow: 0 0 8px rgba(230, 57, 70, 0.4);
 }
 
-/* --- TIPOGRAFÍAS DEL SIMULADOR BRUTALES CON !IMPORTANT --- */
+/* --- TIPOGRAFÍAS DEL SIMULADOR --- */
 .tipografia-mma {
     font-family: 'Impact', 'Arial Black', sans-serif !important;
     font-weight: 900 !important;
@@ -903,10 +916,9 @@ footer {
     font-style: italic !important;
 }
 
-/* NUEVAS: Tipografías Urbanas Inyectadas con éxito y peso neutralizado */
 .tipografia-grafiti {
     font-family: 'Permanent Marker', cursive !important;
-    font-weight: normal !important; /* Libera el bloqueo de dibujo vectorial */
+    font-weight: normal !important;
     letter-spacing: 1px !important;
 }
 
@@ -927,6 +939,9 @@ footer {
     .products-grid {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+    #camisetas .products-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     .product-card.highlight {
         transform: scale(1);
@@ -995,7 +1010,10 @@ footer {
         height: 200px;
     }
 
-    /* Ajuste responsivo optimizado para móviles manteniendo los microajustes ópticos */
+    #camisetas .products-grid {
+        grid-template-columns: 1fr;
+    }
+
     .preview-text-overlay.vista-frontal {
         font-size: 1.2rem;
         top: 53%;
@@ -1003,8 +1021,8 @@ footer {
     }
     .preview-text-overlay.vista-izquierdo {
         font-size: 1.0rem;
-        top: 59%;     /* MODIFICADO: Sincronizado idéntico al ajuste de escritorio */
-        left: 51.5%;   /* MODIFICADO: Sincronizado idéntico al ajuste de escritorio */
+        top: 59%;
+        left: 51.5%;
     }
     .preview-text-overlay.vista-derecho {
         font-size: 1.0rem;
