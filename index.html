@@ -197,7 +197,7 @@
                 <!-- Modelo King -->
                 <div class="product-card">
                     <div class="product-img-container">
-                        <img src="images/cking.jpg" alt="Camiseta Iron Jaw King">
+                        <img src="images/cking.jpg" alt="Camiseta Iron Jaw King" onclick="openShirtModal(this.src, 'Camiseta Iron Jaw KING')" style="cursor: pointer;">
                     </div>
                     <div class="card-content">
                         <h3>KING</h3>
@@ -217,7 +217,7 @@
                 <!-- Modelo Gladiador -->
                 <div class="product-card">
                     <div class="product-img-container">
-                        <img src="images/cgladiador.jpg" alt="Camiseta Iron Jaw Gladiador">
+                        <img src="images/cgladiador.jpg" alt="Camiseta Iron Jaw Gladiador" onclick="openShirtModal(this.src, 'Camiseta Iron Jaw GLADIADOR')" style="cursor: pointer;">
                     </div>
                     <div class="card-content">
                         <h3>GLADIADOR</h3>
@@ -237,7 +237,7 @@
                 <!-- Modelo Pitbull -->
                 <div class="product-card">
                     <div class="product-img-container">
-                        <img src="images/cpitbull.jpg" alt="Camiseta Iron Jaw Pitbull">
+                        <img src="images/cpitbull.jpg" alt="Camiseta Iron Jaw Pitbull" onclick="openShirtModal(this.src, 'Camiseta Iron Jaw PITBULL')" style="cursor: pointer;">
                     </div>
                     <div class="card-content">
                         <h3>PITBULL</h3>
@@ -257,7 +257,7 @@
                 <!-- Modelo Vikingo -->
                 <div class="product-card">
                     <div class="product-img-container">
-                        <img src="images/cvikingo.jpg" alt="Camiseta Iron Jaw Vikingo">
+                        <img src="images/cvikingo.jpg" alt="Camiseta Iron Jaw Vikingo" onclick="openShirtModal(this.src, 'Camiseta Iron Jaw VIKINGO')" style="cursor: pointer;">
                     </div>
                     <div class="card-content">
                         <h3>VIKINGO</h3>
@@ -277,6 +277,12 @@
         </div>
     </section>
 
+    <!-- Visor Pop-Up para Camisetas (lightbox) -->
+    <div id="shirtModal" class="shirt-modal" onclick="closeShirtModal()">
+        <span class="shirt-modal-close" onclick="closeShirtModal()">&times;</span>
+        <img class="shirt-modal-content" id="shirtModalImg" alt="Vista ampliada">
+        <div id="shirtModalCaption" class="shirt-modal-caption"></div>
+    </div>
     <section id="beneficios" class="section">
         <div class="container">
             <h2 class="section-title">¿Por qué a medida?</h2>
