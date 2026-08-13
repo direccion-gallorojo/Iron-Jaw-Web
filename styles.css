@@ -1039,4 +1039,55 @@ footer {
         font-size: 0.75rem;
         padding: 8px 4px;
     }
+}/* --- VISOR POP-UP / LIGHTBOX CAMISETAS --- */
+.shirt-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(5px);
+}
+
+.shirt-modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(230, 57, 70, 0.4);
+    object-fit: contain;
+}
+
+.shirt-modal-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    padding: 15px 0;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.shirt-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.shirt-modal-close:hover {
+    color: var(--primary-color);
 }
