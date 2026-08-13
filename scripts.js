@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Lógica del Menú Móvil ---
+    // --- 1. LÓGICA DEL MENÚ MÓVIL ---
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -12,15 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+            if (navLinks) navLinks.classList.remove('active');
         });
     });
 
-    // --- Lógica del Formulario de Contacto ---
+    // --- 2. LÓGICA DEL FORMULARIO DE CONTACTO ---
     const contactForm = document.getElementById('contactForm');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function() {
             const submitBtn = contactForm.querySelector('button[type="submit"]');
 
             if (submitBtn) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Lógica del Aviso de Cookies ---
+    // --- 3. LÓGICA DEL AVISO DE COOKIES ---
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptButton = document.getElementById('accept-cookies');
 
@@ -41,31 +41,79 @@ document.addEventListener('DOMContentLoaded', () => {
     if (acceptButton) {
         acceptButton.addEventListener('click', function() {
             localStorage.setItem('cookiesAccepted', 'true');
-            cookieBanner.classList.add('hidden');
+            if (cookieBanner) cookieBanner.classList.add('hidden');
+        });
+    }
+
+    // --- 4. LÓGICA DE LA GALERÍA MODAL (POP-UP) ---
+    const modalGallery = document.getElementById('modalGallery');
+    const closeGalleryBtn = document.querySelector('.close-button-gallery');
+    const mainGalleryImage = document.getElementById('mainGalleryImage');
+    const galleryThumbnails = document.querySelectorAll('.gallery-thumbnail');
+    const openGalleryItems = document.querySelectorAll('.gallery-item, .trabajo-item');
+
+    // Abrir Modal de Galería
+    if (modalGallery && openGalleryItems.length > 0) {
+        openGalleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                if (img && mainGalleryImage) {
+                    mainGalleryImage.src = img.src;
+                    mainGalleryImage.alt = img.alt || 'Imagen de Galería';
+                    modalGallery.style.display = 'block';
+                }
+            });
+        });
+    }
+
+    // Cerrar Modal
+    if (closeGalleryBtn) {
+        closeGalleryBtn.addEventListener('click', () => {
+            modalGallery.style.display = 'none';
+        });
+    }
+
+    // Cerrar al hacer clic fuera del contenido
+    window.addEventListener('click', (e) => {
+        if (e.target === modalGallery) {
+            modalGallery.style.display = 'none';
+        }
+    });
+
+    // Cambiar imagen principal mediante miniaturas
+    if (galleryThumbnails.length > 0) {
+        galleryThumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                if (mainGalleryImage) {
+                    mainGalleryImage.src = this.src;
+                }
+                galleryThumbnails.forEach(t => t.classList.remove('active-thumb'));
+                this.classList.add('active-thumb');
+            });
         });
     }
 
     // ==========================================================================
-    // LÓGICA EXCLUSIVA: IRON JAW CUSTOMIZER INTERACTIVO
+    // 5. IRON JAW CUSTOMIZER INTERACTIVO (SIMULADOR DE PROTECTOR BUCAL)
     // ==========================================================================
     
-    // Elementos visuales del lienzo y controles del simulador
+    // Elementos del Simulador
     const customInput = document.getElementById('customText');
     const previewText = document.getElementById('previewText');
     const fontSelector = document.getElementById('fontSelector');
     const colorButtons = document.querySelectorAll('.color-btn');
     const vistaButtons = document.querySelectorAll('.btn-vista');
-    const productImg = document.getElementById('baseMouthguard'); // Vinculado al ID de tu HTML
+    const productImg = document.getElementById('baseMouthguard');
     const emojiButtons = document.querySelectorAll('.btn-quick-emoji');
 
-    // Campos ocultos del formulario para persistencia de datos (Envío por Email)
+    // Campos Ocultos para Formulario (Envío de Email)
     const formCustomText = document.getElementById('formCustomText');
     const formCustomColor = document.getElementById('formCustomColor');
     const formCustomFont = document.getElementById('formCustomFont');
-    const formCustomVista = document.getElementById('formCustomVista') || document.createElement('input'); 
+    let formCustomVista = document.getElementById('formCustomVista');
     
-    // Configuración inicial de campos si no existen en el DOM
-    if (!document.getElementById('formCustomVista') && contactForm) {
+    if (!formCustomVista && contactForm) {
+        formCustomVista = document.createElement('input');
         formCustomVista.type = 'hidden';
         formCustomVista.id = 'formCustomVista';
         formCustomVista.name = 'custom_vista';
@@ -95,20 +143,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --------------------------------------------------------------------------
-    // SOLUCIÓN AL PROBLEMA DE CARGA: PARCHE DE INICIALIZACIÓN EN FRÍO
-    // Fuerza a la imagen y al texto a renderizar correctamente el protector blanco
-    // --------------------------------------------------------------------------
-    if (productImg) {
-        productImg.src = 'images/bucal-blanco.png'; // Asegura tu protector blanco de inicio
+    // Parche de inicialización en frío
+    if (productImg && !productImg.src.includes('images/')) {
+        productImg.src = 'images/bucal-blanco.png';
     }
     if (previewText) {
         const textoInicial = previewText.innerText || "TITÁN";
         ajustarTamanoTexto(textoInicial);
     }
-    // --------------------------------------------------------------------------
 
-    // 1. CONTROL DE TEXTO EN VIVO CON RESTRICCIONES DE COMBATE
+    // A) CONTROL DE TEXTO EN VIVO
     if (customInput && previewText) {
         customInput.addEventListener('input', (e) => {
             let userText = e.target.value;
@@ -130,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 1B. INYECCIÓN DE EMOJIS RÁPIDOS EN EL SIMULADOR
+    // B) INYECCIÓN DE EMOJIS RÁPIDOS
     emojiButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault(); 
@@ -158,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. CONTROL DE COLOR EN VIVO
+    // C) CONTROL DE COLOR EN VIVO
     colorButtons.forEach(button => {
         button.addEventListener('click', () => {
             const activeColorBtn = document.querySelector('.color-btn.active');
@@ -173,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. CONTROL DE FUENTE / TIPOGRAFÍA EN VIVO
+    // D) CONTROL DE FUENTE EN VIVO
     if (fontSelector && previewText) {
         fontSelector.addEventListener('change', (e) => {
             const selectedClass = e.target.value;
@@ -199,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. MOTOR INTERACTIVO DE PERSPECTIVAS Y VISTAS 3D
+    // E) PERSPECTIVAS Y VISTAS 3D
     vistaButtons.forEach(button => {
         button.addEventListener('click', () => {
             const activeVistaBtn = document.querySelector('.btn-vista.active');
@@ -225,13 +269,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const nombresVistas = { 'frontal': 'Frontal', 'izquierdo': 'Lado Izquierdo', 'derecho': 'Lado Derecho' };
-            formCustomVista.value = nombresVistas[vistaSeleccionada] || 'Frontal';
+            if (formCustomVista) {
+                formCustomVista.value = nombresVistas[vistaSeleccionada] || 'Frontal';
+            }
             
             const textoActual = customInput ? customInput.value : "TITÁN";
             ajustarTamanoTexto(textoActual.trim() === "" ? "TITÁN" : textoActual);
         });
     });
 
+    // Recalcular tamaño de texto en caso de redimensionar la ventana
     window.addEventListener('resize', () => {
         const textoActual = customInput ? customInput.value : "TITÁN";
         ajustarTamanoTexto(textoActual.trim() === "" ? "TITÁN" : textoActual);
