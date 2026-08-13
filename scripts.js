@@ -284,3 +284,23 @@ document.addEventListener('DOMContentLoaded', () => {
         ajustarTamanoTexto(textoActual.trim() === "" ? "TITÁN" : textoActual);
     });
 });
+// Función para abrir la camiseta en pantalla completa
+function openShirtModal(imageSrc, captionText) {
+    const modal = document.getElementById("shirtModal");
+    const modalImg = document.getElementById("shirtModalImg");
+    const caption = document.getElementById("shirtModalCaption");
+
+    if (modal && modalImg && caption) {
+        modal.style.display = "block";
+        modalImg.src = imageSrc;
+        caption.innerText = captionText;
+    }
+}
+
+// Función para cerrar la vista de la camiseta
+function closeShirtModal() {
+    const modal = document.getElementById("shirtModal");
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
