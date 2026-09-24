@@ -164,6 +164,16 @@ body {
     color: var(--primary-color);
 }
 
+/* Ocultar botón hamburguesa por defecto en escritorio */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
 /* --- Hero Section --- */
 .hero {
     min-height: 100vh;
@@ -567,7 +577,7 @@ body {
 
 .preview-box {
     position: relative;
-    background: #181818; 
+    background: #181818;
     border-radius: 8px;
     padding: 20px;
     display: flex;
@@ -599,11 +609,11 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
     white-space: nowrap;
-    pointer-events: none; 
+    pointer-events: none;
     z-index: 2;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    text-shadow: 
-        -1px -1px 0 rgba(255, 255, 255, 0.8),  
+    text-shadow:
+        -1px -1px 0 rgba(255, 255, 255, 0.8),
          1px -1px 0 rgba(255, 255, 255, 0.8),
         -1px  1px 0 rgba(255, 255, 255, 0.8),
          1px  1px 0 rgba(255, 255, 255, 0.8),
@@ -612,21 +622,21 @@ body {
 
 /* Orientaciones del Texto según Vista */
 .preview-text-overlay.vista-frontal {
-    top: 50%; 
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
     font-size: 1.8rem;
 }
 
 .preview-text-overlay.vista-izquierdo {
-    top: 52%; 
+    top: 52%;
     left: 38%;
     transform: translate(-50%, -50%) skewY(6deg) scale(0.9);
     font-size: 1.5rem;
 }
 
 .preview-text-overlay.vista-derecho {
-    top: 52%; 
+    top: 52%;
     left: 62%;
     transform: translate(-50%, -50%) skewY(-6deg) scale(0.9);
     font-size: 1.5rem;
@@ -694,7 +704,7 @@ body {
 }
 
 .color-btn.active {
-    border-color: var(--primary-color) !important; 
+    border-color: var(--primary-color) !important;
     transform: scale(1.1);
     box-shadow: 0 0 8px rgba(230, 57, 70, 0.4);
 }
@@ -851,8 +861,25 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Muestra el botón hamburguesa en móviles */
+    }
+
     .nav-links {
-        display: none; /* Se puede expandir con clase active mediante JS */
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(18, 18, 18, 0.98);
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links.active {
+        display: flex; /* Muestra el menú al activarlo desde JS */
     }
 
     .hero h1 {
