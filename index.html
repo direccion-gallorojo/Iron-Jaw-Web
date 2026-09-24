@@ -3,149 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iron Jaw - Protectores Bucales de Alto Rendimiento</title>
+    <title>Iron Jaw | Protección a Medida</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Permanent+Marker&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- NAVEGACIÓN -->
-    <header class="header">
+    <nav class="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <img src="images/logo.png" alt="Iron Jaw Logo">
+                <img src="images/logo bucal.png" alt="Logo de Iron Jaw" style="height: 35px; vertical-align: middle; margin-right: 8px;">
+                IRON JAW
             </a>
-            <nav class="nav-links">
-                <a href="#inicio">Inicio</a>
-                <a href="#modelos">Modelos</a>
-                <a href="#camisetas">Ropa</a>
-                <a href="#beneficios">Beneficios</a>
-                <a href="#trabajos">Trabajos</a>
-                <a href="#testimonios">Opiniones</a>
-                <a href="#contacto" class="btn btn-primary">Diseñar Bucal</a>
-            </nav>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-nosotros">Nosotros</a></li>
+                <li><a href="#proceso">Cómo Funciona</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#camisetas">Camisetas</a></li>
+                <li><a href="#trabajos">Trabajos</a></li>
+                <li><a href="#contacto" class="btn-nav">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <img src="images/logo2.png" alt="Logo Iron Jaw" class="hero-logo">
+            <h1>PROTECCIÓN DE <span class="text-accent">HIERRO</span></h1>
+            <p>Protectores bucales profesionales hechos a medida. Diseñados para el impacto, moldeados para tu victoria.</p>
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn btn-primary">Pedir Mi Kit</a>
+                <a href="#productos" class="btn btn-outline">Ver Productos</a>
+            </div>
         </div>
     </header>
 
-    <!-- INICIO (HERO) -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>PROTECCIÓN A MEDIDA. RENDIMIENTO SIN LÍMITES.</h1>
-            <p>Protectores bucales de alto impacto diseñados por protésicos dentales para atletas exigentes.</p>
-            <div class="hero-buttons">
-                <a href="#contacto" class="btn btn-primary">Personalizar el Mío</a>
-                <a href="#modelos" class="btn btn-secondary">Ver Colección</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODELOS -->
-    <section id="modelos" class="section">
+    <section id="sobre-nosotros" class="section">
         <div class="container">
-            <h2 class="section-title">Protección a tu medida</h2>
-            <p class="section-subtitle">Elige el nivel de amortiguación según la intensidad de tu disciplina</p>
-            
-            <div class="cards-grid">
-                <!-- Modelo 1 -->
-                <div class="card">
-                    <div class="card-header">
-                        <span class="badge">Ligera</span>
-                        <h3>Impact Pro Lite</h3>
-                        <div class="price">59,95€</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="grosor"><i class="fa-solid fa-layer-group"></i> Grosor: 4,5 mm</p>
-                        <p>Diseñado para deportes de contacto moderado donde la máxima capacidad respiratoria y el habla fluida son la prioridad.</p>
-                        <ul class="feature-list">
-                            <li><i class="fa-solid fa-check"></i> Ajuste micrométrico de clínica</li>
-                            <li><i class="fa-solid fa-check"></i> Respiración 100% libre</li>
-                            <li><i class="fa-solid fa-check"></i> Ideal para BJJ, Grappling y Hockey</li>
-                        </ul>
-                        <a href="#contacto" class="btn btn-outline btn-block">Seleccionar</a>
-                    </div>
+            <h2 class="section-title">Experiencia Profesional</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>En <strong>Iron Jaw</strong>, combinamos la precisión dental con la resistencia deportiva. Nuestro equipo está liderado por protésicos especializados en odontología deportiva.</p>
+                    <p>Entendemos que un protector no es solo plástico; es la barrera entre una lesión grave y seguir en el juego. Cada pieza es fabricada a mano, asegurando un ajuste micrométrico que los protectores comerciales no pueden igualar.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Materiales de grado médico certificados.</li>
+                        <li><i class="fa-solid fa-check"></i> Ajuste perfecto que permite respirar y hablar.</li>
+                        <li><i class="fa-solid fa-check"></i> Personalización total de diseño.</li>
+                    </ul>
                 </div>
-
-                <!-- Modelo 2 -->
-                <div class="card featured">
-                    <div class="card-header">
-                        <span class="badge badge-pop">Más Popular</span>
-                        <h3>Impact Pro Dual</h3>
-                        <div class="price">74,95€</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="grosor"><i class="fa-solid fa-layer-group"></i> Grosor: 6,0 mm</p>
-                        <p>Doble capa laminada con núcleo de absorción. El equilibrio perfecto entre protección ante impactos secos y confort total.</p>
-                        <ul class="feature-list">
-                            <li><i class="fa-solid fa-check"></i> Doble capa termo-sellada</li>
-                            <li><i class="fa-solid fa-check"></i> Máxima disipación de energía</li>
-                            <li><i class="fa-solid fa-check"></i> Ideal para Boxeo, Kickboxing y Muay Thai</li>
-                        </ul>
-                        <a href="#contacto" class="btn btn-primary btn-block">Seleccionar</a>
-                    </div>
-                </div>
-
-                <!-- Modelo 3 -->
-                <div class="card">
-                    <div class="card-header">
-                        <span class="badge">Extrema</span>
-                        <h3>Iron Jaw Elite</h3>
-                        <div class="price">89,95€</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="grosor"><i class="fa-solid fa-layer-group"></i> Grosor: 8,0 mm</p>
-                        <p>Estructura reforzada multicapa para resistir los impactos más violentos. Protección extrema para la alta competición.</p>
-                        <ul class="feature-list">
-                            <li><i class="fa-solid fa-check"></i> Refuerzo frontal de alta densidad</li>
-                            <li><i class="fa-solid fa-check"></i> Protección de la articulación mandibular</li>
-                            <li><i class="fa-solid fa-check"></i> Ideal para MMA, K1 profesional y Rugby</li>
-                        </ul>
-                        <a href="#contacto" class="btn btn-outline btn-block">Seleccionar</a>
-                    </div>
+                <div class="about-image">
+                    <div class="img-placeholder"><i class="fa-solid fa-tooth"></i></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CAMISETAS / ROPA -->
-    <section id="camisetas" class="section bg-dark">
+    <section id="proceso" class="section" style="background-color: #ffffff; color: #1a1a1a;">
         <div class="container">
-            <h2 class="section-title">Colección de Ropa</h2>
-            <p class="section-subtitle">Vístete con la fuerza del hierro. Camisetas oversize técnicas de edición limitada.</p>
+            <h2 class="section-title" style="color: #1a1a1a;">Tu Iron Jaw en 3 Pasos</h2>
+            <div class="benefits-container">
+                <div class="benefit-item">
+                    <div style="font-size: 3rem; color: #e63946; font-weight: 800; margin-bottom: 1rem;">1</div>
+                    <h3 style="color: #1a1a1a;">Recibes el Kit</h3>
+                    <p style="color: #444444;">Te enviamos a casa el material profesional para tomar tu impresión dental en solo 5 minutos. ¡Sin moverte de casa!</p>
+                </div>
+                <div class="benefit-item">
+                    <div style="font-size: 3rem; color: #e63946; font-weight: 800; margin-bottom: 1rem;">2</div>
+                    <h3 style="color: #1a1a1a;">Envías el Molde</h3>
+                    <p style="color: #444444;">Nos mandas el molde de vuelta. Con él, nuestros protésicos fabrican tu protector con ajuste milimétrico.</p>
+                </div>
+                <div class="benefit-item">
+                    <div style="font-size: 3rem; color: #e63946; font-weight: 800; margin-bottom: 1rem;">3</div>
+                    <h3 style="color: #1a1a1a;">Protección Total</h3>
+                    <p style="color: #444444;">Recibes tu Iron Jaw listo para el combate. Un ajuste tan perfecto que olvidarás que lo llevas puesto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guia-impresion" class="section" style="background-color: #111; color: #fff; padding: 4rem 0;">
+        <div class="container">
+            <h2 class="section-title">Guía de Ajuste Perfecto</h2>
+            <p style="text-align: center; color: #aaa; margin-bottom: 3rem; font-size: 1.1rem;">
+                Tomar tus muestras es muy fácil. Sigue esta guía o solicita nuestro material audiovisual personalizado.
+            </p>
             
-            <div class="cards-grid">
-                <!-- Camiseta 1 -->
-                <div class="card shirt-card">
-                    <div class="shirt-img-wrapper" onclick="openShirtModal('images/drop.jpg', 'DROP ARMHOLE BLACK')">
-                        <img src="images/drop.jpg" alt="Camiseta Drop Armhole Black" class="shirt-img">
-                        <div class="shirt-overlay">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <div style="display: flex; flex-direction: column; gap: 2.5rem; max-width: 1000px; margin: 0 auto; align-items: center;">
+                <div style="width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); border: 1px solid #333;">
+                    <img src="images/plantillaboca.png" alt="Guía Paso a Paso Iron Jaw" style="width: 100%; display: block; height: auto;">
+                </div>
+                
+                <div style="width: 100%; background: #1a1a1a; border-left: 5px solid #e63946; padding: 25px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center;">
+                    <h3 style="color: #fff; font-family: 'Black Ops One', sans-serif; letter-spacing: 1px; margin-bottom: 12px; font-size: 1.4rem;">
+                        🎬 ¿Prefieres ver el vídeo explicativo?
+                    </h3>
+                    <p style="color: #ccc; font-size: 1.05rem; line-height: 1.6; max-width: 750px; margin: 0 auto 20px auto;">
+                        Si te queda alguna duda o tienes miedo de fallar en el proceso, ¡no te preocupes! Escríbenos directamente y nuestros protésicos dentales te enviarán un vídeo tutorial dinámico detallando paso a paso cómo lograr el molde idóneo.
+                    </p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="https://wa.me/34648109474" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff; padding: 12px 24px; border-radius: 5px; font-weight: bold; text-decoration: none; transition: 0.3s; font-size: 1rem;">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Pedir Vídeo por WhatsApp
+                        </a>
+                        <a href="#contacto" style="display: inline-flex; align-items: center; gap: 8px; background: #e63946; color: #fff; padding: 12px 24px; border-radius: 5px; font-weight: bold; text-decoration: none; transition: 0.3s; font-size: 1rem;">
+                            <i class="fa-solid fa-envelope"></i> Contactar por Web
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="productos" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title">Niveles de Protección</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; font-size: 1.1rem;">
+                Todos los precios incluyen Kit de Impresión, envío y caja de transporte.
+            </p>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container"><img src="images/bucalgenerico.jpg" alt="Protección Ligera"></div>
+                    <div class="card-content">
+                        <h3>LIGERA</h3>
+                        <p>Máximo confort. Ideal para deportes con uso de casco o contacto accidental.</p>
+                        <ul class="feature-list">
+                            <li><i class="fa-solid fa-check"></i> 4,5 mm (Monocapa)</li>
+                            <li><i class="fa-solid fa-check"></i> Baloncesto, Fútbol, Bici</li>
+                            <li><i class="fa-solid fa-check"></i> Kit Impresión Incluido</li>
+                        </ul>
+                        <div class="price-container">
+                            <span class="price">59,95€</span>
+                            <a href="#contacto" class="price-link">Pedir Ahora</a>
                         </div>
                     </div>
+                </div>
+
+                <div class="product-card highlight">
+                    <div class="product-img-container"><img src="images/bucalgenerico.jpg" alt="Protección Estándar"></div>
                     <div class="card-content">
-                        <h3>DROP ARMHOLE BLACK</h3>
-                        <p>Sisas caídas para máxima libertad en hombros. Tejido de algodón pesado transpirable perfecto para entrenar duro.</p>
+                        <h3>ESTÁNDAR</h3>
+                        <p>El todoterreno. Protección superior para deportes de contacto medio y palos.</p>
                         <ul class="feature-list">
-                            <li><i class="fa-solid fa-check"></i> Impresión textil de alta duración</li>
+                            <li><i class="fa-solid fa-check"></i> 6 mm (Doble Capa)</li>
+                            <li><i class="fa-solid fa-check"></i> Rugby, Hockey, Karate</li>
+                            <li><i class="fa-solid fa-check"></i> Kit Impresión Incluido</li>
+                        </ul>
+                        <div class="price-container">
+                            <span class="price">74,95€</span>
+                            <a href="#contacto" class="price-link">Pedir Ahora</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-container"><img src="images/bucalgenerico.jpg" alt="Protección Avanzada"></div>
+                    <div class="card-content">
+                        <h3>AVANZADA</h3>
+                        <p>Blindaje total. Diseñado para absorber impactos directos y continuos.</p>
+                        <ul class="feature-list">
+                            <li><i class="fa-solid fa-check"></i> 8 mm (Triple Capa)</li>
+                            <li><i class="fa-solid fa-check"></i> Boxeo, MMA, Muay Thai</li>
+                            <li><i class="fa-solid fa-check"></i> Kit Impresión Incluido</li>
+                        </ul>
+                        <div class="price-container">
+                            <span class="price">89,95€</span>
+                            <a href="#contacto" class="price-link">Pedir Ahora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 3rem; color: #fff; font-size: 1rem; background: rgba(230, 57, 70, 0.1); padding: 15px; border-radius: 8px; border: 1px dashed var(--primary-color); max-width: 800px; margin-left: auto; margin-right: auto;">
+                🎨 <strong>¿Buscas algo único?</strong> Personaliza tu Iron Jaw con logos, nombres o purpurina por solo <strong>+20€</strong> adicionales.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CAMISETAS / APPAREL -->
+    <section id="camisetas" class="section bg-dark" style="border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <h2 class="section-title">Ropa Iron Jaw</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; font-size: 1.1rem;">
+                Colección <strong>OVERSIZE Drop Armhole Unisex</strong> | Máxima calidad de tejido e impresión.
+            </p>
+
+            <div class="products-grid">
+                <!-- Modelo King -->
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="images/cking.jpg" alt="Camiseta Iron Jaw King" onclick="openShirtModal(this.src, 'Camiseta Iron Jaw KING')" style="cursor: pointer;">
+                    </div>
+                    <div class="card-content">
+                        <h3>KING</h3>
+                        <p>Diseño exclusivo Iron Jaw. Corte Oversize Drop Armhole Unisex con tejido de alta resistencia y gramaje superior.</p>
+                        <ul class="feature-list">
+                            <li><i class="fa-solid fa-check"></i> Impresión de alta definición</li>
                             <li><i class="fa-solid fa-check"></i> Corte Drop Armhole Unisex</li>
-                            <li><i class="fa-solid fa-check"></i> 100% Algodón Premium</li>
+                            <li><i class="fa-solid fa-check"></i> Tejido premium ultra cómodo</li>
                         </ul>
                         <div class="price-container">
                             <span class="price">26,00€</span>
-                            <a href="https://wa.me/34648109474?text=Hola!%20Quiero%20pedir%20la%20camiseta%20DROP%20ARMHOLE%20BLACK" target="_blank" class="price-link">Pedir Camiseta</a>
+                            <a href="https://wa.me/34648109474?text=Hola!%20Quiero%20pedir%20la%20camiseta%20KING%20Oversize" target="_blank" class="price-link">Pedir Camiseta</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Camiseta 2 -->
-                <div class="card shirt-card">
-                    <div class="shirt-img-wrapper" onclick="openShirtModal('images/vikingo.jpg', 'VIKINGO')">
-                        <img src="images/vikingo.jpg" alt="Camiseta Vikingo" class="shirt-img">
-                        <div class="shirt-overlay">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <!-- Modelo Gladiador -->
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="images/cgladiador.jpg" alt="Camiseta Iron Jaw Gladiador" onclick="openShirtModal(this.src, 'Camiseta Iron Jaw GLADIADOR')" style="cursor: pointer;">
+                    </div>
+                    <div class="card-content">
+                        <h3>GLADIADOR</h3>
+                        <p>Diseño exclusivo Iron Jaw. Corte Oversize Drop Armhole Unisex con tejido de alta resistencia y gramaje superior.</p>
+                        <ul class="feature-list">
+                            <li><i class="fa-solid fa-check"></i> Impresión de alta definición</li>
+                            <li><i class="fa-solid fa-check"></i> Corte Drop Armhole Unisex</li>
+                            <li><i class="fa-solid fa-check"></i> Tejido premium ultra cómodo</li>
+                        </ul>
+                        <div class="price-container">
+                            <span class="price">26,00€</span>
+                            <a href="https://wa.me/34648109474?text=Hola!%20Quiero%20pedir%20la%20camiseta%20GLADIADOR%20Oversize" target="_blank" class="price-link">Pedir Camiseta</a>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Modelo Pitbull -->
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="images/cpitbull.jpg" alt="Camiseta Iron Jaw Pitbull" onclick="openShirtModal(this.src, 'Camiseta Iron Jaw PITBULL')" style="cursor: pointer;">
+                    </div>
+                    <div class="card-content">
+                        <h3>PITBULL</h3>
+                        <p>Diseño exclusivo Iron Jaw. Corte Oversize Drop Armhole Unisex con tejido de alta resistencia y gramaje superior.</p>
+                        <ul class="feature-list">
+                            <li><i class="fa-solid fa-check"></i> Impresión de alta definición</li>
+                            <li><i class="fa-solid fa-check"></i> Corte Drop Armhole Unisex</li>
+                            <li><i class="fa-solid fa-check"></i> Tejido premium ultra cómodo</li>
+                        </ul>
+                        <div class="price-container">
+                            <span class="price">26,00€</span>
+                            <a href="https://wa.me/34648109474?text=Hola!%20Quiero%20pedir%20la%20camiseta%20PITBULL%20Oversize" target="_blank" class="price-link">Pedir Camiseta</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modelo Vikingo -->
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="images/cvikingo.jpg" alt="Camiseta Iron Jaw Vikingo" onclick="openShirtModal(this.src, 'Camiseta Iron Jaw VIKINGO')" style="cursor: pointer;">
                     </div>
                     <div class="card-content">
                         <h3>VIKINGO</h3>
@@ -165,14 +277,13 @@
         </div>
     </section>
 
-    <!-- VISOR LIGHTBOX PARA CAMISETAS -->
+    <!-- Visor Pop-Up para Camisetas (lightbox) -->
     <div id="shirtModal" class="shirt-modal" onclick="closeShirtModal()">
         <span class="shirt-modal-close" onclick="closeShirtModal()">&times;</span>
         <img class="shirt-modal-content" id="shirtModalImg" alt="Vista ampliada">
         <div id="shirtModalCaption" class="shirt-modal-caption"></div>
     </div>
 
-    <!-- BENEFICIOS -->
     <section id="beneficios" class="section">
         <div class="container">
             <h2 class="section-title">¿Por qué a medida?</h2>
@@ -196,64 +307,47 @@
         </div>
     </section>
 
-    <!-- TRABAJOS REALIZADOS -->
     <section id="trabajos" class="section bg-dark">
         <div class="container">
             <h2 class="section-title">Trabajos Realizados</h2>
             <div class="trabajos-grid">
                 <div class="trabajo-item">
                     <img src="images/cano.JPG" alt="Protector Bucal Cano Custom">
-                    <div class="trabajo-overlay">
-                        <span>Cano Custom</span>
-                    </div>
+                    <div class="trabajo-overlay"><span>Cano Custom</span></div>
                 </div>
                 <div class="trabajo-item">
                     <img src="images/electi.jpg" alt="Protector Bucal Guardia Electo">
-                    <div class="trabajo-overlay">
-                        <span>Guardia Electo BJJ</span>
-                    </div>
+                    <div class="trabajo-overlay"><span>Guardia Electo BJJ</span></div>
                 </div>
                 <div class="trabajo-item">
                     <img src="images/lucy.JPG" alt="Protector Bucal Straw Hat Lucy">
-                    <div class="trabajo-overlay">
-                        <span>Straw Hat "Lucy"</span>
-                    </div>
+                    <div class="trabajo-overlay"><span>Straw Hat "Lucy"</span></div>
                 </div>
+                
                 <div class="trabajo-item">
                     <img src="images/guardia.png" alt="Protector Bucal Guardia">
-                    <div class="trabajo-overlay">
-                        <span>Guardia Custom</span>
-                    </div>
+                    <div class="trabajo-overlay"><span>Guardia Custom</span></div>
                 </div>
                 <div class="trabajo-item">
                     <img src="images/tiagobuc.jpg" alt="Protector Bucal Tiago">
-                    <div class="trabajo-overlay">
-                        <span>Impact Pro Dual</span>
-                    </div>
+                    <div class="trabajo-overlay"><span>Impact Pro Dual</span></div>
                 </div>
                 <div class="trabajo-item">
                     <img src="images/bucjorge.jpg" alt="Protector Bucal Jorge">
-                    <div class="trabajo-overlay">
-                        <span>Custom Design</span>
-                    </div>
+                    <div class="trabajo-overlay"><span>Custom Design</span></div>
                 </div>
                 <div class="trabajo-item">
                     <img src="images/cantobuc.jpg" alt="Protector Bucal Canto">
-                    <div class="trabajo-overlay">
-                        <span>Performance Lite</span>
-                    </div>
+                    <div class="trabajo-overlay"><span>Performance Lite</span></div>
                 </div>
                 <div class="trabajo-item">
                     <img src="images/juanmabuc.jpg" alt="Protector Bucal Juanma">
-                    <div class="trabajo-overlay">
-                        <span>Iron Jaw Elite</span>
-                    </div>
+                    <div class="trabajo-overlay"><span>Iron Jaw Elite</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIOS -->
     <section id="testimonios" class="section">
         <div class="container">
             <h2 class="section-title">Lo que dicen los atletas</h2>
@@ -272,13 +366,11 @@
         </div>
     </section>
 
-    <!-- SECCIÓN CONTACTO Y PERSONALIZADOR -->
     <section id="contacto" class="section contact-section">
         <div class="container">
             <h2 class="section-title">Diseña tu Iron Jaw a Medida</h2>
             <div class="contact-wrapper">
                 
-                <!-- SIMULADOR INTERACTIVO -->
                 <div class="customizer-container">
                     <div class="vista-selector">
                         <button type="button" class="btn-vista active" data-vista="frontal">Vista Frontal</button>
@@ -288,13 +380,13 @@
 
                     <div class="preview-box">
                         <div class="canvas-wrapper">
-                            <img src="images/plantilla-plancha.png" id="baseMouthguard" alt="Lienzo Iron Jaw">
+                            <img src="images/bucal-blanco.png" id="baseMouthguard" alt="Lienzo Iron Jaw">
                             <div id="previewText" class="preview-text-overlay vista-frontal tipografia-mma" style="color: #1a1a1a;">TITÁN</div>
                         </div>
                     </div>
                     
                     <div class="customizer-controls">
-                        <div class="info-note-box" style="background: rgba(230, 57, 70, 0.1); border-left: 4px solid #e63946; padding: 12px; border-radius: 4px; margin-bottom: 15px;">
+                        <div class="info-note-box" style="background: rgba(230, 57, 70, 0.1); border-left: 4px solid #e63946; padding: 12px; border-radius: 4px; margin-bottom: 5px;">
                             <p style="font-size: 0.85rem; color: #f1f5f9; line-height: 1.4; margin: 0;">
                                 ⚠️ <strong>Nota de Personalización:</strong> Estamos optimizando nuestro simulador interactivo 3D. Si deseas tu nombre en los laterales, tipografías especiales o logotipos, detállalo abajo en la sección de <strong>"Instrucciones o detalles extra"</strong>. Te asesoraremos y enviaremos un boceto real antes de fabricarlo.
                             </p>
@@ -339,7 +431,6 @@
                     </div>
                 </div>
                 
-                <!-- FORMULARIO DE ENVÍO -->
                 <form id="contactForm" class="contact-form" action="https://formsubmit.co/contactoironjaw@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="¡Nuevo Diseño personalizado de Iron Jaw!">
                     <input type="hidden" name="_captcha" value="true">
@@ -407,7 +498,6 @@
         </div>
     </section>
 
-    <!-- PIE DE PÁGINA -->
     <footer>
         <div class="container">
             <p>&copy; 2026 Iron Jaw. Todos los derechos reservados.</p>
@@ -418,11 +508,8 @@
         </div>
     </footer>
 
-    <!-- BANNER DE COOKIES -->
     <div id="cookie-banner" class="cookie-consent hidden">
-        <p>Utilizamos cookies para mejorar tu experiencia. 
-            <button id="accept-cookies" class="btn btn-primary btn-cookie" style="padding: 5px 15px; margin-left: 10px;">Aceptar</button>
-        </p>
+        <p>Utilizamos cookies para mejorar tu experiencia. <button id="accept-cookies" class="btn btn-primary btn-cookie" style="padding: 5px 15px; margin-left: 10px;">Aceptar</button></p>
     </div>
 
     <script src="scripts.js"></script>
