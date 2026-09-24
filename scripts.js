@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    if (menuToggle) {
+    if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
@@ -72,13 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
             modalGallery.style.display = 'none';
         });
     }
-
-    // Cerrar al hacer clic fuera del contenido
-    window.addEventListener('click', (e) => {
-        if (e.target === modalGallery) {
-            modalGallery.style.display = 'none';
-        }
-    });
 
     // Cambiar imagen principal mediante miniaturas
     if (galleryThumbnails.length > 0) {
@@ -283,8 +276,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const textoActual = customInput ? customInput.value : "TITÁN";
         ajustarTamanoTexto(textoActual.trim() === "" ? "TITÁN" : textoActual);
     });
+
+    // Cierre global al pulsar la tecla Escape o clic fuera
+    window.addEventListener('click', (e) => {
+        if (modalGallery && e.target === modalGallery) {
+            modalGallery.style.display = 'none';
+        }
+        const shirtModal = document.getElementById("shirtModal");
+        if (shirtModal && e.target === shirtModal) {
+            shirtModal.style.display = 'none';
+        }
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (modalGallery) modalGallery.style.display = 'none';
+            const shirtModal = document.getElementById("shirtModal");
+            if (shirtModal) shirtModal.style.display = 'none';
+        }
+    });
 });
-// Función para abrir la camiseta en pantalla completa
+
+// --- FUNCIONES GLOBALES PARA LIGHTBOX DE CAMISETAS ---
 function openShirtModal(imageSrc, captionText) {
     const modal = document.getElementById("shirtModal");
     const modalImg = document.getElementById("shirtModalImg");
@@ -297,7 +310,6 @@ function openShirtModal(imageSrc, captionText) {
     }
 }
 
-// Función para cerrar la vista de la camiseta
 function closeShirtModal() {
     const modal = document.getElementById("shirtModal");
     if (modal) {
