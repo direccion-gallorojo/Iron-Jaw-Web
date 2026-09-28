@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('active');
         });
 
-        // Cerrar menú al hacer clic en un enlace
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -62,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
         modalGallery.addEventListener('click', (e) => {
             if (e.target === modalGallery) {
                 modalGallery.style.display = 'none';
-            });
-        }
+            }
+        });
     }
 
     /* ==========================================================================
@@ -98,32 +97,41 @@ document.addEventListener('DOMContentLoaded', () => {
             fontFamily: 'Impact'
         };
 
-        let isImagesLoaded = false;
-        let loadedCount = 0;
+        let planchaLoaded = false;
+        let mascaraLoaded = false;
 
-        function checkLoaded() {
-            loadedCount++;
-            if (loadedCount >= 2) {
-                isImagesLoaded = true;
-                renderCanvas();
-            }
-        }
+        imgPlancha.onload = () => {
+            planchaLoaded = true;
+            renderCanvas();
+        };
 
-        imgPlancha.onload = checkLoaded;
-        imgMascara.onload = checkLoaded;
+        imgMascara.onload = () => {
+            mascaraLoaded = true;
+            renderCanvas();
+        };
 
-        // Renderizado principal
+        // Si fallan las imágenes, renderizamos de todos modos para no dejar el cuadro en negro
+        imgPlancha.onerror = () => {
+            console.warn('No se pudo cargar images/plantilla-plancha.png');
+            renderCanvas();
+        };
+
+        imgMascara.onerror = () => {
+            console.warn('No se pudo cargar images/mascara.png');
+            renderCanvas();
+        };
+
+        // Renderizado principal corregido
         function renderCanvas() {
-            if (!isImagesLoaded) return;
-
+            // 1. Limpiar canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Capa de color base
+            // 2. Capa de color base (Siempre se dibuja)
             ctx.fillStyle = configState.baseColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // 2. Imagen subida con máscara recortada
-            if (userImage) {
+            // 3. Imagen subida con máscara recortada (Solo si existe la imagen y la máscara)
+            if (userImage && mascaraLoaded) {
                 const tempCanvas = document.createElement('canvas');
                 tempCanvas.width = canvas.width;
                 tempCanvas.height = canvas.height;
@@ -146,11 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.drawImage(tempCanvas, 0, 0);
             }
 
-            // 3. Plantilla protectora (sombras y textura física)
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.drawImage(imgPlancha, 0, 0, canvas.width, canvas.height);
+            // 4. Plantilla protectora (sombras y textura física)
+            if (planchaLoaded) {
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.drawImage(imgPlancha, 0, 0, canvas.width, canvas.height);
+            }
 
-            // 4. Texto superpuesto
+            // 5. Texto superpuesto
             if (configState.text) {
                 ctx.save();
                 ctx.fillStyle = configState.textColor;
@@ -338,6 +348,9 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.addEventListener('touchstart', startDrag, { passive: false });
         canvas.addEventListener('touchmove', doDrag, { passive: false });
         window.addEventListener('touchend', stopDrag);
+
+        // Primer dibujado inicial
+        renderCanvas();
     }
 });
 
