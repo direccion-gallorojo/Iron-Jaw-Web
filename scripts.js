@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let imageState = {
             x: 1024,
             y: 341,
-            scale: 0.8,
+            scale: 1,
             rotation: 0
         };
 
@@ -136,10 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 tempCanvas.height = canvas.height;
                 const tempCtx = tempCanvas.getContext('2d');
 
-                // Dibuja la imagen del cliente con sus transformaciones (pos, escala, rotación)
+                // Dibuja la imagen del cliente con sus transformaciones (pos, escala)
                 tempCtx.save();
                 tempCtx.translate(imageState.x, imageState.y);
-                tempCtx.rotate((imageState.rotation * Math.PI) / 180);
                 tempCtx.scale(imageState.scale, imageState.scale);
                 tempCtx.drawImage(
                     userImage,
@@ -160,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // 4. Capa de Textura, Relieve y Sombras (Plantilla Plancha)
             if (planchaLoaded) {
                 ctx.save();
-                // 'multiply' funde las sombras y brillos sobre el color base e imagen sin taparlos
                 ctx.globalCompositeOperation = 'multiply';
                 ctx.drawImage(imgPlancha, 0, 0, canvas.width, canvas.height);
                 ctx.restore();
@@ -183,6 +181,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if (dataInput) {
                 dataInput.value = canvas.toDataURL('image/png');
             }
+        }
+
+        // Función para calcular la escala de Auto-fit ("Cover")
+        function calculateCoverScale() {
+            if (!userImage) return 1;
+            const scaleX = canvas.width / userImage.width;
+            const scaleY = canvas.height / userImage.height;
+            // Toma la escala mayor para cubrir todo el ancho y alto del canvas sin dejar espacios
+            return Math.max(scaleX, scaleY);
+        }
+
+        // Aplicar ajuste de pantalla completa ("Cover")
+        function applyFitCover() {
+            if (!userImage) return;
+            imageState.scale = calculateCoverScale();
+            imageState.x = canvas.width / 2;
+            imageState.y = canvas.height / 2;
+
+            const scaleRange = document.getElementById('scaleRange');
+            if (scaleRange) scaleRange.value = imageState.scale;
+            renderCanvas();
         }
 
         // Selección de color base
@@ -210,14 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     reader.onload = (event) => {
                         userImage = new Image();
                         userImage.onload = () => {
-                            imageState = { x: canvas.width / 2, y: canvas.height / 2, scale: 0.8, rotation: 0 };
-                            const scaleRange = document.getElementById('scaleRange');
-                            const rotateRange = document.getElementById('rotateRange');
-                            if (scaleRange) scaleRange.value = 0.8;
-                            if (rotateRange) rotateRange.value = 0;
+                            // Muestra controles
                             if (transformControls) transformControls.style.display = 'block';
                             if (btnRemove) btnRemove.style.display = 'inline-block';
-                            renderCanvas();
+
+                            // Auto-fit inicial automático
+                            applyFitCover();
                         };
                         userImage.src = event.target.result;
                     };
@@ -236,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Sliders
+        // Slider de Zoom / Escala
         const scaleRange = document.getElementById('scaleRange');
         if (scaleRange) {
             scaleRange.addEventListener('input', (e) => {
@@ -245,21 +262,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        const rotateRange = document.getElementById('rotateRange');
-        if (rotateRange) {
-            rotateRange.addEventListener('input', (e) => {
-                imageState.rotation = parseInt(e.target.value, 10);
+        // Botón: Ajustar a todo el bucal
+        const btnFitCover = document.getElementById('btnFitCover');
+        if (btnFitCover) {
+            btnFitCover.addEventListener('click', () => {
+                applyFitCover();
+            });
+        }
+
+        // Botón: Centrar imagen
+        const btnCenterImage = document.getElementById('btnCenterImage');
+        if (btnCenterImage) {
+            btnCenterImage.addEventListener('click', () => {
+                imageState.x = canvas.width / 2;
+                imageState.y = canvas.height / 2;
                 renderCanvas();
             });
         }
 
+        // Botón: Restablecer
         const btnResetTransform = document.getElementById('btnResetTransform');
         if (btnResetTransform) {
             btnResetTransform.addEventListener('click', () => {
-                imageState = { x: canvas.width / 2, y: canvas.height / 2, scale: 0.8, rotation: 0 };
-                if (scaleRange) scaleRange.value = 0.8;
-                if (rotateRange) rotateRange.value = 0;
-                renderCanvas();
+                applyFitCover();
             });
         }
 
