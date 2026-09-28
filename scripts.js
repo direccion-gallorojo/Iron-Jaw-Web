@@ -1,306 +1,364 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. LÓGICA DEL MENÚ MÓVIL ---
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
 
-    if (menuToggle) {
+    /* ==========================================================================
+       1. MENÚ HAMBURGUESA Y NAVEGACIÓN
+       ========================================================================== */
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
-    }
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks) navLinks.classList.remove('active');
-        });
-    });
-
-    // --- 2. LÓGICA DEL FORMULARIO DE CONTACTO ---
-    const contactForm = document.getElementById('contactForm');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function() {
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-
-            if (submitBtn) {
-                submitBtn.innerText = 'Enviando...';
-                submitBtn.disabled = true;
-            }
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
-    // --- 3. LÓGICA DEL AVISO DE COOKIES ---
+    /* ==========================================================================
+       2. BANNER DE COOKIES
+       ========================================================================== */
     const cookieBanner = document.getElementById('cookie-banner');
-    const acceptButton = document.getElementById('accept-cookies');
+    const acceptCookiesBtn = document.getElementById('accept-cookies');
 
-    if (cookieBanner && !localStorage.getItem('cookiesAccepted')) {
-        cookieBanner.classList.remove('hidden');
-    }
+    if (cookieBanner && acceptCookiesBtn) {
+        if (!localStorage.getItem('cookiesAccepted')) {
+            cookieBanner.classList.remove('hidden');
+        }
 
-    if (acceptButton) {
-        acceptButton.addEventListener('click', function() {
+        acceptCookiesBtn.addEventListener('click', () => {
             localStorage.setItem('cookiesAccepted', 'true');
-            if (cookieBanner) cookieBanner.classList.add('hidden');
+            cookieBanner.classList.add('hidden');
         });
     }
 
-    // --- 4. LÓGICA DE LA GALERÍA MODAL (POP-UP) ---
+    /* ==========================================================================
+       3. MODAL DE GALERÍA DE TRABAJOS (LIGHTBOX)
+       ========================================================================== */
     const modalGallery = document.getElementById('modalGallery');
-    const closeGalleryBtn = document.querySelector('.close-button-gallery');
     const mainGalleryImage = document.getElementById('mainGalleryImage');
-    const galleryThumbnails = document.querySelectorAll('.gallery-thumbnail');
-    const openGalleryItems = document.querySelectorAll('.gallery-item, .trabajo-item');
+    const closeGalleryBtn = document.querySelector('.close-button-gallery');
+    const trabajoItems = document.querySelectorAll('.trabajo-item img');
 
-    // Abrir Modal de Galería
-    if (modalGallery && openGalleryItems.length > 0) {
-        openGalleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                if (img && mainGalleryImage) {
-                    mainGalleryImage.src = img.src;
-                    mainGalleryImage.alt = img.alt || 'Imagen de Galería';
-                    modalGallery.style.display = 'block';
+    if (modalGallery && mainGalleryImage) {
+        trabajoItems.forEach(img => {
+            img.addEventListener('click', () => {
+                mainGalleryImage.src = img.src;
+                mainGalleryImage.alt = img.alt;
+                modalGallery.style.display = 'flex';
+            });
+        });
+
+        if (closeGalleryBtn) {
+            closeGalleryBtn.addEventListener('click', () => {
+                modalGallery.style.display = 'none';
+            });
+        }
+
+        modalGallery.addEventListener('click', (e) => {
+            if (e.target === modalGallery) {
+                modalGallery.style.display = 'none';
+            });
+        }
+    }
+
+    /* ==========================================================================
+       4. PERSONALIZADOR DE BUCALES CON CANVAS Y MÁSCARA
+       ========================================================================== */
+    const canvas = document.getElementById('mouthguardCanvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+
+        // Cargar imágenes de la máscara y estructura
+        const imgPlancha = new Image();
+        imgPlancha.src = 'images/plantilla-plancha.png';
+
+        const imgMascara = new Image();
+        imgMascara.src = 'images/mascara.png';
+
+        let userImage = null;
+
+        // Estado de transformación de la imagen del usuario
+        let imageState = {
+            x: 1024,
+            y: 341,
+            scale: 0.8,
+            rotation: 0
+        };
+
+        // Estado del bucal
+        let configState = {
+            baseColor: '#FFFFFF',
+            text: 'TITÁN',
+            textColor: '#1a1a1a',
+            fontFamily: 'Impact'
+        };
+
+        let isImagesLoaded = false;
+        let loadedCount = 0;
+
+        function checkLoaded() {
+            loadedCount++;
+            if (loadedCount >= 2) {
+                isImagesLoaded = true;
+                renderCanvas();
+            }
+        }
+
+        imgPlancha.onload = checkLoaded;
+        imgMascara.onload = checkLoaded;
+
+        // Renderizado principal
+        function renderCanvas() {
+            if (!isImagesLoaded) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. Capa de color base
+            ctx.fillStyle = configState.baseColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Imagen subida con máscara recortada
+            if (userImage) {
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = canvas.width;
+                tempCanvas.height = canvas.height;
+                const tempCtx = tempCanvas.getContext('2d');
+
+                tempCtx.save();
+                tempCtx.translate(imageState.x, imageState.y);
+                tempCtx.rotate((imageState.rotation * Math.PI) / 180);
+                tempCtx.scale(imageState.scale, imageState.scale);
+                tempCtx.drawImage(
+                    userImage,
+                    -userImage.width / 2,
+                    -userImage.height / 2
+                );
+                tempCtx.restore();
+
+                tempCtx.globalCompositeOperation = 'destination-in';
+                tempCtx.drawImage(imgMascara, 0, 0, canvas.width, canvas.height);
+
+                ctx.drawImage(tempCanvas, 0, 0);
+            }
+
+            // 3. Plantilla protectora (sombras y textura física)
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.drawImage(imgPlancha, 0, 0, canvas.width, canvas.height);
+
+            // 4. Texto superpuesto
+            if (configState.text) {
+                ctx.save();
+                ctx.fillStyle = configState.textColor;
+                ctx.font = `bold 75px ${configState.fontFamily}, sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(configState.text, canvas.width / 2, canvas.height / 2 + 20);
+                ctx.restore();
+            }
+
+            // Guardar DataURL en el formulario
+            const dataInput = document.getElementById('formCanvasData');
+            if (dataInput) {
+                dataInput.value = canvas.toDataURL('image/png');
+            }
+        }
+
+        // Selección de color base
+        document.querySelectorAll('.color-base-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.color-base-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                configState.baseColor = btn.getAttribute('data-base-color');
+                const formBaseColor = document.getElementById('formBaseColor');
+                if (formBaseColor) formBaseColor.value = configState.baseColor;
+                renderCanvas();
+            });
+        });
+
+        // Subir imagen
+        const uploadInput = document.getElementById('uploadImage');
+        const transformControls = document.getElementById('imageTransformControls');
+        const btnRemove = document.getElementById('btnRemoveImage');
+
+        if (uploadInput) {
+            uploadInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        userImage = new Image();
+                        userImage.onload = () => {
+                            imageState = { x: canvas.width / 2, y: canvas.height / 2, scale: 0.8, rotation: 0 };
+                            const scaleRange = document.getElementById('scaleRange');
+                            const rotateRange = document.getElementById('rotateRange');
+                            if (scaleRange) scaleRange.value = 0.8;
+                            if (rotateRange) rotateRange.value = 0;
+                            if (transformControls) transformControls.style.display = 'block';
+                            if (btnRemove) btnRemove.style.display = 'inline-block';
+                            renderCanvas();
+                        };
+                        userImage.src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        if (btnRemove) {
+            btnRemove.addEventListener('click', () => {
+                userImage = null;
+                if (uploadInput) uploadInput.value = '';
+                if (transformControls) transformControls.style.display = 'none';
+                btnRemove.style.display = 'none';
+                renderCanvas();
+            });
+        }
+
+        // Sliders de escala y rotación
+        const scaleRange = document.getElementById('scaleRange');
+        if (scaleRange) {
+            scaleRange.addEventListener('input', (e) => {
+                imageState.scale = parseFloat(e.target.value);
+                renderCanvas();
+            });
+        }
+
+        const rotateRange = document.getElementById('rotateRange');
+        if (rotateRange) {
+            rotateRange.addEventListener('input', (e) => {
+                imageState.rotation = parseInt(e.target.value, 10);
+                renderCanvas();
+            });
+        }
+
+        const btnResetTransform = document.getElementById('btnResetTransform');
+        if (btnResetTransform) {
+            btnResetTransform.addEventListener('click', () => {
+                imageState = { x: canvas.width / 2, y: canvas.height / 2, scale: 0.8, rotation: 0 };
+                if (scaleRange) scaleRange.value = 0.8;
+                if (rotateRange) rotateRange.value = 0;
+                renderCanvas();
+            });
+        }
+
+        // Texto e Iconos
+        const textInput = document.getElementById('customText');
+        if (textInput) {
+            textInput.addEventListener('input', (e) => {
+                configState.text = e.target.value;
+                const formCustomText = document.getElementById('formCustomText');
+                if (formCustomText) formCustomText.value = configState.text;
+                renderCanvas();
+            });
+        }
+
+        document.querySelectorAll('.btn-quick-emoji').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (textInput) {
+                    textInput.value += btn.getAttribute('data-emoji');
+                    configState.text = textInput.value;
+                    const formCustomText = document.getElementById('formCustomText');
+                    if (formCustomText) formCustomText.value = configState.text;
+                    renderCanvas();
                 }
             });
         });
-    }
 
-    // Cerrar Modal
-    if (closeGalleryBtn) {
-        closeGalleryBtn.addEventListener('click', () => {
-            modalGallery.style.display = 'none';
-        });
-    }
-
-    // Cerrar al hacer clic fuera del contenido
-    window.addEventListener('click', (e) => {
-        if (e.target === modalGallery) {
-            modalGallery.style.display = 'none';
-        }
-    });
-
-    // Cambiar imagen principal mediante miniaturas
-    if (galleryThumbnails.length > 0) {
-        galleryThumbnails.forEach(thumb => {
-            thumb.addEventListener('click', function() {
-                if (mainGalleryImage) {
-                    mainGalleryImage.src = this.src;
-                }
-                galleryThumbnails.forEach(t => t.classList.remove('active-thumb'));
-                this.classList.add('active-thumb');
+        // Color del texto
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                configState.textColor = btn.getAttribute('data-color');
+                const formCustomColor = document.getElementById('formCustomColor');
+                if (formCustomColor) formCustomColor.value = configState.textColor;
+                renderCanvas();
             });
         });
-    }
 
-    // ==========================================================================
-    // 5. IRON JAW CUSTOMIZER INTERACTIVO (SIMULADOR DE PROTECTOR BUCAL)
-    // ==========================================================================
-    
-    // Elementos del Simulador
-    const customInput = document.getElementById('customText');
-    const previewText = document.getElementById('previewText');
-    const fontSelector = document.getElementById('fontSelector');
-    const colorButtons = document.querySelectorAll('.color-btn');
-    const vistaButtons = document.querySelectorAll('.btn-vista');
-    const productImg = document.getElementById('baseMouthguard');
-    const emojiButtons = document.querySelectorAll('.btn-quick-emoji');
-
-    // Campos Ocultos para Formulario (Envío de Email)
-    const formCustomText = document.getElementById('formCustomText');
-    const formCustomColor = document.getElementById('formCustomColor');
-    const formCustomFont = document.getElementById('formCustomFont');
-    let formCustomVista = document.getElementById('formCustomVista');
-    
-    if (!formCustomVista && contactForm) {
-        formCustomVista = document.createElement('input');
-        formCustomVista.type = 'hidden';
-        formCustomVista.id = 'formCustomVista';
-        formCustomVista.name = 'custom_vista';
-        formCustomVista.value = 'Frontal';
-        contactForm.appendChild(formCustomVista);
-    }
-
-    /**
-     * Algoritmo de Auto-escalado Tipográfico Dinámico
-     */
-    const ajustarTamanoTexto = (texto) => {
-        if (!previewText) return;
-        
-        const longitud = Array.from(texto).length;
-        const esMovil = window.innerWidth <= 768;
-        let baseSize = esMovil ? 1.2 : 1.6;
-
-        if (longitud > 3) {
-            const factorReduccion = (longitud - 3) * (esMovil ? 0.10 : 0.15);
-            let nuevoSize = baseSize - factorReduccion;
-            const minSize = esMovil ? 0.70 : 0.90;
-            if (nuevoSize < minSize) nuevoSize = minSize;
-            
-            previewText.style.fontSize = `${nuevoSize}rem`;
-        } else {
-            previewText.style.fontSize = `${baseSize}rem`;
+        // Tipografía
+        const fontSelector = document.getElementById('fontSelector');
+        if (fontSelector) {
+            fontSelector.addEventListener('change', (e) => {
+                configState.fontFamily = e.target.value;
+                const formCustomFont = document.getElementById('formCustomFont');
+                if (formCustomFont) formCustomFont.value = configState.fontFamily;
+                renderCanvas();
+            });
         }
-    };
 
-    // Parche de inicialización en frío
-    if (productImg && !productImg.src.includes('images/')) {
-        productImg.src = 'images/bucal-blanco.png';
+        // Arrastre en el Canvas (Drag & Drop táctil y ratón)
+        let isDragging = false;
+        let startX, startY;
+
+        function getCanvasCoordinates(e) {
+            const rect = canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
+        }
+
+        function startDrag(e) {
+            if (!userImage) return;
+            isDragging = true;
+            const coords = getCanvasCoordinates(e);
+            startX = coords.x - imageState.x;
+            startY = coords.y - imageState.y;
+            canvas.style.cursor = 'grabbing';
+        }
+
+        function doDrag(e) {
+            if (!isDragging || !userImage) return;
+            e.preventDefault();
+            const coords = getCanvasCoordinates(e);
+            imageState.x = coords.x - startX;
+            imageState.y = coords.y - startY;
+            renderCanvas();
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            canvas.style.cursor = 'grab';
+        }
+
+        canvas.addEventListener('mousedown', startDrag);
+        canvas.addEventListener('mousemove', doDrag);
+        window.addEventListener('mouseup', stopDrag);
+
+        canvas.addEventListener('touchstart', startDrag, { passive: false });
+        canvas.addEventListener('touchmove', doDrag, { passive: false });
+        window.addEventListener('touchend', stopDrag);
     }
-    if (previewText) {
-        const textoInicial = previewText.innerText || "TITÁN";
-        ajustarTamanoTexto(textoInicial);
-    }
-
-    // A) CONTROL DE TEXTO EN VIVO
-    if (customInput && previewText) {
-        customInput.addEventListener('input', (e) => {
-            let userText = e.target.value;
-            
-            let textToUppercase = "";
-            for (let char of userText) {
-                textToUppercase += (char.match(/[a-zñáéíóúü]/i)) ? char.toUpperCase() : char;
-            }
-            
-            if (textToUppercase.trim() === "") {
-                previewText.innerText = "TITÁN";
-                if (formCustomText) formCustomText.value = "TITÁN";
-                ajustarTamanoTexto("TITÁN");
-            } else {
-                previewText.innerText = textToUppercase;
-                if (formCustomText) formCustomText.value = textToUppercase;
-                ajustarTamanoTexto(textToUppercase);
-            }
-        });
-    }
-
-    // B) INYECCIÓN DE EMOJIS RÁPIDOS
-    emojiButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault(); 
-            if (!customInput || !previewText) return;
-
-            const emoji = button.getAttribute('data-emoji');
-            const contenidoActual = customInput.value;
-            const longitudVisualActual = Array.from(contenidoActual).length;
-            
-            if (contenidoActual.trim() === "") {
-                customInput.value = emoji;
-            } else {
-                if (longitudVisualActual < 8) {
-                    customInput.value += emoji;
-                } else {
-                    return; 
-                }
-            }
-
-            const textoFinal = customInput.value;
-            previewText.innerText = textoFinal;
-            
-            if (formCustomText) formCustomText.value = textoFinal;
-            ajustarTamanoTexto(textoFinal);
-        });
-    });
-
-    // C) CONTROL DE COLOR EN VIVO
-    colorButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const activeColorBtn = document.querySelector('.color-btn.active');
-            if (activeColorBtn) activeColorBtn.classList.remove('active');
-            
-            button.classList.add('active');
-
-            const selectedColor = button.getAttribute('data-color');
-            if (previewText) previewText.style.color = selectedColor;
-            
-            if (formCustomColor) formCustomColor.value = selectedColor;
-        });
-    });
-
-    // D) CONTROL DE FUENTE EN VIVO
-    if (fontSelector && previewText) {
-        fontSelector.addEventListener('change', (e) => {
-            const selectedClass = e.target.value;
-            
-            previewText.classList.remove(
-                'tipografia-mma', 
-                'tipografia-classic', 
-                'tipografia-modern',
-                'tipografia-grafiti',
-                'tipografia-ruda',
-                'tipografia-stencil'
-            );
-            previewText.classList.add(selectedClass);
-
-            let fontFriendlyName = "Combat (Impact)";
-            if (selectedClass === 'tipografia-classic') fontFriendlyName = "Deportivo Clásico (Monospace)";
-            if (selectedClass === 'tipografia-modern') fontFriendlyName = "Diseño Moderno (Italic)";
-            if (selectedClass === 'tipografia-grafiti') fontFriendlyName = "Urbano Grafiti (Permanent Marker)";
-            if (selectedClass === 'tipografia-ruda') fontFriendlyName = "Estilo Rudo (Rubik Dirt)";
-            if (selectedClass === 'tipografia-stencil') fontFriendlyName = "Militar Stencil (Black Ops One)";
-            
-            if (formCustomFont) formCustomFont.value = fontFriendlyName;
-        });
-    }
-
-    // E) PERSPECTIVAS Y VISTAS 3D
-    vistaButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const activeVistaBtn = document.querySelector('.btn-vista.active');
-            if (activeVistaBtn) activeVistaBtn.classList.remove('active');
-            
-            button.classList.add('active');
-
-            const vistaSeleccionada = button.getAttribute('data-vista'); 
-            
-            if (productImg) {
-                if (vistaSeleccionada === 'frontal') {
-                    productImg.src = 'images/bucal-blanco.png';
-                } else if (vistaSeleccionada === 'izquierdo') {
-                    productImg.src = 'images/bucal-lado-izquierdo.png';
-                } else if (vistaSeleccionada === 'derecho') {
-                    productImg.src = 'images/bucal-lado-derecho.png';
-                }
-            }
-
-            if (previewText) {
-                previewText.classList.remove('vista-frontal', 'vista-izquierdo', 'vista-derecho');
-                previewText.classList.add(`vista-${vistaSeleccionada}`);
-            }
-
-            const nombresVistas = { 'frontal': 'Frontal', 'izquierdo': 'Lado Izquierdo', 'derecho': 'Lado Derecho' };
-            if (formCustomVista) {
-                formCustomVista.value = nombresVistas[vistaSeleccionada] || 'Frontal';
-            }
-            
-            const textoActual = customInput ? customInput.value : "TITÁN";
-            ajustarTamanoTexto(textoActual.trim() === "" ? "TITÁN" : textoActual);
-        });
-    });
-
-    // Recalcular tamaño de texto en caso de redimensionar la ventana
-    window.addEventListener('resize', () => {
-        const textoActual = customInput ? customInput.value : "TITÁN";
-        ajustarTamanoTexto(textoActual.trim() === "" ? "TITÁN" : textoActual);
-    });
 });
-// Función para abrir la camiseta en pantalla completa
-function openShirtModal(imageSrc, captionText) {
-    const modal = document.getElementById("shirtModal");
-    const modalImg = document.getElementById("shirtModalImg");
-    const caption = document.getElementById("shirtModalCaption");
 
-    if (modal && modalImg && caption) {
-        modal.style.display = "block";
-        modalImg.src = imageSrc;
-        caption.innerText = captionText;
+/* ==========================================================================
+   5. VISOR POP-UP PARA CAMISETAS
+   ========================================================================== */
+function openShirtModal(imgSrc, captionText) {
+    const shirtModal = document.getElementById('shirtModal');
+    const shirtModalImg = document.getElementById('shirtModalImg');
+    const shirtModalCaption = document.getElementById('shirtModalCaption');
+
+    if (shirtModal && shirtModalImg) {
+        shirtModalImg.src = imgSrc;
+        if (shirtModalCaption) shirtModalCaption.textContent = captionText;
+        shirtModal.style.display = 'block';
     }
 }
 
-// Función para cerrar la vista de la camiseta
 function closeShirtModal() {
-    const modal = document.getElementById("shirtModal");
-    if (modal) {
-        modal.style.display = "none";
+    const shirtModal = document.getElementById('shirtModal');
+    if (shirtModal) {
+        shirtModal.style.display = 'none';
     }
 }
