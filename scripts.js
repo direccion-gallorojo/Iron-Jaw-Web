@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (canvas) {
         const ctx = canvas.getContext('2d');
 
-        // Cargar imágenes de la máscara y estructura
+        // Cargar imágenes
         const imgPlancha = new Image();
         imgPlancha.src = 'images/plantilla-plancha.png';
 
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let userImage = null;
 
-        // Estado de transformación de la imagen del usuario
+        // Estado de la imagen del cliente
         let imageState = {
             x: 1024,
             y: 341,
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             rotation: 0
         };
 
-        // Estado del bucal
+        // Estado de configuración del bucal
         let configState = {
             baseColor: '#FFFFFF',
             text: 'TITÁN',
@@ -110,33 +110,33 @@ document.addEventListener('DOMContentLoaded', () => {
             renderCanvas();
         };
 
-        // Si fallan las imágenes, renderizamos de todos modos para no dejar el cuadro en negro
         imgPlancha.onerror = () => {
-            console.warn('No se pudo cargar images/plantilla-plancha.png');
+            console.warn('No se encontró images/plantilla-plancha.png');
             renderCanvas();
         };
 
         imgMascara.onerror = () => {
-            console.warn('No se pudo cargar images/mascara.png');
+            console.warn('No se encontró images/mascara.png');
             renderCanvas();
         };
 
-        // Renderizado principal corregido
+        // RENDERIZADO CANVAS CON CORRECCIÓN DE CAPAS
         function renderCanvas() {
-            // 1. Limpiar canvas
+            // 1. Limpiar lienzo
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 2. Capa de color base (Siempre se dibuja)
+            // 2. Fondo / Color Base
             ctx.fillStyle = configState.baseColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // 3. Imagen subida con máscara recortada (Solo si existe la imagen y la máscara)
+            // 3. Dibujar Imagen del Usuario dentro de la Máscara
             if (userImage && mascaraLoaded) {
                 const tempCanvas = document.createElement('canvas');
                 tempCanvas.width = canvas.width;
                 tempCanvas.height = canvas.height;
                 const tempCtx = tempCanvas.getContext('2d');
 
+                // Dibuja la imagen del cliente con sus transformaciones (pos, escala, rotación)
                 tempCtx.save();
                 tempCtx.translate(imageState.x, imageState.y);
                 tempCtx.rotate((imageState.rotation * Math.PI) / 180);
@@ -148,21 +148,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
                 tempCtx.restore();
 
+                // Recorta la imagen basándose exclusivamente en la silueta de mascara.png
                 tempCtx.globalCompositeOperation = 'destination-in';
                 tempCtx.drawImage(imgMascara, 0, 0, canvas.width, canvas.height);
 
+                // Plasma la imagen recortada encima del fondo
+                ctx.globalCompositeOperation = 'source-over';
                 ctx.drawImage(tempCanvas, 0, 0);
             }
 
-            // 4. Plantilla protectora (sombras y textura física)
+            // 4. Capa de Textura, Relieve y Sombras (Plantilla Plancha)
             if (planchaLoaded) {
-                ctx.globalCompositeOperation = 'source-over';
+                ctx.save();
+                // 'multiply' funde las sombras y brillos sobre el color base e imagen sin taparlos
+                ctx.globalCompositeOperation = 'multiply';
                 ctx.drawImage(imgPlancha, 0, 0, canvas.width, canvas.height);
+                ctx.restore();
             }
 
-            // 5. Texto superpuesto
+            // 5. Capa de Texto
             if (configState.text) {
                 ctx.save();
+                ctx.globalCompositeOperation = 'source-over';
                 ctx.fillStyle = configState.textColor;
                 ctx.font = `bold 75px ${configState.fontFamily}, sans-serif`;
                 ctx.textAlign = 'center';
@@ -190,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Subir imagen
+        // Subida de imagen
         const uploadInput = document.getElementById('uploadImage');
         const transformControls = document.getElementById('imageTransformControls');
         const btnRemove = document.getElementById('btnRemoveImage');
@@ -229,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Sliders de escala y rotación
+        // Sliders
         const scaleRange = document.getElementById('scaleRange');
         if (scaleRange) {
             scaleRange.addEventListener('input', (e) => {
@@ -302,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Arrastre en el Canvas (Drag & Drop táctil y ratón)
+        // Arrastre en Canvas (Mouse y Touch)
         let isDragging = false;
         let startX, startY;
 
@@ -349,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.addEventListener('touchmove', doDrag, { passive: false });
         window.addEventListener('touchend', stopDrag);
 
-        // Primer dibujado inicial
+        // Primer render inicial
         renderCanvas();
     }
 });
