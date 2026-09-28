@@ -1091,3 +1091,33 @@ footer {
 .shirt-modal-close:hover {
     color: var(--primary-color);
 }
+/* Estilos extra para Personalizador Canvas */
+.color-base-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.color-base-btn.active {
+    border-color: var(--primary-color, #e63946) !important;
+    transform: scale(1.15);
+}
+
+.btn-quick-emoji {
+    background: #222;
+    border: 1px solid #444;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+}
+
+.btn-quick-emoji:hover {
+    background: #333;
+    border-color: #666;
+}
