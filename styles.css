@@ -1121,3 +1121,7 @@ footer {
     background: #333;
     border-color: #666;
 }
+/* Forzar que el lienzo del customizador tenga siempre fondo blanco */
+canvas {
+    background-color: #ffffff !important;
+}
