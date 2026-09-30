@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Estado de la imagen del cliente
         let imageState = {
-            x: 1024,
-            y: 341,
+            x: canvas.width / 2,
+            y: canvas.height / 2,
             scale: 1,
             rotation: 0
         };
@@ -120,14 +120,36 @@ document.addEventListener('DOMContentLoaded', () => {
             renderCanvas();
         };
 
-        // RENDERIZADO CANVAS CON CORRECCIÓN DE CAPAS
+        // RENDERIZADO CANVAS CON FONDO BLANCO Y CORRECCIÓN DE CAPAS
         function renderCanvas() {
-            // 1. Limpiar lienzo
+            // 1. Limpiar lienzo y fijar el marco exterior SIEMPRE en Blanco
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // 2. Fondo / Color Base
-            ctx.fillStyle = configState.baseColor;
+            ctx.fillStyle = '#FFFFFF';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Dibujar la BASE DEL PROTECTOR BUCAL (Aplica color base solo dentro de la máscara)
+            if (mascaraLoaded) {
+                const baseCanvas = document.createElement('canvas');
+                baseCanvas.width = canvas.width;
+                baseCanvas.height = canvas.height;
+                const baseCtx = baseCanvas.getContext('2d');
+
+                // Rellenar con el color de base elegido (Azul, Rojo, Negro, Blanco)
+                baseCtx.fillStyle = configState.baseColor;
+                baseCtx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Recortar la base para que solo ocupe la forma del protector
+                baseCtx.globalCompositeOperation = 'destination-in';
+                baseCtx.drawImage(imgMascara, 0, 0, canvas.width, canvas.height);
+
+                // Dibujar el protector coloreado sobre el fondo blanco
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.drawImage(baseCanvas, 0, 0);
+            } else {
+                // Fallback en caso de que no cargue la máscara
+                ctx.fillStyle = configState.baseColor;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
 
             // 3. Dibujar Imagen del Usuario dentro de la Máscara
             if (userImage && mascaraLoaded) {
@@ -151,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tempCtx.globalCompositeOperation = 'destination-in';
                 tempCtx.drawImage(imgMascara, 0, 0, canvas.width, canvas.height);
 
-                // Plasma la imagen recortada encima del fondo
+                // Plasma la imagen recortada encima de la base
                 ctx.globalCompositeOperation = 'source-over';
                 ctx.drawImage(tempCanvas, 0, 0);
             }
@@ -183,24 +205,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Función para calcular la escala de Auto-fit ("Cover")
-        function calculateCoverScale() {
+        // Función para calcular la escala Inteligente (Garantiza que no se corte por alto/ancho)
+        function calculateSmartScale() {
             if (!userImage) return 1;
-            const scaleX = canvas.width / userImage.width;
-            const scaleY = canvas.height / userImage.height;
-            // Toma la escala mayor para cubrir todo el ancho y alto del canvas sin dejar espacios
-            return Math.max(scaleX, scaleY);
+            // Definimos un área segura (75% ancho, 75% alto) para que quepa la imagen completa
+            const safeWidth = canvas.width * 0.75;
+            const safeHeight = canvas.height * 0.75;
+
+            const scaleX = safeWidth / userImage.width;
+            const scaleY = safeHeight / userImage.height;
+
+            // 'Contain': Toma la menor escala para asegurar que el logo completo sea visible
+            return Math.min(scaleX, scaleY);
         }
 
-        // Aplicar ajuste de pantalla completa ("Cover")
+        // Aplicar ajuste automático inteligente
         function applyFitCover() {
             if (!userImage) return;
-            imageState.scale = calculateCoverScale();
+            imageState.scale = calculateSmartScale();
             imageState.x = canvas.width / 2;
             imageState.y = canvas.height / 2;
 
             const scaleRange = document.getElementById('scaleRange');
-            if (scaleRange) scaleRange.value = imageState.scale;
+            if (scaleRange) {
+                scaleRange.value = imageState.scale;
+            }
             renderCanvas();
         }
 
@@ -233,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (transformControls) transformControls.style.display = 'block';
                             if (btnRemove) btnRemove.style.display = 'inline-block';
 
-                            // Auto-fit inicial automático
+                            // Auto-fit inicial automático con ajuste inteligente
                             applyFitCover();
                         };
                         userImage.src = event.target.result;
